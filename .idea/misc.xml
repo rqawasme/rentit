@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/button_background.xml" value="0.1225" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1745" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/login_background.xml" value="0.1745" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/login_edit_background.xml" value="0.1745" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_login.xml" value="0.2942708333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>

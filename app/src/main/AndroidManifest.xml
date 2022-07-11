@@ -13,6 +13,10 @@
         android:theme="@style/Theme.Rentit"
         tools:targetApi="31">
         <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:theme="@style/LoginPage"/>
+        <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
