@@ -12,11 +12,18 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.cmpt362.rentit.databinding.ActivityMainBinding
+import com.cmpt362.rentit.db.Listing
+import com.cmpt362.rentit.db.User
+import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
+    private lateinit var db: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +49,24 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+//        //Testing firebase connection, just for reference
+//        //Gets FireBaseInstance, behind the scenes FireBase managed a single connection and dedupes appropriately if needed, so you can just do in multiple places.
+//        db= Firebase.database
+//
+//        //Get reference, create object and set value.
+//        //For below, username is the "key", if you change the other values but do .setvalue() with the same username, it'll just update the value for the username.
+//        //For different username, it will create a new User object and insert.
+//        val myRefUsers = db.getReference("Users")
+//        val username="keiN"
+//        val user= User(1,username,"knakano@sfu.ca","1231111111","testAddr")
+//        myRefUsers.child(username).setValue(user)
+//
+//        val myRefListings=db.getReference("Listings")
+//        val listingID=1337
+//        val listing= Listing(listingID,"type","ListingName",1337.00,"test listing",1,1,true)
+//        myRefListings.child(listingID.toString()).setValue(listing)
+//        //Todo: Probably need to create a helper function to autoincrement ID for new entries
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
