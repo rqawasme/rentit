@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.cmpt362.rentit.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_rentals"
+        android:name="com.cmpt362.rentit.ui.rentals.RentalsFragment"
+        android:label="@string/menu_rentals"
+        tools:layout="@layout/fragment_rentals" />
 
     <fragment
         android:id="@+id/nav_slideshow"
