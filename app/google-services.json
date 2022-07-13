@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "290105090973",
+    "project_id": "rentit-4ffd7",
+    "storage_bucket": "rentit-4ffd7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:290105090973:android:f17c94935f07bc06094574",
+        "android_client_info": {
+          "package_name": "com.cmpt362.rentit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "290105090973-vohh21dg8eq4a1u2cufkt6sqvtiv6nol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDkuIN6SQakv6OujTkom_Q2isBbbRPZT3Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "290105090973-vohh21dg8eq4a1u2cufkt6sqvtiv6nol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
