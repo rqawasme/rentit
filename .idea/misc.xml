@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/School Projects/cmpt362/Rentit/app/src/main/res/drawable/side_nav_bar.xml" value="0.2485" />
+        <entry key="..\:/School Projects/cmpt362/Rentit/app/src/main/res/layout/app_bar_main.xml" value="0.26766304347826086" />
         <entry key="..\:/School Projects/cmpt362/Rentit/app/src/main/res/layout/content_main.xml" value="0.5546875" />
+        <entry key="..\:/School Projects/cmpt362/Rentit/app/src/main/res/layout/fragment_gallery.xml" value="0.26766304347826086" />
+        <entry key="..\:/School Projects/cmpt362/Rentit/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
+        <entry key="..\:/School Projects/cmpt362/Rentit/app/src/main/res/layout/gridview_item.xml" value="0.26766304347826086" />
+        <entry key="..\:/School Projects/cmpt362/Rentit/app/src/main/res/layout/nav_header_main.xml" value="0.26766304347826086" />
+        <entry key="..\:/School Projects/cmpt362/Rentit/app/src/main/res/menu/activity_main_drawer.xml" value="0.3140625" />
       </map>
     </option>
   </component>
