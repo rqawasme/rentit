@@ -6,4 +6,10 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_user_login"
+        android:icon="@drawable/ic_baseline_login_24"
+        android:title="@string/action_login"
+        app:showAsAction="never"/>
 </menu>

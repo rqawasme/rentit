@@ -22,4 +22,12 @@
     <style name="Theme.Rentit.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.Rentit.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="LoginPage" parent="Theme.AppCompat.NoActionBar">
+        <item name="colorPrimary">@color/customPrimary</item>
+        <item name="colorPrimaryDark">@color/customDark</item>
+        <item name="colorAccent">@color/customAccent</item>
+
+    </style>
+
 </resources>
