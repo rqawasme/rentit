@@ -1,5 +1,6 @@
 package com.cmpt362.rentit.ui.rentals
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
 import androidx.fragment.app.Fragment
+import com.cmpt362.rentit.DetailActivity
 import com.cmpt362.rentit.R
 
 class RentalsFragment : Fragment() {
@@ -40,6 +42,9 @@ class RentalsFragment : Fragment() {
         // click listener for our grid view.
         gridView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             println("DEBUG: We will open the detail view now for ${list[position].name}")
+            val intent = Intent(requireActivity(),DetailActivity::class.java)
+            intent.putExtra("id",list[position].id)
+            startActivity(intent)
         }
 
     }
