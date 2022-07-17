@@ -30,11 +30,11 @@ class RentalsFragment : Fragment() {
 //        gridview stuff
         gridView = requireView().findViewById(R.id.grid_view)
         list = ArrayList() // get from db eventually
-        list = list + GridViewModel(0, R.drawable.duck, "Duck 1 | $69")
-        list = list + GridViewModel(0, R.drawable.duck, "Duck 2 | $4.20")
-        list = list + GridViewModel(0, R.drawable.duck, "Duck 3 | $6.90")
-        list = list + GridViewModel(0, R.drawable.duck, "Duck 4 | $0.01")
-        list = list + GridViewModel(0, R.drawable.duck, "Duck 5 | FREE")
+        list = list + GridViewModel(1, R.drawable.duck, "Duck 1 | $69")
+        list = list + GridViewModel(2, R.drawable.duck, "Duck 2 | $4.20")
+        list = list + GridViewModel(3, R.drawable.duck, "Duck 3 | $6.90")
+        list = list + GridViewModel(4, R.drawable.duck, "Duck 4 | $0.01")
+        list = list + GridViewModel(5, R.drawable.duck, "Duck 5 | FREE")
 
         gridViewAdapter = GridAdapter(list, requireActivity())
         gridView.adapter = gridViewAdapter
