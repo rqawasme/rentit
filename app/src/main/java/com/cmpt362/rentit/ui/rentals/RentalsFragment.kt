@@ -55,11 +55,12 @@ class RentalsFragment : Fragment() {
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
                     val listing = Listing(key, type, name, price, description, postUserID, renterUserID, available)
                     listings.add(listing)
+                    list = list + GridViewModel(listing.id.toLong(), R.drawable.duck, listing)
+                    list = list + GridViewModel(listing.id.toLong(), R.drawable.car, listing)
+                    list = list + GridViewModel(listing.id.toLong(), R.drawable.guitar, listing)
+                    list = list + GridViewModel(listing.id.toLong(), R.drawable.book, listing)
                 }
 //        gridview stuff
-                listings.forEach{listing ->
-                    list = list + GridViewModel(listing.id.toLong(), R.drawable.duck, listing)
-                }
                 gridViewAdapter = GridAdapter(list, requireActivity())
                 gridView.adapter = gridViewAdapter
             }
