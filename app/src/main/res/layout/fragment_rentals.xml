@@ -10,15 +10,16 @@
     android:padding="10dp"
     android:background="@drawable/login_background">
 
+    <!--on below line we are creating a grid view-->
+
     <TextView
         android:id="@+id/instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="instructions"
+        android:text="@string/instructions"
         android:textColor="@color/white"
-        android:textSize="20dp"/>
+        android:textSize="20sp" />
 
-    <!--on below line we are creating a grid view-->
     <GridView
         android:id="@+id/grid_view"
         android:layout_width="match_parent"
