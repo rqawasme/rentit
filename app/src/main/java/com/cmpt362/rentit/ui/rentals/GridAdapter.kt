@@ -43,7 +43,7 @@ internal class GridAdapter(
         imageView = convertView!!.findViewById(R.id.gridViewImageView)
         textView = convertView!!.findViewById(R.id.gridViewTextView)
         imageView.setImageResource(list[position].image)
-        textView.setText(list[position].name)
+        textView.setText(list[position].listing.name)
         return convertView
     }
 }
