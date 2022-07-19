@@ -3,13 +3,17 @@ package com.cmpt362.rentit
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.cmpt362.rentit.db.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -70,8 +74,10 @@ class SignUpActivity : AppCompatActivity() {
             return
         }
 
-        val myRefUsers = db.getReference("Users")
-        val user= User(1,username.toString(), email.toString(),phone.toString(),address.toString())
+        val myRefUsers = db.getReference(LoginActivity.USERS_TABLE_NAME)
+
+
+        val user = User(1,username.toString(), email.toString(),phone.toString(),address.toString())
         myRefUsers.child(username.toString()).setValue(user)
         Toast.makeText(this, REGISTERED_SUCCESSFUL_MSG, Toast.LENGTH_SHORT).show()
         finish()
