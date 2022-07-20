@@ -24,6 +24,7 @@
     <string name="text_phone">Phone</string>
     <string name="text_address">Address</string>
     <string name="signUpActivity_text_already_have_account">Already have an account? Login</string>
+    <string name="instructions">Check out the rentals around your area!</string>
 
 
 </resources>
