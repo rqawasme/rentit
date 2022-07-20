@@ -76,7 +76,6 @@ class SignUpActivity : AppCompatActivity() {
 
         val myRefUsers = db.getReference(LoginActivity.USERS_TABLE_NAME)
 
-
         val user = User(1,username.toString(), email.toString(),phone.toString(),address.toString())
         myRefUsers.child(username.toString()).setValue(user)
         Toast.makeText(this, REGISTERED_SUCCESSFUL_MSG, Toast.LENGTH_SHORT).show()
