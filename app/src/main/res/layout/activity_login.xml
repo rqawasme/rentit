@@ -20,7 +20,7 @@
             android:layout_gravity="center_horizontal"/>
 
         <EditText
-            android:id="@+id/loginActivity_editText_username"
+            android:id="@+id/loginActivity_editText_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/login_edittext_background"
@@ -28,7 +28,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:hint="Username"
+            android:hint="@string/text_email"
             android:textColorHint="@color/white"
             android:drawableStart="@drawable/ic_baseline_person_outline_24"
             android:drawablePadding="10dp"
@@ -42,7 +42,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
-            android:hint="Password"
+            android:hint="@string/text_password"
             android:textColorHint="@color/white"
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:drawablePadding="10dp"

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -26,13 +27,16 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var editTextPhone: EditText
     private lateinit var editTextAddress: EditText
 
+    private var email = ""
+    private var password = ""
+
     private val USERNAME_ERROR = "Username is required"
     private val PASSWORD_ERROR = "Password is required"
     private val MIN_PASSWORD_LENGTH = 6
     private val PASSWORD_LENGTH_ERROR = "Minimum length of password is ${MIN_PASSWORD_LENGTH}"
     private val REGISTERED_SUCCESSFUL_MSG = "Registered"
 
-    private lateinit var auth: FirebaseAuth;
+    private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var db: FirebaseDatabase
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,42 +48,40 @@ class SignUpActivity : AppCompatActivity() {
         editTextEmail = findViewById(R.id.signUpActivity_editText_email)
         editTextPhone = findViewById(R.id.signUpActivity_editText_phone)
         editTextAddress = findViewById(R.id.signUpActivity_editText_address)
-        auth = Firebase.auth
         db= Firebase.database
-
+        firebaseAuth = FirebaseAuth.getInstance()
 
     }
 
     fun registerUser(view: View){
-        val username = editTextUsername.text
-        val password = editTextPassword.text
-        val email = editTextEmail.text
-        val phone = editTextPhone.text
-        val address = editTextAddress.text
+        email = editTextEmail.text.toString().trim()
+        password = editTextPassword.text.toString().trim()
 
-        if (username.isEmpty()){
-            editTextUsername.error = USERNAME_ERROR
-            editTextUsername.requestFocus()
-            return
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+            editTextEmail.setError(Constants.INVALID_EMAIL_FORMAT_ERROR)
         }
         else if (password.isEmpty()){
-            editTextPassword.error = PASSWORD_ERROR
-            editTextPassword.requestFocus()
-            return
+            editTextPassword.setError(Constants.NO_PASSWORD_ENTERED_ERROR)
         }
-
-        if (password.length < MIN_PASSWORD_LENGTH){
-            editTextPassword.error = PASSWORD_LENGTH_ERROR
-            editTextPassword.requestFocus()
-            return
+        else if (password.length < MIN_PASSWORD_LENGTH){
+            editTextPassword.setError(Constants.PASSWORD_LENGTH_ERROR)
         }
+        else{
+            firebaseRegister()
+        }
+    }
 
-        val myRefUsers = db.getReference(LoginActivity.USERS_TABLE_NAME)
-
-        val user = User(1,username.toString(), email.toString(),phone.toString(),address.toString())
-        myRefUsers.child(username.toString()).setValue(user)
-        Toast.makeText(this, REGISTERED_SUCCESSFUL_MSG, Toast.LENGTH_SHORT).show()
-        finish()
+    private fun firebaseRegister() {
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+            .addOnSuccessListener {
+                val firebaseUser = firebaseAuth.currentUser
+                val email = firebaseUser!!.email
+                Toast.makeText(this, "Account created with email ${email}", Toast.LENGTH_SHORT).show()
+                finish()
+            }
+            .addOnFailureListener{
+                Toast.makeText(this, "Failed to register due to ${it.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
 
