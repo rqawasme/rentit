@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import com.cmpt362.rentit.DetailActivity
 import com.cmpt362.rentit.R
@@ -24,6 +25,7 @@ class RentalsFragment : Fragment() {
     private lateinit var list: List<GridViewModel>
     private lateinit var gridViewAdapter: GridAdapter
     private lateinit var database: DatabaseReference
+    private lateinit var searchBar: SearchView
     private var listings = ArrayList<Listing>()
 
     override fun onCreateView(
@@ -67,6 +69,8 @@ class RentalsFragment : Fragment() {
         }.addOnFailureListener {
             println("DEBUG: failure loading data: $it")
         }
+
+        searchBar = requireView().findViewById(R.id.search_bar)
 
         // click listener for our grid view.
         gridView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
