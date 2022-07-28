@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background">
 
 
     <LinearLayout
@@ -9,15 +10,10 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="400dp"-->
-<!--            android:id="@+id/details_image"/>-->
-
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/detail_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             />
 
 
@@ -26,6 +22,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <TextView
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/details_price"
@@ -34,6 +31,7 @@
                 android:padding="10dp"/>
 
             <TextView
+                android:textColor="@color/white"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/details_name"
@@ -43,13 +41,13 @@
         </LinearLayout>
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:scrollbars = "vertical"
+            android:textColor="@color/white"
+            android:layout_width="fill_parent"
+            android:layout_height="200dp"
             android:id="@+id/details_description"
             android:text="description"
             android:padding="10dp"/>
-
-
 
     </LinearLayout>
 
@@ -60,6 +58,7 @@
         android:orientation="horizontal">
 
         <Button
+            android:background="@drawable/button_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Book"
@@ -70,6 +69,7 @@
         </Button>
 
         <Button
+            android:background="@drawable/button_background"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Contact"

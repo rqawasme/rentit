@@ -1,6 +1,7 @@
 package com.cmpt362.rentit.details
 
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.view.View
 import android.widget.Adapter
@@ -71,6 +72,8 @@ class DetailActivity:AppCompatActivity() {
                     val nameTextView=findViewById<TextView>(R.id.details_name)
                     val priceTextView=findViewById<TextView>(R.id.details_price)
                     val descriptionTextView=findViewById<TextView>(R.id.details_description)
+
+                    descriptionTextView.movementMethod= ScrollingMovementMethod()
 
                     nameTextView.text = name
                     priceTextView.text= "$" + String.format("%.2f",price)
