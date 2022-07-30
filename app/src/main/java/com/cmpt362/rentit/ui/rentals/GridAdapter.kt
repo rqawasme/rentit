@@ -48,17 +48,17 @@ internal class GridAdapter(
         imageView = convertView!!.findViewById(R.id.gridViewImageView)
         textView = convertView.findViewById(R.id.gridViewTextView)
         getImage(list[position].id, imageView)
-        textView.setText(list[position].listing.name)
+        textView.text = list[position].listing.name
         return convertView
     }
 
-    fun getImage(listingId: Long, imageView: ImageView){
+    private fun getImage(listingId: Long, imageView: ImageView){
         val reference = Firebase.storage.reference
         Thread(){
-            reference.child("listings/" + listingId + "/").list(1).addOnSuccessListener {
+            reference.child("listings/$listingId/").list(1).addOnSuccessListener {
                 if (it.items.size > 0) {
-                    it.items[0].getBytes(ONE_MEGABYTE*50).addOnSuccessListener {
-                        imageView.setImageBitmap(byteArrToBitMap(it))
+                    it.items[0].getBytes(ONE_MEGABYTE*50).addOnSuccessListener {pic ->
+                        imageView.setImageBitmap(byteArrToBitMap(pic))
                     }
                 }
                 else{
@@ -68,7 +68,7 @@ internal class GridAdapter(
         }.start()
     }
 
-    fun byteArrToBitMap(byteArr:ByteArray): Bitmap {
+    private fun byteArrToBitMap(byteArr:ByteArray): Bitmap {
         return BitmapFactory.decodeByteArray(byteArr, 0, byteArr.size)
     }
 
