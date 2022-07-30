@@ -1,20 +1,17 @@
-package com.cmpt362.rentit
+package com.cmpt362.rentit.users
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
+import com.cmpt362.rentit.Constants
+import com.cmpt362.rentit.R
 import com.cmpt362.rentit.db.User
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -25,7 +22,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var editTextPassword: EditText
     private lateinit var editTextEmail: EditText
     private lateinit var editTextPhone: EditText
-    private lateinit var editTextAddress: EditText
+    private lateinit var editTextPostalCode: EditText
 
     private var email = ""
     private var password = ""
@@ -47,8 +44,8 @@ class SignUpActivity : AppCompatActivity() {
         editTextPassword = findViewById(R.id.signUpActivity_editText_password)
         editTextEmail = findViewById(R.id.signUpActivity_editText_email)
         editTextPhone = findViewById(R.id.signUpActivity_editText_phone)
-        editTextAddress = findViewById(R.id.signUpActivity_editText_address)
-        db= Firebase.database
+        editTextPostalCode = findViewById(R.id.signUpActivity_editText_postal_code)
+        db = Firebase.database
         firebaseAuth = FirebaseAuth.getInstance()
 
     }
@@ -56,6 +53,8 @@ class SignUpActivity : AppCompatActivity() {
     fun registerUser(view: View){
         email = editTextEmail.text.toString().trim()
         password = editTextPassword.text.toString().trim()
+
+
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editTextEmail.setError(Constants.INVALID_EMAIL_FORMAT_ERROR)
@@ -71,17 +70,29 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
+    private fun databaseUserRegister(userId: String) {
+        val username = editTextUsername.text.toString()
+        val phone = editTextPhone.text.toString()
+        val postalCode = editTextPostalCode.text.toString()
+
+        val newUser = User(userId, username, phone, postalCode)
+        val myRefUsers = db.getReference(Constants.USERS_TABLE_NAME)
+        myRefUsers.child(userId).setValue(newUser)
+    }
+
     private fun firebaseRegister() {
         firebaseAuth.createUserWithEmailAndPassword(email, password)
             .addOnSuccessListener {
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
+                databaseUserRegister(firebaseUser.uid)
                 Toast.makeText(this, "Account created with email ${email}", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener{
                 Toast.makeText(this, "Failed to register due to ${it.message}", Toast.LENGTH_SHORT).show()
             }
+
     }
 
 

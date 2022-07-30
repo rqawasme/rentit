@@ -1,4 +1,4 @@
-package com.cmpt362.rentit
+package com.cmpt362.rentit.users
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +9,7 @@ import android.widget.EditText
 import android.widget.Toast
 import com.cmpt362.rentit.Constants.INVALID_EMAIL_FORMAT_ERROR
 import com.cmpt362.rentit.Constants.NO_PASSWORD_ENTERED_ERROR
+import com.cmpt362.rentit.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
