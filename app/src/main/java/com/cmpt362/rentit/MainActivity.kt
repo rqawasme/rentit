@@ -92,8 +92,14 @@ class MainActivity : AppCompatActivity() {
             logoutUser()
         }
         else if (id == R.id.action_user_profile){
-            val intent = Intent(this, UserProfileActivity::class.java)
-            startActivity(intent)
+            val firebaseUser = firebaseAuth.currentUser
+            if (firebaseUser != null){
+                val intent = Intent(this, UserProfileActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -105,7 +111,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "User ${firebaseUser.email} is logged out", Toast.LENGTH_SHORT).show()
         }
         else{
-            Toast.makeText(this, "Please Login", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
         }
     }
 
