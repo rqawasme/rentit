@@ -18,15 +18,25 @@
 
         <!--on below line we are creating
              a simple image view-->
-        <ImageView
+        <pl.droidsonroids.gif.GifImageView
             android:id="@+id/gridViewImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_gravity="center"
             android:layout_margin="5dp"
             android:padding="4dp"
-            android:src="@mipmap/ic_launcher"
+            android:src="@drawable/spinner"
             android:contentDescription="@string/item_image" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/gridViewImageView"-->
+<!--            android:layout_width="80dp"-->
+<!--            android:layout_height="80dp"-->
+<!--            android:layout_gravity="center"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:padding="4dp"-->
+<!--            android:src="@drawable/spinner"-->
+<!--            android:contentDescription="@string/item_image" />-->
 
         <!--on below line we are creating
             a simple text view-->
