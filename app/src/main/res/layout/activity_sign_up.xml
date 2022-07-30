@@ -32,7 +32,7 @@
             android:inputType="textEmailAddress"
             android:drawableStart="@drawable/ic_baseline_email_24"
             android:drawablePadding="10dp"
-            android:padding="10dp"/>
+            android:padding="10dp" />
 
         <EditText
             android:id="@+id/signUpActivity_editText_password"
@@ -46,7 +46,8 @@
             android:textColorHint="@color/white"
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:drawablePadding="10dp"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:inputType="textPassword"/>
 
         <EditText
             android:id="@+id/signUpActivity_editText_username"
@@ -99,8 +100,7 @@
             android:text="@string/text_sign_up"
             android:textAllCaps="false"
             android:textSize="20sp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
+            android:layout_margin="20dp"
             android:onClick="registerUser"/>
 
         <TextView

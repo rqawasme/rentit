@@ -40,4 +40,7 @@
     <string name="text_save">save</string>
     <string name="text_cancel">cancel</string>
 
+    <!-- Strings used for user listings activity -->
+    <string name="text_create_new_listing">Create New Listing</string>
+
 </resources>

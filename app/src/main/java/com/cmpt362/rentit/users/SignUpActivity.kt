@@ -53,17 +53,22 @@ class SignUpActivity : AppCompatActivity() {
     fun registerUser(view: View){
         email = editTextEmail.text.toString().trim()
         password = editTextPassword.text.toString().trim()
-
-
-
+        val username = editTextUsername.text.toString().trim()
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             editTextEmail.setError(Constants.INVALID_EMAIL_FORMAT_ERROR)
+            editTextEmail.requestFocus()
         }
         else if (password.isEmpty()){
             editTextPassword.setError(Constants.NO_PASSWORD_ENTERED_ERROR)
+            editTextPassword.requestFocus()
         }
         else if (password.length < MIN_PASSWORD_LENGTH){
             editTextPassword.setError(Constants.PASSWORD_LENGTH_ERROR)
+            editTextPassword.requestFocus()
+        }
+        else if (username.isEmpty()){
+            editTextUsername.setError(Constants.USERNAME_REQUIRED_ERROR)
+            editTextUsername.requestFocus()
         }
         else{
             firebaseRegister()
