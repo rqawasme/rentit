@@ -16,6 +16,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.cmpt362.rentit.databinding.ActivityMainBinding
 import com.cmpt362.rentit.users.LoginActivity
+import com.cmpt362.rentit.users.UserProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -89,6 +90,10 @@ class MainActivity : AppCompatActivity() {
         }
         else if (id == R.id.action_user_logout){
             logoutUser()
+        }
+        else if (id == R.id.action_user_profile){
+            val intent = Intent(this, UserProfileActivity::class.java)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }
