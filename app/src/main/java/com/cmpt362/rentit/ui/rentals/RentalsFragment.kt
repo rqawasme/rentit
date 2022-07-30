@@ -8,15 +8,11 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.GridView
 import androidx.fragment.app.Fragment
-import com.cmpt362.rentit.DetailActivity
+import com.cmpt362.rentit.details.DetailActivity
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.db.Listing
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
-import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 
 class RentalsFragment : Fragment() {
@@ -71,7 +67,7 @@ class RentalsFragment : Fragment() {
         // click listener for our grid view.
         gridView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             println("DEBUG: We will open the detail view now for ${list[position].listing.name}")
-            val intent = Intent(requireActivity(),DetailActivity::class.java)
+            val intent = Intent(requireActivity(), DetailActivity::class.java)
             intent.putExtra("id",list[position].id)
             startActivity(intent)
         }
