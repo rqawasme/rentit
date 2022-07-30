@@ -58,7 +58,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_email_24"
                     android:drawablePadding="10dp"
-                    android:text="@string/sample_username"
+                    android:text="@string/sample_email"
                     android:textColor="@color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -75,7 +75,7 @@
                     android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_baseline_person_outline_24"
                     android:drawablePadding="10dp"
-                    android:text="@string/sample_email"
+                    android:text="@string/sample_username"
                     android:textColor="@color/white"/>
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -155,6 +155,7 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:text="@string/text_cancel"
+                    android:onClick="exit"
                     android:layout_weight="1"/>
 
             </LinearLayout>
