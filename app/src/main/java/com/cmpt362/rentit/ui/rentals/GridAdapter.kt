@@ -31,7 +31,7 @@ internal class GridAdapter(
         return list[position].id // should be using db stuff so we return that here
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
         if (layoutInflater == null) {
             layoutInflater =
@@ -41,9 +41,10 @@ internal class GridAdapter(
             convertView = layoutInflater!!.inflate(R.layout.gridview_item, null)
         }
         imageView = convertView!!.findViewById(R.id.gridViewImageView)
-        textView = convertView!!.findViewById(R.id.gridViewTextView)
+        textView = convertView.findViewById(R.id.gridViewTextView)
         imageView.setImageResource(list[position].image)
         textView.setText(list[position].listing.name)
         return convertView
     }
+
 }
