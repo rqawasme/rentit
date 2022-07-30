@@ -6,7 +6,9 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="action_user_profile">User Profile</string>
     <string name="action_login">Login</string>
+    <string name="action_logout">Logout</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_rentals">Rentals</string>
@@ -16,15 +18,29 @@
 
     <!-- Strings used for login activity -->
     <string name="text_login">Login</string>
+    <string name="text_password">Password</string>
     <string name="loginActivity_text_dont_have_account">Don\'t have account? Sign Up</string>
 
     <!-- Strings used for sign up activity -->
     <string name="text_sign_up">Sign Up</string>
     <string name="text_email">Email</string>
+    <string name="text_username">Username</string>
     <string name="text_phone">Phone</string>
     <string name="text_address">Address</string>
+    <string name="text_postal_code">Postal Code</string>
     <string name="signUpActivity_text_already_have_account">Already have an account? Login</string>
     <string name="instructions">Check out the rentals around your area!</string>
 
+    <!-- Strings used for user profile activity -->
+    <string name="sample_username">Steven Smith</string>
+    <string name="sample_email">stevensmith@gmail.com</string>
+    <string name="sample_phone">604-603-6021</string>
+    <string name="sample_postal_code">K8R K5D</string>
+    <string name="sample_password">MyPassword123</string>
+    <string name="text_save">save</string>
+    <string name="text_cancel">cancel</string>
+
+    <!-- Strings used for user listings activity -->
+    <string name="text_create_new_listing">Create New Listing</string>
 
 </resources>
