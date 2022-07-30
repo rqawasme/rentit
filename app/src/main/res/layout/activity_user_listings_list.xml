@@ -22,11 +22,10 @@
             android:backgroundTint="@color/customAccent"
             android:drawableLeft="@drawable/ic_baseline_edit_note_24"/>
 
-
-
-
-
-
+        <ListView
+            android:id="@+id/userListingsActivity_listView_listings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
 
     </LinearLayout>
