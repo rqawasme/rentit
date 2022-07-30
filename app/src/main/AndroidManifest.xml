@@ -15,11 +15,17 @@
         android:theme="@style/Theme.Rentit"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
-            android:exported="false"
-        android:theme="@style/LoginPage" />
+            android:name=".userListings.UserListingsListActivity"
+            android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".users.UserProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".users.SignUpActivity"
+            android:exported="false"
+            android:theme="@style/LoginPage" />
+        <activity
+            android:name=".users.LoginActivity"
             android:exported="false"
             android:theme="@style/LoginPage" />
         <activity

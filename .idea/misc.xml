@@ -4,13 +4,23 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/button_background.xml" value="0.1225" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/circle.xml" value="0.228" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/circle_border.xml" value="0.2825" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/gradient.xml" value="0.2825" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.2825" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1745" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2825" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/login_background.xml" value="0.1745" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/login_edit_background.xml" value="0.1745" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/login_edittext_background.xml" value="0.228" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/side_nav_bar.xml" value="0.1545" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_details.xml" value="0.32916666666666666" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_login.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_main.xml" value="0.3482789855072464" />
-        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_sign_up.xml" value="0.22781065088757396" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_posted_listings_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_user_listings_list.xml" value="0.33" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_user_profile.xml" value="0.33" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/app_bar_main.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/content_main.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/fragment_gallery.xml" value="0.3482789855072464" />
@@ -18,13 +28,17 @@
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/nav_header_main.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/menu/main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/Work/Desktop/cmpt362Proj/rentit/app/src/main/res/layout/activity_details.xml" value="0.20652173913043478" />
-        <entry key="..\:/Users/Work/Desktop/cmpt362Proj/rentit/app/src/main/res/layout/activity_login.xml" value="0.20652173913043478" />
-        <entry key="..\:/Users/Work/Desktop/cmpt362Proj/rentit/app/src/main/res/layout/details_image.xml" value="0.3390625" />
       </map>
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.33" />
+      </ProjectState>
+    </option>
   </component>
 </project>

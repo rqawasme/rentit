@@ -10,4 +10,6 @@
     <color name="customDark">#1F1c26</color>
     <color name="customPrimary">#2C273c</color>
     <color name="customAccent">#CE2A5E</color>
+    <color name="customGradientStart">#930B37</color>
+    <color name="customGradientEnd">#CE2A5E</color>
 </resources>
