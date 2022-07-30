@@ -9,10 +9,16 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <ImageView
+<!--        <ImageView-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="400dp"-->
+<!--            android:id="@+id/details_image"/>-->
+
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/detail_viewpager"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:id="@+id/details_image"/>
+            />
 
 
         <LinearLayout
