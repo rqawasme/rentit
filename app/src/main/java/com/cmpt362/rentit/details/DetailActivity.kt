@@ -1,5 +1,6 @@
 package com.cmpt362.rentit.details
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
 import android.util.Log
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.cmpt362.rentit.R
+import com.cmpt362.rentit.details.booking.BookingActivity
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -123,7 +125,12 @@ class DetailActivity:AppCompatActivity() {
     }
 
     fun book(view: View){
-        println("DEBUG: Book dialog open")
+        println("DEBUG: Book activity open")
+        val intent = Intent(this, BookingActivity::class.java)
+        intent.putExtra("listingID",listingID)
+        intent.putExtra("price",price)
+        intent.putExtra("listingName",name)
+        startActivity(intent)
     }
 
     //Open a dialog with contact info of user posting.
