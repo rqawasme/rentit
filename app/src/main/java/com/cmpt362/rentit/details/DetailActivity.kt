@@ -22,7 +22,7 @@ class DetailActivity:AppCompatActivity() {
     private lateinit var db: FirebaseDatabase
     private var name:String?=""
     private var listingID:Long =-1
-    private var posterID:Int? =-1
+    private var posterID:String? = null
     private var price:Float? =0f
     private var description:String? =""
     private lateinit var viewPager: ViewPager
@@ -73,7 +73,7 @@ class DetailActivity:AppCompatActivity() {
                     name=snapshot.child("name").getValue(String::class.java)
                     price=snapshot.child("price").getValue(Float::class.java)
                     description=snapshot.child("description").getValue(String::class.java)
-                    posterID=snapshot.child("postUserID").getValue(Int::class.java)
+                    posterID=snapshot.child("postUserID").getValue(String::class.java)
 
                     val nameTextView=findViewById<TextView>(R.id.details_name)
                     val priceTextView=findViewById<TextView>(R.id.details_price)
@@ -95,18 +95,29 @@ class DetailActivity:AppCompatActivity() {
         }.start()
     }
 
-    private fun getContactInfo(userID:Int){
+    private fun getContactInfo(userID:String){
         Thread(){
-            val myRefListings=db.getReference("Users").orderByChild("id").equalTo(userID.toDouble()).limitToFirst(1)
-
-            //Maybe a more smarter way to do this.
-            myRefListings.get().addOnCompleteListener{ task->
-                val snapshot= task.result.children
-                for (i in snapshot){
-                    phoneNumber= i.child("phone").getValue(String::class.java)
-                    email= i.child("email").getValue(String::class.java)
+            val myRefListings=db.getReference("Users").child(userID)
+            myRefListings.get().addOnCompleteListener { task ->
+                if(task.isSuccessful){
+                    val snapshot= task.result
+                    phoneNumber=snapshot.child("phone").getValue(String::class.java)
+                    email=snapshot.child("email").getValue(String::class.java)
                 }
+
             }
+
+            //Leave for now as reference on how to query Firebase with value.
+//            val myRefListings=db.getReference("Users").orderByChild("id").equalTo(userID.toDouble()).limitToFirst(1)
+//
+//            //Maybe a more smarter way to do this.
+//            myRefListings.get().addOnCompleteListener{ task->
+//                val snapshot= task.result.children
+//                for (i in snapshot){
+//                    phoneNumber= i.child("phone").getValue(String::class.java)
+//                    email= i.child("email").getValue(String::class.java)
+//                }
+//            }
         }.start()
 
     }
