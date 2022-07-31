@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
-    tools:context=".LoginActivity">
+    tools:context=".users.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:layout_gravity="center_horizontal"/>
 
         <EditText
-            android:id="@+id/loginActivity_editText_username"
+            android:id="@+id/loginActivity_editText_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/login_edittext_background"
@@ -28,7 +28,7 @@
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
             android:textColor="@color/white"
-            android:hint="Username"
+            android:hint="@string/text_email"
             android:textColorHint="@color/white"
             android:drawableStart="@drawable/ic_baseline_person_outline_24"
             android:drawablePadding="10dp"
@@ -42,11 +42,12 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_marginTop="20dp"
-            android:hint="Password"
+            android:hint="@string/text_password"
             android:textColorHint="@color/white"
             android:drawableStart="@drawable/ic_baseline_lock_24"
             android:drawablePadding="10dp"
-            android:padding="10dp"/>
+            android:padding="10dp"
+            android:inputType="textPassword"/>
 
         <Button
             android:layout_width="match_parent"
@@ -55,8 +56,7 @@
             android:text="@string/text_login"
             android:textAllCaps="false"
             android:textSize="20sp"
-            android:layout_marginTop="30dp"
-            android:layout_marginBottom="30dp"
+            android:layout_margin="20dp"
             android:onClick="userLogin"/>
 
         <TextView
