@@ -51,8 +51,8 @@ class RentalsFragment : Fragment() {
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
                     val description = _listing.child("description").getValue(String::class.java)
-                    val postUserID = _listing.child("postUserID").getValue(Int::class.java)?: -1
-                    val renterUserID = _listing.child("renterUserID").getValue(Int::class.java)?: -1
+                    val postUserID = _listing.child("postUserID").getValue(String::class.java)?: "-1"
+                    val renterUserID = _listing.child("renterUserID").getValue(String::class.java)?: "-1"
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
                     val listing = Listing(key, type, name, price, description, postUserID, renterUserID, available)
                     listings.add(listing)
