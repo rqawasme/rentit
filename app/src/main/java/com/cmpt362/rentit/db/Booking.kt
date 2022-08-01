@@ -4,11 +4,11 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Booking(
-    val id:Int= -1,
-    val startTime: String? = null, //Note: Time stored in format yyyy-MM-dd'T'HH:mm:ss.SSS'Z' (ISO 9601 format)
+    val id:String?= null,
+    val startTime: String? = null, //Note: Saved in format HH:mm MMMM dd yyyy
     val endTime: String? = null,
-    val listingID: Int=-1,
-    val bookerName:String? = null ) {
+    val listingID: Long=-1,
+    val bookerID:String? = null ) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.
 }

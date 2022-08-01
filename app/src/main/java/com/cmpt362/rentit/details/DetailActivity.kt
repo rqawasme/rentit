@@ -39,6 +39,7 @@ class DetailActivity:AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_details)
 
+        //Todo: Will most likely need to change listingID to String when we use pushIDs for listings instead
         listingID= intent.getLongExtra("id",-1)
         var imageList = ArrayList<ByteArray>()
         db= Firebase.database
