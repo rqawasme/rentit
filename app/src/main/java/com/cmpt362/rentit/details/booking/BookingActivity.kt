@@ -142,11 +142,11 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
     }
 
     override fun saveTimeDialog(hour: Int, min: Int, type:String) {
-        var newDate= Date()
-        newDate.hours=hour
-        newDate.minutes=min
+        var newTime= Date()
+        newTime.hours=hour
+        newTime.minutes=min
         val sdf = SimpleDateFormat("HH:mm")
-        val time = sdf.format(newDate)
+        val time = sdf.format(newTime)
 
         if(type=="start"){
             startTimeTextView.text = time
@@ -154,7 +154,7 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
         }
         else if(type=="end"){
             endTimeTextView.text = time
-            endDate=time
+            endTime=time
         }
     }
 
