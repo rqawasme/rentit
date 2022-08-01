@@ -7,7 +7,6 @@ import android.content.pm.PackageManager
 import android.location.Criteria
 import android.location.Location
 import android.location.LocationManager
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,16 +15,25 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.cmpt362.rentit.R
+import com.cmpt362.rentit.db.Listing
 import com.google.android.gms.maps.*
+import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
-class HomeFragment : Fragment(), OnMapReadyCallback {
+class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
     private lateinit var mMap: GoogleMap
     private lateinit var  markerOptions: MarkerOptions
     private val PERMISSION_REQUEST_CODE = 0
     private lateinit var locationManager: LocationManager
     private lateinit var supportMapFragment: SupportMapFragment
+    private lateinit var database: DatabaseReference
+    private var listings = ArrayList<Listing>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -42,6 +50,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         mMap = googleMap
         mMap.mapType = GoogleMap.MAP_TYPE_NORMAL
         markerOptions = MarkerOptions()
+        mMap.setOnMarkerClickListener(this)
         checkPermission()
     }
 
@@ -51,6 +60,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
             ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSION_REQUEST_CODE)
         else {
             val currentLocation = moveCameraToYou()
+            getListingsNearYou(currentLocation)
         }
     }
 
@@ -59,6 +69,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         if (requestCode == PERMISSION_REQUEST_CODE) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 val currentLocation = moveCameraToYou()
+                getListingsNearYou(currentLocation)
             }
         }
     }
@@ -78,8 +89,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
                 val latlng = LatLng(lat, lng)
                 val cameraUpdate: CameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 13f)
                 mMap.animateCamera(cameraUpdate)
-                markerOptions.position(latlng)
-                mMap.addMarker(markerOptions)
+//                markerOptions.position(latlng)
+//                mMap.addMarker(markerOptions)
                 return location
             }
         } catch (_e: SecurityException) {
@@ -88,8 +99,45 @@ class HomeFragment : Fragment(), OnMapReadyCallback {
         return null
     }
 
-    fun getListingsNearYou(currentLocation: Location?) {
+    private fun getListingsNearYou(currentLocation: Location?) {
+        database = Firebase.database.getReference("Listings")
+        database.get().addOnSuccessListener {
+            listings.clear()
+            if (it.hasChildren()){
+                it.children.forEach{ _listing ->
+                    val key = _listing.key?.toInt() ?: -1
+                    val type = _listing.child("type").getValue(String::class.java)
+                    val name = _listing.child("name").getValue(String::class.java)
+                    val price = _listing.child("price").getValue(Double::class.java)
+                    val description = _listing.child("description").getValue(String::class.java)
+                    val postUserID = _listing.child("postUserID").getValue(String::class.java)?: "-1"
+                    val renterUserID = _listing.child("renterUserID").getValue(String::class.java)?: "-1"
+                    val available = _listing.child("available").getValue(Boolean::class.java)?: false
+                    val listing = Listing(key, type, name, price, description, postUserID, renterUserID, available)
+                    listings.add(listing)
+                    if (available){
+                        if(currentLocation != null) {
+//                            TODO: Get actual latlng from db
+                            val lat = currentLocation.latitude
+                            val lng = currentLocation.longitude
+                            val latLng = LatLng(lat + 0.01 * key, lng + 0.5 * key)
+                            markerOptions.position(latLng)
+                            markerOptions.icon(
+                                BitmapDescriptorFactory.defaultMarker(
+                                    BitmapDescriptorFactory.HUE_GREEN))
+                            mMap.addMarker(markerOptions)
+                        }
+                    }
+                }
+            }
+        }.addOnFailureListener {
+            println("DEBUG: failure loading data: $it")
+        }
+    }
 
+    override fun onMarkerClick(marker: Marker): Boolean {
+        println("DEBUG: ${marker.position}")
+        return false
     }
 
 }
