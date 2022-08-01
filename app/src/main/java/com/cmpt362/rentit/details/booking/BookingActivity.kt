@@ -21,10 +21,16 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
     var currentdate:String? = ""
     var currentTime: String? =""
 
-    lateinit var startDate: TextView
-    lateinit var endDate: TextView
-    lateinit var startTime: TextView
-    lateinit var endTime: TextView
+    lateinit var startDateTextView: TextView
+    lateinit var endDateTextView: TextView
+    lateinit var startTimeTextView: TextView
+    lateinit var endTimeTextView: TextView
+
+    var startDate:String? = ""
+    var endDate:String? = ""
+
+    var startTime:String? = ""
+    var endTime:String? = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,24 +42,30 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
 
         var listingNameTextView=findViewById<TextView>(R.id.booking_name)
         var priceTextView=findViewById<TextView>(R.id.booking_price)
-        listingNameTextView.setText(name)
-        priceTextView.setText("$" + String.format("%.2f",price))
+        listingNameTextView.text = name
+        priceTextView.text = "$" + String.format("%.2f",price)
 
         val sdf = SimpleDateFormat("MMMM dd yyyy")
         val currentDate = sdf.format(Date())
         val currentTime=SimpleDateFormat("HH:mm").format(Date())
 
-        startDate=findViewById<TextView>(R.id.booking_start_date)
-        startTime=findViewById<TextView>(R.id.booking_start_time)
+        startDate=currentDate
+        endDate=currentDate
 
-        startDate.setText(currentDate)
-        startTime.setText(currentTime)
+        startTime=currentTime
+        endTime=currentTime
 
-        endDate=findViewById<TextView>(R.id.booking_end_date)
-        endTime=findViewById<TextView>(R.id.booking_end_time)
+        startDateTextView=findViewById(R.id.booking_start_date)
+        startTimeTextView=findViewById(R.id.booking_start_time)
 
-        endDate.setText(currentDate)
-        endTime.setText(currentTime)
+        startDateTextView.text = currentDate
+        startTimeTextView.text = currentTime
+
+        endDateTextView=findViewById(R.id.booking_end_date)
+        endTimeTextView=findViewById(R.id.booking_end_time)
+
+        endDateTextView.text = currentDate
+        endTimeTextView.text = currentTime
 
         super.onCreate(savedInstanceState)
     }
@@ -71,7 +83,13 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
     }
 
     fun setTime(view:View){
-        println("setTime")
+        var id= view.id
+        if(id==R.id.booking_start_time){
+            TimeDialogFragment("start").show(supportFragmentManager,TimeDialogFragment.TAG)
+        }
+        else if(id== R.id.booking_end_time) {
+            TimeDialogFragment("end").show(supportFragmentManager,TimeDialogFragment.TAG)
+        }
     }
 
     fun confirm(view: View){
@@ -83,23 +101,37 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
     }
 
     override fun saveDateDialog(year: Int, month: Int, day: Int, type:String) {
-
         var newDate= Date()
         newDate.year=year-1900 //Due to Date weirdness, need to subtract 1900.
         newDate.month=month
         newDate.date=day
         val sdf = SimpleDateFormat("MMMM dd yyyy")
-        val currentDate = sdf.format(newDate)
+        val date = sdf.format(newDate)
 
         if(type=="start"){
-            startDate.text = currentDate
+            startDateTextView.text = date
+            startDate=date
         }
         else if(type=="end"){
-            endDate.text = currentDate
+            endDateTextView.text = date
+            endDate=date
         }
     }
 
     override fun saveTimeDialog(hour: Int, min: Int, type:String) {
+        var newDate= Date()
+        newDate.hours=hour
+        newDate.minutes=min
+        val sdf = SimpleDateFormat("HH:mm")
+        val time = sdf.format(newDate)
 
+        if(type=="start"){
+            startTimeTextView.text = time
+            startTime=time
+        }
+        else if(type=="end"){
+            endTimeTextView.text = time
+            endDate=time
+        }
     }
 }
