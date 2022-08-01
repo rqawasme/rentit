@@ -137,6 +137,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
 
     override fun onMarkerClick(marker: Marker): Boolean {
         println("DEBUG: ${marker.position}")
+//        TODO: open a dialog to show quick info with button to direct to detailed view
         return false
     }
 
