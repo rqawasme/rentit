@@ -13,6 +13,7 @@ class DateDialogFragment(type:String): DialogFragment() {
     val day = c.get(Calendar.DAY_OF_MONTH)
     var type=type
     lateinit var dialogInterface: DialogInterface
+
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         var dialog = DatePickerDialog(requireActivity(), DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
             dialogInterface= context as DialogInterface
