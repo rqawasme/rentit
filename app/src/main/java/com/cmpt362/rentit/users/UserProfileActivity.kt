@@ -100,8 +100,6 @@ class UserProfileActivity : AppCompatActivity() {
         setupImageViewOnclick()
         setUpProfilePhoto()
 
-
-
     }
 
     private fun getRealPathFromURI(contentURI: Uri?, context: Activity): String? {
