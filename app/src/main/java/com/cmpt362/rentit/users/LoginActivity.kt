@@ -71,8 +71,8 @@ class LoginActivity : AppCompatActivity() {
 
     fun checkUser(){
         val firebaseUser = firebaseAuth.currentUser
-
         if (firebaseUser != null){
+
             Toast.makeText(this, "Already logged in as ${firebaseUser.email}", Toast.LENGTH_SHORT).show()
             finish()
         }
