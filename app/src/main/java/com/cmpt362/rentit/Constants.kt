@@ -11,4 +11,5 @@ object Constants {
     const val USERNAME_PATH = "username"
     const val PHONE_PATH = "phone"
     const val POSTAL_CODE_PATH = "postalCode"
+    const val ONE_MEGABYTE: Long = 1024 * 1024
 }
