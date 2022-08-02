@@ -92,7 +92,7 @@ class RentalsFragment : Fragment() {
                     gridViewAdapter = GridAdapter(newList, requireActivity())
                     gridView.adapter = gridViewAdapter
                 } else {
-//                    Should we edit the toast?
+//                    TODO: Should we edit the toast or make something else happen?
                     Toast.makeText(requireContext(), "No rentals found", Toast.LENGTH_LONG)
                         .show()
                 }
