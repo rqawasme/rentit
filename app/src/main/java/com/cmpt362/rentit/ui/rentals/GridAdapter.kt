@@ -9,6 +9,7 @@ import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
 import com.cmpt362.rentit.R
+import com.cmpt362.rentit.Utils.getImage
 
 internal class GridAdapter(
     private val list: List<GridViewModel>, // get from db
@@ -31,7 +32,7 @@ internal class GridAdapter(
         return list[position].id // should be using db stuff so we return that here
     }
 
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View? {
+    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
         if (layoutInflater == null) {
             layoutInflater =
@@ -41,9 +42,9 @@ internal class GridAdapter(
             convertView = layoutInflater!!.inflate(R.layout.gridview_item, null)
         }
         imageView = convertView!!.findViewById(R.id.gridViewImageView)
-        textView = convertView!!.findViewById(R.id.gridViewTextView)
-        imageView.setImageResource(list[position].image)
-        textView.setText(list[position].listing.name)
+        textView = convertView.findViewById(R.id.gridViewTextView)
+        getImage(list[position].id, imageView)
+        textView.text = list[position].listing.name
         return convertView
     }
 }

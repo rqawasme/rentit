@@ -9,8 +9,8 @@ data class Listing(
     val name: String? = null,
     val price: Double? = null,
     val description: String? = null,
-    val postUserID: Int = -1,
-    val renterUserID: Int = -1,
+    val postUserID:  String? = null,
+    val renterUserID: String? = null,
     val available:  Boolean = false) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.

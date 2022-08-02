@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="@color/customPrimary">
+
+    <ImageView
+        android:id="@+id/userListing_imageView_listingImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/car"
+        android:layout_margin="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_margin="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/userListings_textView_listingTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sample_listing_title"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
+            <TextView
+                android:id="@+id/userListings_textView_listingPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sample_listing_price"
+                android:textSize="12sp"
+                android:textColor="@color/light_grey"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/userListings_button_editListing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/text_edit_listing"
+                android:textSize="8sp"
+                android:textAllCaps="false"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingVertical="0dp"
+                android:paddingHorizontal="5dp"
+                android:drawableLeft="@drawable/ic_baseline_mode_edit_24"
+                android:layout_marginHorizontal="2dp"/>
+
+            <Button
+                android:id="@+id/userListings_button_markUnavailable"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/text_mark_unavailable"
+                android:textSize="8sp"
+                android:textAllCaps="false"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingVertical="0dp"
+                android:paddingHorizontal="5dp"
+                android:drawableLeft="@drawable/ic_baseline_not_interested_24"
+                android:layout_marginHorizontal="5dp" />
+
+
+            <Button
+                android:id="@+id/userListings_button_moreActions"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/more_actions"
+                android:textSize="8sp"
+                android:textAllCaps="false"
+                android:minHeight="0dp"
+                android:minWidth="0dp"
+                android:paddingVertical="0dp"
+                android:paddingHorizontal="5dp"
+                android:layout_marginHorizontal="2dp"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

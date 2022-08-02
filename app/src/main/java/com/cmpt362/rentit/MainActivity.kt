@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
+import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -15,18 +15,16 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.cmpt362.rentit.databinding.ActivityMainBinding
-import com.cmpt362.rentit.db.Listing
-import com.cmpt362.rentit.db.User
+import com.cmpt362.rentit.users.LoginActivity
+import com.cmpt362.rentit.users.UserProfileActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
-
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var db: FirebaseDatabase
+    private lateinit var firebaseAuth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
+        firebaseAuth = FirebaseAuth.getInstance()
 //        //Testing firebase connection, just for reference
 //        //Gets FireBaseInstance, behind the scenes FireBase managed a single connection and dedupes appropriately if needed, so you can just do in multiple places.
 //        db= Firebase.database
@@ -90,7 +88,31 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
+        else if (id == R.id.action_user_logout){
+            logoutUser()
+        }
+        else if (id == R.id.action_user_profile){
+            val firebaseUser = firebaseAuth.currentUser
+            if (firebaseUser != null){
+                val intent = Intent(this, UserProfileActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            }
+        }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun logoutUser(){
+        val firebaseUser = firebaseAuth.currentUser
+        if (firebaseUser != null){
+            firebaseAuth.signOut()
+            Toast.makeText(this, "User ${firebaseUser.email} is logged out", Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
