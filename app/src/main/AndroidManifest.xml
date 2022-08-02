@@ -32,6 +32,9 @@
             android:exported="false"
             android:theme="@style/LoginPage" />
         <activity
+            android:name=".ui.listingCreation.ListingCreationActivity"
+            android:exported="false" />
+        <activity
             android:name=".users.LoginActivity"
             android:exported="false"
             android:theme="@style/LoginPage" />

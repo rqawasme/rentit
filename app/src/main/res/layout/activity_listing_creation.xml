@@ -1,9 +1,157 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.listingCreation.ListingCreationActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        tools:context=".ui.listingCreation.ListingCreationActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Primary Listing Photo"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="@dimen/default_margin">
+
+                <ImageView
+                    android:id="@+id/profile_photo"
+                    android:layout_width="180dp"
+                    android:layout_height="180dp"
+                    android:src="@drawable/ic_menu_camera"
+                    android:contentDescription="Your primary listing photo"/>
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin"
+                    android:onClick="onChangePhotoClicked"
+                    android:text="Set Photo" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"/>
+            <EditText
+                android:id="@+id/listing_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="abcdefg"
+                android:inputType="textPersonName"
+                android:layout_marginBottom="@dimen/default_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Listing ID"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Type"/>
+            <EditText
+                android:id="@+id/listing_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="electronic, home, gym"
+                android:inputType="text"
+                android:layout_marginBottom="@dimen/default_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price"/>
+            <EditText
+                android:id="@+id/listing_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter a number"
+                android:inputType="number"
+                android:layout_marginBottom="@dimen/default_margin"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Available or Unavailable"/>
+            <RadioGroup
+                android:id="@+id/available_buttons"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="@dimen/default_margin">
+
+                <RadioButton
+                    android:id="@+id/available_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Available" />
+
+                <RadioButton
+                    android:id="@+id/not_available_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Not Available" />
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Description"/>
+            <EditText
+                android:id="@+id/listing_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter some info about your listing"
+                android:inputType="text"
+                android:layout_marginBottom="@dimen/default_margin"/>
+
+            <TextView
+                android:id="@+id/listing_PostUserId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="PostUserId"/>
+
+            <TextView
+                android:id="@+id/listing_RentUserId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RentUserId"/>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginVertical="@dimen/default_margin"
+                >
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Save"
+                    android:onClick="onSaveClicked"
+                    android:minWidth="125dp"
+                    android:layout_marginRight="@dimen/default_margin"/>
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cancel"
+                    android:onClick="onCancelClicked"
+                    android:minWidth="125dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
