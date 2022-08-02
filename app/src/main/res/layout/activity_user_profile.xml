@@ -154,6 +154,7 @@
                     android:layout_marginRight="10dp"
                     android:text="@string/text_save"
                     android:layout_weight="1"
+                    android:onClick="saveUserInfo"
                     android:backgroundTint="@color/customAccent" />
 
                 <Button
