@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.cmpt362.rentit.Constants.ONE_MEGABYTE
 import com.cmpt362.rentit.R
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
@@ -30,8 +31,6 @@ class DetailActivity:AppCompatActivity() {
 
     private var phoneNumber:String? =""
     private var email:String? =""
-
-    val ONE_MEGABYTE: Long = 1024 * 1024
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
