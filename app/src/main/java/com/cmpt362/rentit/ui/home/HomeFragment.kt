@@ -90,10 +90,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
                 val lat = location.latitude
                 val lng = location.longitude
                 val latlng = LatLng(lat, lng)
-                val cameraUpdate: CameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 13f)
+                val cameraUpdate: CameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 12f)
                 mMap.animateCamera(cameraUpdate)
-//                markerOptions.position(latlng)
-//                mMap.addMarker(markerOptions)
                 return location
             }
         } catch (_e: SecurityException) {
@@ -141,8 +139,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
     }
 
     override fun onMarkerClick(marker: Marker): Boolean {
-        println("DEBUG: ${marker.position}")
-//        TODO: open a dialog to show quick info with button to direct to detailed view
         val bundle = Bundle()
         val dialog = MapDialog()
         bundle.putString(MAP_DIALOG_NAME_KEY, marker.title)
@@ -150,7 +146,8 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
         bundle.putString(MAP_DIALOG_DESCRIPTION_KEY, marker.title)
         dialog.arguments = bundle
         dialog.show(parentFragmentManager, "mapDialogTag")
-        return false
+        marker.hideInfoWindow()
+        return true
     }
 
 }
