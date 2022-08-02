@@ -51,5 +51,8 @@
 
     <!-- strings for maps   -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAPy0T4TBs7Z9WTn2xJBD_AEcJi_G3CP4E</string>
+    <string name="cancel_button">CANCEL</string>
+    <string name="go_back">BACK</string>
+    <string name="view_more">VIEW</string>
 
 </resources>
