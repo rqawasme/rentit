@@ -16,6 +16,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.db.Listing
+import com.cmpt362.rentit.ui.home.MapDialog.Companion.MAP_DIALOG_DESCRIPTION_KEY
+import com.cmpt362.rentit.ui.home.MapDialog.Companion.MAP_DIALOG_ID_KEY
+import com.cmpt362.rentit.ui.home.MapDialog.Companion.MAP_DIALOG_NAME_KEY
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.GoogleMap.OnMarkerClickListener
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
@@ -117,10 +120,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
                     listings.add(listing)
                     if (available){
                         if(currentLocation != null) {
-//                            TODO: Get actual latlng from db
+//                            TODO: Get actual location from db and see how close it is
                             val lat = currentLocation.latitude
                             val lng = currentLocation.longitude
                             val latLng = LatLng(lat + 0.01 * key, lng + 0.5 * key)
+                            markerOptions.title(name)
+                            markerOptions.snippet(key.toString())
                             markerOptions.position(latLng)
                             markerOptions.icon(
                                 BitmapDescriptorFactory.defaultMarker(
@@ -138,6 +143,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
     override fun onMarkerClick(marker: Marker): Boolean {
         println("DEBUG: ${marker.position}")
 //        TODO: open a dialog to show quick info with button to direct to detailed view
+        val bundle = Bundle()
+        val dialog = MapDialog()
+        bundle.putString(MAP_DIALOG_NAME_KEY, marker.title)
+        bundle.putString(MAP_DIALOG_ID_KEY, marker.snippet)
+        bundle.putString(MAP_DIALOG_DESCRIPTION_KEY, marker.title)
+        dialog.arguments = bundle
+        dialog.show(parentFragmentManager, "mapDialogTag")
         return false
     }
 
