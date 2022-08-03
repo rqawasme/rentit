@@ -22,4 +22,11 @@
         android:name="com.cmpt362.rentit.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <activity
+        android:id="@+id/nav_your_listings"
+        android:name="com.cmpt362.rentit.userListings.UserListingsListActivity"
+        android:label="@string/menu_your_listings"
+        tools:layout="@layout/activity_user_listings_list"/>
+
 </navigation>
