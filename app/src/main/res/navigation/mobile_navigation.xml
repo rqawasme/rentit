@@ -22,4 +22,10 @@
         android:name="com.cmpt362.rentit.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_booking_list"
+        android:name="com.cmpt362.rentit.ui.slideshow.BookingListFragment"
+        android:label="Your Bookings"
+        tools:layout="@layout/fragment_booking_list" />
 </navigation>
