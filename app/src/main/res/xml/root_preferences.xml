@@ -14,7 +14,7 @@
             android:key="@string/settingsActivity_preferenceScreen_key_email"
             android:summary="@string/settingsActivity_preferenceScreen_summary_email"
             android:title="@string/settingsActivity_preferenceScreen_title_email">
-
+            <intent android:action="com.cmpt362.rentit.users.UpdateEmail" />
         </PreferenceScreen>
 
         <PreferenceScreen
