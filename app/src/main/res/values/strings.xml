@@ -37,7 +37,7 @@
     <string name="sample_email">stevensmith@gmail.com</string>
     <string name="sample_phone">604-603-6021</string>
     <string name="sample_postal_code">K8R K5D</string>
-    <string name="sample_password">MyPassword123</string>
+    <string name="sample_password">******</string>
     <string name="text_save">save</string>
     <string name="text_cancel">cancel</string>
 
