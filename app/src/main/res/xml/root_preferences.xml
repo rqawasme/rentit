@@ -21,7 +21,7 @@
             android:key="@string/settingsActivity_preferenceScreen_key_password"
             android:summary="@string/settingsActivity_preferenceScreen_summary_password"
             android:title="@string/settingsActivity_preferenceScreen_title_password">
-
+            <intent android:action="com.cmpt362.rentit.users.ChangePassword"/>
         </PreferenceScreen>
 
 

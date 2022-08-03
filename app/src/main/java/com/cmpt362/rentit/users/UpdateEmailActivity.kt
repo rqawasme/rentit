@@ -33,6 +33,16 @@ class UpdateEmailActivity : AppCompatActivity() {
         setContentView(R.layout.activity_update_email)
 
         initializeElements()
+
+        val user = firebaseAuth.currentUser
+
+        if (user != null){
+            textViewCurrentEmail.text = user.email
+            reAuthenticate()
+        }
+        else{
+            Toast.makeText(this, "Failed to retrieve user data", Toast.LENGTH_LONG).show()
+        }
     }
 
     private fun initializeElements() {
@@ -47,15 +57,6 @@ class UpdateEmailActivity : AppCompatActivity() {
         editTextNewEmail.isEnabled = false
 
         firebaseAuth = FirebaseAuth.getInstance()
-        val user = firebaseAuth.currentUser
-
-        if (user != null){
-            textViewCurrentEmail.text = user.email
-            reAuthenticate()
-        }
-        else{
-            Toast.makeText(this, "Failed to retrieve user data", Toast.LENGTH_LONG).show()
-        }
 
 
     }
