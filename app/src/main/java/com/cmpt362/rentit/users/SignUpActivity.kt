@@ -75,12 +75,12 @@ class SignUpActivity : AppCompatActivity() {
         }
     }
 
-    private fun databaseUserRegister(userId: String) {
+    private fun databaseUserRegister(userId: String, email: String) {
         val username = editTextUsername.text.toString()
         val phone = editTextPhone.text.toString()
         val postalCode = editTextPostalCode.text.toString()
 
-        val newUser = User(userId, username, phone, postalCode)
+        val newUser = User(userId, email, username, phone, postalCode)
         val myRefUsers = db.getReference(Constants.USERS_TABLE_NAME)
         myRefUsers.child(userId).setValue(newUser)
     }
@@ -90,14 +90,13 @@ class SignUpActivity : AppCompatActivity() {
             .addOnSuccessListener {
                 val firebaseUser = firebaseAuth.currentUser
                 val email = firebaseUser!!.email
-                databaseUserRegister(firebaseUser.uid)
+                databaseUserRegister(firebaseUser.uid, firebaseUser.email!!)
                 Toast.makeText(this, "Account created with email ${email}", Toast.LENGTH_SHORT).show()
                 finish()
             }
             .addOnFailureListener{
                 Toast.makeText(this, "Failed to register due to ${it.message}", Toast.LENGTH_SHORT).show()
             }
-
     }
 
 

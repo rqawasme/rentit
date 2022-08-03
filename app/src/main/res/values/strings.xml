@@ -13,6 +13,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_rentals">Rentals</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_your_listings">Your Listings</string>
     <string name="item_image">Item Image</string>
     <string name="title_activity_login">LoginActivity</string>
 
@@ -36,7 +37,7 @@
     <string name="sample_email">stevensmith@gmail.com</string>
     <string name="sample_phone">604-603-6021</string>
     <string name="sample_postal_code">K8R K5D</string>
-    <string name="sample_password">MyPassword123</string>
+    <string name="sample_password">******</string>
     <string name="text_save">save</string>
     <string name="text_cancel">cancel</string>
 
@@ -48,6 +49,10 @@
     <string name="text_relist_item">Relist item</string>
     <string name="text_mark_unavailable">Mark as Unavailable</string>
     <string name="more_actions">...</string>
+    <string-array name="profile_photo_options">
+        <item>Open Camera</item>
+        <item>Select from Gallery</item>
+    </string-array>
 
     <!-- strings for maps   -->
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyAPy0T4TBs7Z9WTn2xJBD_AEcJi_G3CP4E</string>
