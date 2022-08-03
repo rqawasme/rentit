@@ -15,7 +15,7 @@ import kotlin.properties.Delegates
 
 class MapDialog: DialogFragment() {
     private lateinit var name: String
-    private var key by Delegates.notNull<Long>()
+    private var key by Delegates.notNull<String>()
     private lateinit var description: String
     private lateinit var imageView: ImageView
     private lateinit var textView: TextView
@@ -31,7 +31,7 @@ class MapDialog: DialogFragment() {
         val bundle = arguments
         if (bundle != null) {
             name = bundle.getString(MAP_DIALOG_NAME_KEY, "")
-            key = bundle.getString(MAP_DIALOG_ID_KEY, "-1").toLong()
+            key = bundle.getString(MAP_DIALOG_ID_KEY, "-1")
             description = bundle.getString(MAP_DIALOG_DESCRIPTION_KEY, "")
         }
         val view = requireActivity().layoutInflater.inflate(R.layout.dialog_map, null)

@@ -19,8 +19,8 @@ class UserListingsListActivity : AppCompatActivity() {
         listViewListings = findViewById(R.id.userListingsActivity_listView_listings)
 
         userListingsList = ArrayList()
-        userListingsList.add(Listing(1,"type","Nissian GTR Nismo",5337.00,"test listing","1","1",true))
-        userListingsList.add(Listing(1,"type","Mercedes C63",2337.00,"test listing","1","1",true))
+//        userListingsList.add(Listing(1,"type","Nissian GTR Nismo",5337.00,"test listing","1","1",true))
+//        userListingsList.add(Listing(1,"type","Mercedes C63",2337.00,"test listing","1","1",true))
         listViewListings.adapter = UserListingsListAdapter(this, userListingsList)
 
     }

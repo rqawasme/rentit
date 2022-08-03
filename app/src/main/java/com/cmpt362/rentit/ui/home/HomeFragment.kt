@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.db.Listing
 import com.cmpt362.rentit.ui.home.MapDialog.Companion.MAP_DIALOG_DESCRIPTION_KEY
@@ -101,12 +102,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
     }
 
     private fun getListingsNearYou(currentLocation: Location?) {
-        database = Firebase.database.getReference("Listings")
+        database = Firebase.database.getReference(Constants.LISTINGS_PATH)
         database.get().addOnSuccessListener {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
-                    val key = _listing.key?.toInt() ?: -1
+                    val id = _listing.child("pushId").getValue(String::class.java)!!
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
@@ -114,16 +115,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
                     val postUserID = _listing.child("postUserID").getValue(String::class.java)?: "-1"
                     val renterUserID = _listing.child("renterUserID").getValue(String::class.java)?: "-1"
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
-                    val listing = Listing(key, type, name, price, description, postUserID, renterUserID, available)
+                    val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available)
                     listings.add(listing)
                     if (available){
                         if(currentLocation != null) {
 //                            TODO: Get actual location from db and see how close it is
                             val lat = currentLocation.latitude
                             val lng = currentLocation.longitude
-                            val latLng = LatLng(lat + 0.01 * key, lng + 0.5 * key)
+                            val latLng = LatLng(lat, lng)
                             markerOptions.title(name)
-                            markerOptions.snippet(key.toString())
+                            markerOptions.snippet(id)
                             markerOptions.position(latLng)
                             markerOptions.icon(
                                 BitmapDescriptorFactory.defaultMarker(

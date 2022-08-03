@@ -10,14 +10,13 @@ import android.widget.GridView
 import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.details.DetailActivity
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.db.Listing
-import com.cmpt362.rentit.details.DetailViewPagerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
 class RentalsFragment : Fragment() {
     private lateinit var gridView: GridView
@@ -39,14 +38,14 @@ class RentalsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         searchBar = requireView().findViewById(R.id.search_bar)
-        database = Firebase.database.getReference("Listings")
+        database = Firebase.database.getReference(Constants.LISTINGS_PATH)
         gridView = requireView().findViewById(R.id.grid_view)
         list = ArrayList() // get from db eventually
         database.get().addOnSuccessListener {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
-                    val key = _listing.key?.toInt() ?: -1
+                    val id = _listing.child("pushId").getValue(String::class.java)!!
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
@@ -54,12 +53,12 @@ class RentalsFragment : Fragment() {
                     val postUserID = _listing.child("postUserID").getValue(String::class.java)
                     val renterUserID = _listing.child("renterUserID").getValue(String::class.java)
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
-                    val listing = Listing(key, type, name, price, description, postUserID, renterUserID, available)
+                    val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available)
                     listings.add(listing)
-                    list = list + GridViewModel(listing.id.toLong(), listing)
-                    list = list + GridViewModel(listing.id.toLong(), listing)
-                    list = list + GridViewModel(listing.id.toLong(), listing)
-                    list = list + GridViewModel(listing.id.toLong(), listing)
+                    list = list + GridViewModel(id, listing)
+                    list = list + GridViewModel(id, listing)
+                    list = list + GridViewModel(id, listing)
+                    list = list + GridViewModel(id, listing)
                 }
 //        gridview stuff
                 gridViewAdapter = GridAdapter(list, requireActivity())
@@ -84,7 +83,7 @@ class RentalsFragment : Fragment() {
                     for( item in list){
                         if (item.listing.name?.contains(query) == true) {
                             newList += GridViewModel(
-                                item.listing.id.toLong(),
+                                item.listing.pushId!!,
                                 item.listing
                             )
                         }

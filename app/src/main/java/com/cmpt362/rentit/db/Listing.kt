@@ -4,7 +4,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 data class Listing(
-    val id:Int= -1,
+    val pushId: String? = null,
     val type: String? = null,
     val name: String? = null,
     val price: Double? = null,
