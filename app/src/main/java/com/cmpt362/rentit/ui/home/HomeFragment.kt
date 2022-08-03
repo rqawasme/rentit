@@ -106,7 +106,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
-                    val key = _listing.key?.toInt() ?: -1
+                    val key = _listing.key?.toLong() ?: -1
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
@@ -114,7 +114,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
                     val postUserID = _listing.child("postUserID").getValue(String::class.java)?: "-1"
                     val renterUserID = _listing.child("renterUserID").getValue(String::class.java)?: "-1"
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
-                    val listing = Listing(key, type, name, price, description, postUserID, renterUserID, available)
+                    val listing = Listing(key, null, type, name, price, description, postUserID, renterUserID, available)
                     listings.add(listing)
                     if (available){
                         if(currentLocation != null) {
