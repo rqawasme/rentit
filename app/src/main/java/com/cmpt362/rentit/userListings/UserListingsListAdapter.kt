@@ -27,7 +27,7 @@ class UserListingsListAdapter(private val context: Activity, private val listing
     }
 
     override fun getItemId(position: Int): Long {
-        return listingArrayList[position].id.toLong()
+        return position.toLong()
     }
 
 
