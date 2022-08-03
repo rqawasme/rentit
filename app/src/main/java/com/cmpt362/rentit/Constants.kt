@@ -12,4 +12,14 @@ object Constants {
     const val PHONE_PATH = "phone"
     const val POSTAL_CODE_PATH = "postalCode"
     const val ONE_MEGABYTE: Long = 1024 * 1024
+    const val PICK_PROFILE_PHOTO_DIALOG_TITLE = "Pick Profile Picture"
+    const val OPEN_CAMERA_DIALOG_OPTION_POSITION = 0
+    const val SELECT_FROM_GALLERY_DIALOG_OPTION_POSITION = 1
+    const val PROFILE_PHOTO_FILE_NAME = "rentit_profile_photo.jpg"
+    const val TEMP_PROFILE_PHOTO_FILE_NAME = "rentit_temp_profile_photo.jpg"
+    const val URI_AUTHORITY = "cmpt362.rentit.com"
+    const val USERS_FOLDER = "Users/"
+    const val USER_PROFILE_PIC_PREFIX = "profile_picture"
+    const val USER_PROFILE_PIC_SUFFIX = "jpeg"
+    const val FAILED_TO_RETRIEVE_PROFILE_PICTURE_ERROR = "Failed to retrieve profile picture"
 }

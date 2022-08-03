@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/settingsActivity_preferenceCategory_title_account_preference">
+
+        <PreferenceScreen
+            android:key="@string/settingsActivity_preferenceScreen_key_user_profile"
+            android:summary="@string/settingsActivity_preferenceScreen_summary_user_profile"
+            android:title="@string/settingsActivity_preferenceScreen_title_user_profile">
+            <intent android:action="com.cmpt362.rentit.users.UserProfile" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="@string/settingsActivity_preferenceScreen_key_email"
+            android:summary="@string/settingsActivity_preferenceScreen_summary_email"
+            android:title="@string/settingsActivity_preferenceScreen_title_email">
+            <intent android:action="com.cmpt362.rentit.users.UpdateEmail" />
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="@string/settingsActivity_preferenceScreen_key_password"
+            android:summary="@string/settingsActivity_preferenceScreen_summary_password"
+            android:title="@string/settingsActivity_preferenceScreen_title_password">
+            <intent android:action="com.cmpt362.rentit.users.ChangePassword"/>
+        </PreferenceScreen>
+
+
+    </PreferenceCategory>
+
+
+</PreferenceScreen>
