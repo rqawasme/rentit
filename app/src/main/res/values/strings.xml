@@ -74,7 +74,7 @@
     <string name="settingsActivity_preferenceScreen_summary_password">Change Password</string>
     <string name="settingsActivity_preferenceScreen_key_password">change_password</string>
 
-    <!-- Strings used for user listings activity -->
+    <!-- Strings used for update email activity -->
     <string name="updateEmailActivity_text_please_authenticate">Please enter your password and verify before continuing</string>
     <string name="updateEmailActivity_text_current_email">Current Email</string>
     <string name="text_enter_your_password">Enter your password</string>
@@ -84,5 +84,12 @@
     <string name="text_new_email_with_asterisk">New Email*</string>
     <string name="text_enter_your_new_email">Enter your new email</string>
     <string name="text_update_email">Update Email</string>
+
+    <!-- Strings used for change password activity -->
+    <string name="changePasswordActivity_text_please_authenticate">Please enter your password and verify before continuing</string>
+    <string name="text_current_password_with_asterisk">Current Password*</string>
+    <string name="text_new_password_with_asterisk">New Password*</string>
+    <string name="text_change_password">Change Password</string>
+    <string name="text_enter_your_new_password">Enter your new password</string>
 
 </resources>

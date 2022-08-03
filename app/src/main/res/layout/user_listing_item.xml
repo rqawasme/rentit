@@ -62,7 +62,8 @@
                 android:paddingVertical="5dp"
                 android:paddingHorizontal="5dp"
                 android:drawableLeft="@drawable/ic_baseline_mode_edit_24"
-                android:layout_marginHorizontal="2dp"/>
+                android:layout_marginHorizontal="2dp"
+                android:backgroundTint="@color/customAccent"/>
 
             <Button
                 android:id="@+id/userListings_button_markUnavailable"
@@ -76,7 +77,8 @@
                 android:paddingVertical="5dp"
                 android:paddingHorizontal="5dp"
                 android:drawableLeft="@drawable/ic_baseline_not_interested_24"
-                android:layout_marginHorizontal="5dp" />
+                android:layout_marginHorizontal="5dp"
+                android:backgroundTint="@color/customAccent"/>
 
 
             <Button
@@ -90,7 +92,8 @@
                 android:minWidth="0dp"
                 android:paddingVertical="5dp"
                 android:paddingHorizontal="5dp"
-                android:layout_marginHorizontal="2dp"/>
+                android:layout_marginHorizontal="2dp"
+                android:backgroundTint="@color/customAccent"/>
 
 
         </LinearLayout>
