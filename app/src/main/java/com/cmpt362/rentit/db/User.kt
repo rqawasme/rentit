@@ -5,6 +5,7 @@ import com.google.firebase.database.IgnoreExtraProperties
 @IgnoreExtraProperties
 data class User(
     val id: String? = null,
+    val email: String? = null,
     val username: String? = null,
     val phone: String? = null,
     val postalCode: String? = null) {
