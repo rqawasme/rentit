@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
 //        val user= User(1,username,"knakano@sfu.ca","1231111111","testAddr")
 //        myRefUsers.child(username).setValue(user)
 //
-//        val myRefListings=db.getReference("Listings")
+//        val myRefListings=db.getReference(Constants.LISTING_PATH)
 //        val listingID=1337
 //        val listing= Listing(listingID,"type","ListingName",1337.00,"test listing",1,1,true)
 //        myRefListings.child(listingID.toString()).setValue(listing)
