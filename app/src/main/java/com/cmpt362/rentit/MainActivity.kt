@@ -91,15 +91,9 @@ class MainActivity : AppCompatActivity() {
         else if (id == R.id.action_user_logout){
             logoutUser()
         }
-        else if (id == R.id.action_user_profile){
-            val firebaseUser = firebaseAuth.currentUser
-            if (firebaseUser != null){
-                val intent = Intent(this, UserProfileActivity::class.java)
-                startActivity(intent)
-            }
-            else{
-                Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
-            }
+        else if (id == R.id.action_settings){
+            val intent = Intent(this, SettingsActivity::class.java)
+            startActivity(intent)
         }
         return super.onOptionsItemSelected(item)
     }

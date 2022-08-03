@@ -45,7 +45,6 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var textInputEditTextEmail: TextInputEditText
     private lateinit var textInputEditTextPhone: TextInputEditText
     private lateinit var textInputEditTextPostalCode: TextInputEditText
-    private lateinit var textInputEditTextPassword: TextInputEditText
 
     private lateinit var shapeableImageViewProfilePicture: ShapeableImageView
     private lateinit var db: FirebaseDatabase
@@ -57,6 +56,9 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var cameraResult: ActivityResultLauncher<Intent>
     private lateinit var galleryResult: ActivityResultLauncher<Intent>
 
+    private lateinit var userUsername: String
+    private lateinit var userPhone: String
+    private lateinit var userPostalCode: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -76,11 +78,15 @@ class UserProfileActivity : AppCompatActivity() {
 
             userDataSnapshot.addOnSuccessListener {
                 if (it.exists()){
-                    val username = it.child(Constants.USERNAME_PATH).getValue(String::class.java)
-                    textViewUsername.text = username
-                    textInputEditTextUsername.setText(username)
-                    textInputEditTextPhone.setText(it.child(Constants.PHONE_PATH).getValue(String::class.java))
-                    textInputEditTextPostalCode.setText(it.child(Constants.POSTAL_CODE_PATH).getValue(String::class.java))
+                    userUsername = it.child(Constants.USERNAME_PATH).getValue(String::class.java).toString()
+                    userPhone = it.child(Constants.PHONE_PATH).getValue(String::class.java).toString()
+                    userPostalCode = it.child(Constants.POSTAL_CODE_PATH).getValue(String::class.java).toString()
+
+                    textViewUsername.text = "Welcome, ${userUsername}"
+                    textInputEditTextUsername.setText(userUsername)
+                    textInputEditTextPhone.setText(userPhone)
+                    textInputEditTextPostalCode.setText(userPostalCode)
+
                 }
             }
 
@@ -94,11 +100,8 @@ class UserProfileActivity : AppCompatActivity() {
         textInputEditTextEmail = findViewById(R.id.userProfileActivity_textInputEditText_email)
         textInputEditTextPhone = findViewById(R.id.userProfileActivity_textInputEditText_phone)
         textInputEditTextPostalCode = findViewById(R.id.userProfileActivity_textInputEditText_postalCode)
-        textInputEditTextPassword = findViewById(R.id.userProfileActivity_textInputEditText_password)
 
-        textInputEditTextPassword.setOnClickListener {
-            textInputEditTextPassword.setText("")
-        }
+        textInputEditTextEmail.isEnabled = false
 
         db = Firebase.database
         firebaseAuth = FirebaseAuth.getInstance()
@@ -190,29 +193,38 @@ class UserProfileActivity : AppCompatActivity() {
 
     fun saveUserInfo(view: View){
         val user = firebaseAuth.currentUser
+        val enteredUsername = textInputEditTextUsername.text.toString()
+        val enteredPhone = textInputEditTextPhone.text.toString()
+        val enteredPostalCode = textInputEditTextPostalCode.text.toString()
+
         if (tempProfilePhotoFile.exists()){
             storageReference = FirebaseStorage.getInstance().getReference("Users/" + user!!.uid)
             storageReference.putFile(tempProfilePhotoUri)
-
         }
 
-        if (textInputEditTextEmail.text.toString() != user!!.email.toString()){
-            changeEmail(user)
-        }
+        if (enteredUsername != userUsername || enteredPhone != userPhone || enteredPostalCode != userPostalCode){
+            val myRefUsers = db.getReference(Constants.USERS_TABLE_NAME)
+            val userId = user!!.uid
 
+            val newUserInfo = mapOf<String, String>(
+                "id" to userId,
+                "email" to user.email.toString(),
+                "username" to enteredUsername,
+                "phone" to enteredPhone,
+                "postalCode" to enteredPostalCode
+            )
+
+            myRefUsers.child(userId).updateChildren(newUserInfo).addOnSuccessListener {
+                Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(this, "Failed to update", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
         exit(view)
     }
 
-    private fun changeEmail(user: FirebaseUser) {
-        user.updateEmail(textInputEditTextEmail.text.toString()).addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                Log.d("User Profile Activity", "User email address updated.")
-            }
-        }.addOnFailureListener{
-                println(it)
-        }
-    }
 
     private fun deleteTempUserProfilePhoto(){
         if (tempProfilePhotoFile.exists()){
