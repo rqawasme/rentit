@@ -200,7 +200,6 @@ class UserProfileActivity : AppCompatActivity() {
             changeEmail(user)
         }
 
-
         exit(view)
     }
 
