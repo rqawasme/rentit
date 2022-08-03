@@ -12,6 +12,7 @@ Danyaal Patel, Kei Nakano, Kenneth Liang, Rashid Qawasme
 
 [Rentit Show and Tell 1](https://youtu.be/qP5KhkwnlbM)
 
+[Rentit Show and Tell 2](https://youtu.be/ohoBv5kA1M8)
 
 
 ### Download
