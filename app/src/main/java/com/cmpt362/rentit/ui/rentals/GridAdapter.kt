@@ -29,7 +29,7 @@ internal class GridAdapter(
     }
 
     override fun getItemId(position: Int): Long {
-        return list[position].id // should be using db stuff so we return that here
+        return position.toLong()// should be using db stuff so we return that here
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
