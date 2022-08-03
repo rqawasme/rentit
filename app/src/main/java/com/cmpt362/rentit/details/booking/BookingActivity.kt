@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.db.Booking
 import com.google.firebase.auth.FirebaseAuth
@@ -15,7 +16,7 @@ import java.time.LocalDate
 import java.util.*
 
 class BookingActivity: AppCompatActivity(), DialogInterface {
-    private var listingID:Long= -1
+    private var listingID:String= ""
     private var name:String? = ""
     private var price:Float? = 0f
 
@@ -50,7 +51,7 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
         }
 
         //Todo: Will most likely need to change listingID to String when we use pushIDs for listings instead
-        listingID= intent.getLongExtra("listingID",-1)
+        listingID= intent.getStringExtra("listingID").toString()
         name= intent.getStringExtra("listingName")
         price = intent.getFloatExtra("price",-1F)
 
@@ -160,9 +161,9 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
 
     //Checks if entered time period doesn't overlap any existing bookings.
     //If valid, opens Confirmation fragment
-    fun checkTimePeriod(startMilli:Long , endMilli:Long, listingID:Long ){
+    fun checkTimePeriod(startMilli:Long , endMilli:Long, listingID:String ){
         var overlap=false
-        val myRefListings=db.getReference("Bookings").orderByChild("listingID").equalTo(listingID.toDouble())
+        val myRefListings=db.getReference(Constants.BOOKINGS_PATH).orderByChild("listingID").equalTo(listingID)
         var bookingStart:String?=""
         var bookingEnd:String?=""
 
