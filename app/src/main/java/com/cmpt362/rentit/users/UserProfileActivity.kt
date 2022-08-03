@@ -193,13 +193,34 @@ class UserProfileActivity : AppCompatActivity() {
 
     fun saveUserInfo(view: View){
         val user = firebaseAuth.currentUser
-        val userId = user!!.uid
+        val enteredUsername = textInputEditTextUsername.text.toString()
+        val enteredPhone = textInputEditTextPhone.text.toString()
+        val enteredPostalCode = textInputEditTextPostalCode.text.toString()
+
         if (tempProfilePhotoFile.exists()){
             storageReference = FirebaseStorage.getInstance().getReference("Users/" + user!!.uid)
             storageReference.putFile(tempProfilePhotoUri)
-
         }
 
+        if (enteredUsername != userUsername || enteredPhone != userPhone || enteredPostalCode != userPostalCode){
+            val myRefUsers = db.getReference(Constants.USERS_TABLE_NAME)
+            val userId = user!!.uid
+
+            val newUserInfo = mapOf<String, String>(
+                "id" to userId,
+                "email" to user.email.toString(),
+                "username" to enteredUsername,
+                "phone" to enteredPhone,
+                "postalCode" to enteredPostalCode
+            )
+
+            myRefUsers.child(userId).updateChildren(newUserInfo).addOnSuccessListener {
+                Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+            }.addOnFailureListener {
+                Toast.makeText(this, "Failed to update", Toast.LENGTH_SHORT).show()
+            }
+
+        }
 
         exit(view)
     }
