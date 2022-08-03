@@ -10,6 +10,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -25,6 +26,8 @@ import com.cmpt362.rentit.details.DetailViewPagerAdapter
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthRecentLoginRequiredException
+import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -92,6 +95,10 @@ class UserProfileActivity : AppCompatActivity() {
         textInputEditTextPhone = findViewById(R.id.userProfileActivity_textInputEditText_phone)
         textInputEditTextPostalCode = findViewById(R.id.userProfileActivity_textInputEditText_postalCode)
         textInputEditTextPassword = findViewById(R.id.userProfileActivity_textInputEditText_password)
+
+        textInputEditTextPassword.setOnClickListener {
+            textInputEditTextPassword.setText("")
+        }
 
         db = Firebase.database
         firebaseAuth = FirebaseAuth.getInstance()
@@ -185,16 +192,26 @@ class UserProfileActivity : AppCompatActivity() {
         val user = firebaseAuth.currentUser
         if (tempProfilePhotoFile.exists()){
             storageReference = FirebaseStorage.getInstance().getReference("Users/" + user!!.uid)
-            storageReference.putFile(tempProfilePhotoUri).addOnSuccessListener {
-                println("added user profile")
-
-            }.addOnFailureListener{
-                println("failed to add user profile")
-            }
+            storageReference.putFile(tempProfilePhotoUri)
 
         }
 
+        if (textInputEditTextEmail.text.toString() != user!!.email.toString()){
+            changeEmail(user)
+        }
+
+
         exit(view)
+    }
+
+    private fun changeEmail(user: FirebaseUser) {
+        user.updateEmail(textInputEditTextEmail.text.toString()).addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("User Profile Activity", "User email address updated.")
+            }
+        }.addOnFailureListener{
+                println(it)
+        }
     }
 
     private fun deleteTempUserProfilePhoto(){
