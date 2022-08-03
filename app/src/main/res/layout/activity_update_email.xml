@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".users.UpdateEmailActivity"
+    android:fillViewport="true"
+    android:background="@color/customDark">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:layout_margin="15dp"
+            android:background="@color/customPrimary">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/updateEmailActivity_text_please_authenticate"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/light_grey"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:padding="6dp"
+                android:text="@string/updateEmailActivity_text_current_email"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/updateEmailActivity_textView_user_current_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="6dp"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="6dp"
+                android:text="@string/text_password_with_asterisk"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp"/>
+
+            <EditText
+                android:id="@+id/updateEmailActivity_editText_verify_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_enter_your_password"
+                android:textColor="@color/white"
+                android:background="@drawable/light_grey_border"
+                android:textColorHint="@color/light_grey"
+                android:padding="6dp"
+                android:inputType="textPassword"/>
+
+            <Button
+                android:id="@+id/updateEmailActivity_button_authenticate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/text_authenticate"
+                android:layout_marginHorizontal="50dp"
+                android:backgroundTint="@color/customAccent"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="15dp"
+            android:layout_margin="15dp"
+            android:background="@color/customPrimary">
+
+            <TextView
+                android:id="@+id/updateEmailActivity_textView_isAuthenticated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="6dp"
+                android:text="@string/text_account_not_authenticate"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="6dp"
+                android:text="@string/text_new_email_with_asterisk"
+                android:textColor="@color/light_grey"
+                android:textSize="16sp"/>
+
+
+            <EditText
+                android:id="@+id/updateEmailActivity_editText_new_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/text_enter_your_new_email"
+                android:textColor="@color/white"
+                android:background="@drawable/light_grey_border"
+                android:textColorHint="@color/light_grey"
+                android:padding="6dp"/>
+
+            <Button
+                android:id="@+id/updateEmailActivity_button_update_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/text_update_email"
+                android:layout_marginHorizontal="50dp"
+                android:onClick="updateEmail"
+                android:backgroundTint="@color/customAccent"/>
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+
+
+</ScrollView>
