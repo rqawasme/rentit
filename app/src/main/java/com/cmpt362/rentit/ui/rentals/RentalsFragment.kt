@@ -13,11 +13,9 @@ import androidx.fragment.app.Fragment
 import com.cmpt362.rentit.details.DetailActivity
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.db.Listing
-import com.cmpt362.rentit.details.DetailViewPagerAdapter
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.ktx.storage
 
 class RentalsFragment : Fragment() {
     private lateinit var gridView: GridView
@@ -46,7 +44,7 @@ class RentalsFragment : Fragment() {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
-                    val key = _listing.key?.toInt() ?: -1
+                    val key = _listing.key?: null
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
@@ -56,10 +54,10 @@ class RentalsFragment : Fragment() {
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
                     val listing = Listing(key, type, name, price, description, postUserID, renterUserID, available)
                     listings.add(listing)
-                    list = list + GridViewModel(listing.id.toLong(), listing)
-                    list = list + GridViewModel(listing.id.toLong(), listing)
-                    list = list + GridViewModel(listing.id.toLong(), listing)
-                    list = list + GridViewModel(listing.id.toLong(), listing)
+                    list = list + GridViewModel(listing.id, listing)
+                    list = list + GridViewModel(listing.id, listing)
+                    list = list + GridViewModel(listing.id, listing)
+                    list = list + GridViewModel(listing.id, listing)
                 }
 //        gridview stuff
                 gridViewAdapter = GridAdapter(list, requireActivity())
@@ -84,7 +82,7 @@ class RentalsFragment : Fragment() {
                     for( item in list){
                         if (item.listing.name?.contains(query) == true) {
                             newList += GridViewModel(
-                                item.listing.id.toLong(),
+                                item.listing.id,
                                 item.listing
                             )
                         }

@@ -106,7 +106,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
-                    val key = _listing.key?.toInt() ?: -1
+                    val key = _listing.key?: null
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
@@ -121,7 +121,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
 //                            TODO: Get actual location from db and see how close it is
                             val lat = currentLocation.latitude
                             val lng = currentLocation.longitude
-                            val latLng = LatLng(lat + 0.01 * key, lng + 0.5 * key)
+                            val latLng = LatLng(lat + 0.01 * -1, lng + 0.5 * -1)
                             markerOptions.title(name)
                             markerOptions.snippet(key.toString())
                             markerOptions.position(latLng)
