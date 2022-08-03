@@ -59,5 +59,20 @@
     <string name="cancel_button">CANCEL</string>
     <string name="go_back">BACK</string>
     <string name="view_more">VIEW</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Preference -->
+    <string name="settingsActivity_preferenceCategory_title_account_preference">Account Preferences</string>
+    <string name="settingsActivity_preferenceScreen_title_user_profile">Username, Phone, Postal Code, etc</string>
+    <string name="settingsActivity_preferenceScreen_summary_user_profile">User Profile</string>
+    <string name="settingsActivity_preferenceScreen_key_user_profile">user_profile</string>
+
+    <string name="settingsActivity_preferenceScreen_title_email">Email</string>
+    <string name="settingsActivity_preferenceScreen_summary_email">Update Email</string>
+    <string name="settingsActivity_preferenceScreen_key_email">update_email</string>
+    <string name="settingsActivity_preferenceScreen_title_password">Password</string>
+    <string name="settingsActivity_preferenceScreen_summary_password">Change Password</string>
+    <string name="settingsActivity_preferenceScreen_key_password">change_password</string>
+
 
 </resources>
