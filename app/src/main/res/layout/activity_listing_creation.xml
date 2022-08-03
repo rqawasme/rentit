@@ -112,18 +112,6 @@
                 android:inputType="text"
                 android:layout_marginBottom="@dimen/default_margin"/>
 
-            <TextView
-                android:id="@+id/listing_PostUserId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="PostUserId"/>
-
-            <TextView
-                android:id="@+id/listing_RentUserId"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="RentUserId"/>
-
 
             <LinearLayout
                 android:layout_width="match_parent"

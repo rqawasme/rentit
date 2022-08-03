@@ -4,10 +4,7 @@ import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.RadioGroup
-import android.widget.TextView
+import android.widget.*
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.db.Listing
 import com.google.firebase.auth.FirebaseAuth
@@ -70,6 +67,16 @@ class ListingCreationActivity : AppCompatActivity() {
                 myRefListing.child(listingID).setValue(listing)
             }
         }.start()
+
+        val toast = Toast.makeText(this, "Saved", Toast.LENGTH_SHORT)
+        toast.show()
+        finish()
+    }
+
+    fun onCancelClicked(view: View) {
+        val toast = Toast.makeText(this, "Cancelled", Toast.LENGTH_SHORT)
+        toast.show()
+        finish()
     }
 
 
