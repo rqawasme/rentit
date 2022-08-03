@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
+import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.Constants.ONE_MEGABYTE
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.details.booking.BookingActivity
@@ -24,7 +25,7 @@ import com.google.firebase.storage.ktx.storage
 class DetailActivity:AppCompatActivity() {
     private lateinit var db: FirebaseDatabase
     private var name:String?=""
-    private var listingID:Long =-1
+    private var listingID:String = ""
     private var posterID:String? = null
     private var price:Float? =0f
     private var description:String? =""
@@ -39,7 +40,7 @@ class DetailActivity:AppCompatActivity() {
         setContentView(R.layout.activity_details)
 
         //Todo: Will most likely need to change listingID to String when we use pushIDs for listings instead
-        listingID= intent.getLongExtra("id",-1)
+        listingID= intent.getStringExtra("id").toString()
         var imageList = ArrayList<ByteArray>()
         db= Firebase.database
 
@@ -65,9 +66,9 @@ class DetailActivity:AppCompatActivity() {
     }
 
     //Read info from Firebase
-    private fun readThread(listingID:Long){
+    private fun readThread(listingID:String){
         Thread(){
-            val myRefListings=db.getReference("Listings").child(listingID.toString())
+            val myRefListings=db.getReference(Constants.LISTINGS_PATH).child(listingID)
 
             myRefListings.get().addOnCompleteListener{ task->
                 if(task.isSuccessful){
@@ -76,6 +77,7 @@ class DetailActivity:AppCompatActivity() {
                     price=snapshot.child("price").getValue(Float::class.java)
                     description=snapshot.child("description").getValue(String::class.java)
                     posterID=snapshot.child("postUserID").getValue(String::class.java)
+
 
                     val nameTextView=findViewById<TextView>(R.id.details_name)
                     val priceTextView=findViewById<TextView>(R.id.details_price)

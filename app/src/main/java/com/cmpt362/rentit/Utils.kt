@@ -21,7 +21,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 
 object Utils {
-    fun getImage(listingId: Long, imageView: ImageView){
+    fun getImage(listingId: String, imageView: ImageView){
         val reference = Firebase.storage.reference
         Thread(){
             reference.child("listings/$listingId/").list(1).addOnSuccessListener {
@@ -41,9 +41,9 @@ object Utils {
         return BitmapFactory.decodeByteArray(byteArr, 0, byteArr.size)
     }
 
-    fun getDescriptionSnippet(listingId: Long, textView: TextView){
+    fun getDescriptionSnippet(listingId: String, textView: TextView){
         Thread(){
-            val myRefListings=Firebase.database.getReference("Listings").child(listingId.toString())
+            val myRefListings=Firebase.database.getReference(Constants.LISTINGS_PATH).child(listingId.toString())
             textView.movementMethod = ScrollingMovementMethod()
 
             myRefListings.get().addOnCompleteListener{ task->
