@@ -1,6 +1,7 @@
 package com.cmpt362.rentit.ui.rentals
 
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +18,8 @@ import com.cmpt362.rentit.db.Listing
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class RentalsFragment : Fragment() {
     private lateinit var gridView: GridView
@@ -53,7 +56,8 @@ class RentalsFragment : Fragment() {
                     val postUserID = _listing.child("postUserID").getValue(String::class.java)
                     val renterUserID = _listing.child("renterUserID").getValue(String::class.java)
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
-                    val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available)
+                    val locationString = _listing.child("location").getValue(String::class.java)
+                    val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available, locationString)
                     listings.add(listing)
                     list = list + GridViewModel(id, listing)
 //                    uncomment to test more listings

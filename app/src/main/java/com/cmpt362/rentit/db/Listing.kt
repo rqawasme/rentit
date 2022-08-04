@@ -11,7 +11,8 @@ data class Listing(
     val description: String? = null,
     val postUserID:  String? = null,
     val renterUserID: String? = null,
-    val available:  Boolean = false) {
+    val available:  Boolean = false,
+    val location: String?) {
     // Null default values create a no-argument default constructor, which is needed
     // for deserialization from a DataSnapshot.
 }
