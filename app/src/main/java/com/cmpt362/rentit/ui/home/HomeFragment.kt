@@ -86,7 +86,6 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
             criteria.accuracy = Criteria.ACCURACY_FINE
             val provider = locationManager.getBestProvider(criteria, true)
             val location = locationManager.getLastKnownLocation(provider!!)
-            println("DEBUG: $location")
             if(location != null) {
                 val lat = location.latitude
                 val lng = location.longitude
