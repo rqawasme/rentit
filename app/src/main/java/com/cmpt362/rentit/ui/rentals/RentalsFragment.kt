@@ -56,9 +56,10 @@ class RentalsFragment : Fragment() {
                     val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available)
                     listings.add(listing)
                     list = list + GridViewModel(id, listing)
-                    list = list + GridViewModel(id, listing)
-                    list = list + GridViewModel(id, listing)
-                    list = list + GridViewModel(id, listing)
+//                    uncomment to test more listings
+//                    list = list + GridViewModel(id, listing)
+//                    list = list + GridViewModel(id, listing)
+//                    list = list + GridViewModel(id, listing)
                 }
 //        gridview stuff
                 gridViewAdapter = GridAdapter(list, requireActivity())
