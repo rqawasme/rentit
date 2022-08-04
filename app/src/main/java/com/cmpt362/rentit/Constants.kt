@@ -28,4 +28,13 @@ object Constants {
     const val NO_LISTING_PRICE_ERROR = "Please enter a price"
     const val LISTINGS_TABLE_NAME = "Listings"
     const val LISTINGS_PATH = "listings"
+    const val LISTING_ID_TAG = "listingId"
+    const val NAME_TAG = "name"
+    const val TYPE_TAG = "type"
+    const val PRICE_TAG = "price"
+    const val DESCRIPTION_TAG = "description"
+    const val POSTER_USER_ID_TAG = "postUserID"
+    const val RENTER_USER_ID_TAG = "renterUserID"
+    const val AVAILABLE_TAG = "available"
+    const val LOCATION_TAG = "location"
 }
