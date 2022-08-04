@@ -30,6 +30,12 @@
         tools:layout="@layout/fragment_booking_list" />
 
     <activity
+        android:id="@+id/nav_create_listing"
+        android:name="com.cmpt362.rentit.createListing.CreateListingActivity"
+        android:label="@string/menu_create_listing"
+        tools:layout="@layout/activity_create_listing"/>
+
+    <activity
         android:id="@+id/nav_your_listings"
         android:name="com.cmpt362.rentit.userListings.UserListingsListActivity"
         android:label="@string/menu_your_listings"

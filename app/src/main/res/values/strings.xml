@@ -13,7 +13,8 @@
     <string name="menu_home">Home</string>
     <string name="menu_rentals">Rentals</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_your_listings">Your Listings</string>
+    <string name="menu_your_listings">Your listings</string>
+    <string name="menu_create_listing">Create new listing</string>
     <string name="item_image">Item Image</string>
     <string name="title_activity_login">LoginActivity</string>
 
@@ -91,5 +92,32 @@
     <string name="text_new_password_with_asterisk">New Password*</string>
     <string name="text_change_password">Change Password</string>
     <string name="text_enter_your_new_password">Enter your new password</string>
+
+    <!-- Strings used for create listing activity -->
+    <string name="text_listing_on_rentit">Listing on Rentit</string>
+    <string name="text_add_photos">Add Photos</string>
+    <string name="text_choose_your_photos">Choose your listing\'s main photo first.</string>
+    <string name="text_title">Title</string>
+    <string name="text_price">Price</string>
+    <string name="text_type">Type</string>
+    <string name="text_description">Description</string>
+    <string-array name="createListingActivity_array_types">
+        <item>Rental</item>
+        <item>Gigs</item>
+    </string-array>
+
+    <string-array name="createListingActivity_array_rental_categories">
+        <item>Car Rental</item>
+        <item>Tool Rental</item>
+        <item>Item Rental</item>
+    </string-array>
+
+    <string-array name="createListingActivity_array_gigs_categories">
+        <item>Photograph</item>
+        <item>Haircut</item>
+        <item>Repair</item>
+    </string-array>
+    <string name="text_publish">Publish</string>
+    <string name="text_required_with_asterisk">Required*</string>
 
 </resources>
