@@ -53,7 +53,7 @@ class DetailActivity:AppCompatActivity() {
         var reference = Firebase.storage.reference
         viewPager = findViewById(R.id.detail_viewpager)
         Thread(){
-            reference.child("listings/" + listingID + "/").listAll().addOnSuccessListener {
+            reference.child("${Constants.LISTINGS_PATH}/" + listingID + "/").listAll().addOnSuccessListener {
                 for(entry in it.items){
                     entry.getBytes(ONE_MEGABYTE*50).addOnSuccessListener {
                         imageList.add(it)
@@ -68,7 +68,7 @@ class DetailActivity:AppCompatActivity() {
     //Read info from Firebase
     private fun readThread(listingID:String){
         Thread(){
-            val myRefListings=db.getReference(Constants.LISTINGS_PATH).child(listingID)
+            val myRefListings=db.getReference(Constants.LISTINGS_TABLE_NAME).child(listingID)
 
             myRefListings.get().addOnCompleteListener{ task->
                 if(task.isSuccessful){

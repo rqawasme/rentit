@@ -27,7 +27,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
-import java.io.File
 
 class CreateListingActivity : AppCompatActivity() {
 
@@ -148,7 +147,7 @@ class CreateListingActivity : AppCompatActivity() {
             if (!uriArrayList.isEmpty()){
 
                 for (i in 0 .. uriArrayList.size - 1){
-                    storageReference = FirebaseStorage.getInstance().getReference("${Constants.FIREBASE_STORAGE_LISTINGS_PHOTOS_FOLDER}/${listingId}/${i}")
+                    storageReference = FirebaseStorage.getInstance().getReference("${Constants. LISTINGS_PATH}/${listingId}/${i}")
                     storageReference.putFile(uriArrayList[i])
                 }
 

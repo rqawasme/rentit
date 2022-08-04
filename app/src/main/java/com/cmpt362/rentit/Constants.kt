@@ -22,11 +22,10 @@ object Constants {
     const val USER_PROFILE_PIC_PREFIX = "profile_picture"
     const val USER_PROFILE_PIC_SUFFIX = "jpeg"
     const val FAILED_TO_RETRIEVE_PROFILE_PICTURE_ERROR = "Failed to retrieve profile picture"
-    const val LISTINGS_PATH = "Listings"
     const val BOOKINGS_PATH = "Bookings"
     const val PHOTOS_PER_ROW = 4
     const val NO_LISTING_TITLE_ERROR = "Please enter a title"
     const val NO_LISTING_PRICE_ERROR = "Please enter a price"
     const val LISTINGS_TABLE_NAME = "Listings"
-    const val FIREBASE_STORAGE_LISTINGS_PHOTOS_FOLDER = "listings"
+    const val LISTINGS_PATH = "listings"
 }
