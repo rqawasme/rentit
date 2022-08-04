@@ -25,4 +25,9 @@ object Constants {
     const val LISTINGS_PATH = "Listings"
     const val BOOKINGS_PATH = "Bookings"
     const val PHOTOS_PER_ROW = 4
+    const val NO_LISTING_TITLE_ERROR = "Please enter a title"
+    const val NO_LISTING_PRICE_ERROR = "Please enter a price"
+    const val LISTING_TYPE_RENTAL = 0
+    const val LISTING_TYPE_GIGS = 1
+    const val LISTINGS_TABLE_NAME = "Listings"
 }
