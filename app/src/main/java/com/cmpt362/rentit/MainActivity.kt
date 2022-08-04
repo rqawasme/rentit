@@ -45,31 +45,13 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_rentals, R.id.nav_slideshow, R.id.nav_booking_list
+                R.id.nav_home, R.id.nav_rentals, R.id.nav_booking_list
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         firebaseAuth = FirebaseAuth.getInstance()
-//        //Testing firebase connection, just for reference
-//        //Gets FireBaseInstance, behind the scenes FireBase managed a single connection and dedupes appropriately if needed, so you can just do in multiple places.
-//        db= Firebase.database
-//
-//        //Get reference, create object and set value.
-//        //For below, username is the "key", if you change the other values but do .setvalue() with the same username, it'll just update the value for the username.
-//        //For different username, it will create a new User object and insert.
-//        val myRefUsers = db.getReference("Users")
-//        val username="keiN"
-//        val user= User(1,username,"knakano@sfu.ca","1231111111","testAddr")
-//        myRefUsers.child(username).setValue(user)
-//
-//        val myRefListings=db.getReference(Constants.LISTING_PATH)
-//        val listingID=1337
-//        val listing= Listing(listingID,"type","ListingName",1337.00,"test listing",1,1,true)
-//        myRefListings.child(listingID.toString()).setValue(listing)
-//        //Todo: Probably need to create a helper function to autoincrement ID for new entries
     }
-
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -92,8 +74,17 @@ class MainActivity : AppCompatActivity() {
             logoutUser()
         }
         else if (id == R.id.action_settings){
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
+
+            //Check if logged in
+            val firebaseUser = firebaseAuth.currentUser
+            if (firebaseUser != null){
+                val intent = Intent(this, SettingsActivity::class.java)
+                startActivity(intent)
+            }
+            else{
+                Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            }
+
         }
         return super.onOptionsItemSelected(item)
     }

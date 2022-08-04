@@ -109,16 +109,26 @@ class CreateListingActivity : AppCompatActivity() {
     }
 
     private fun displayUsername(){
-        val userId = firebaseAuth.currentUser!!.uid
-        val myRefUsers = db.getReference(Constants.USERS_TABLE_NAME)
+        //Check if logged in
 
-        val userDataSnapshot = myRefUsers.child(userId).get()
+        if (firebaseAuth.currentUser != null) {
+            val userId = firebaseAuth.currentUser!!.uid
+            val myRefUsers = db.getReference(Constants.USERS_TABLE_NAME)
 
-        userDataSnapshot.addOnSuccessListener {
-            if (it.exists()){
-                textViewUsername.text = it.child(Constants.USERNAME_PATH).getValue(String::class.java).toString()
+            val userDataSnapshot = myRefUsers.child(userId).get()
+
+            userDataSnapshot.addOnSuccessListener {
+                if (it.exists()){
+                    textViewUsername.text = it.child(Constants.USERNAME_PATH).getValue(String::class.java).toString()
+                }
             }
         }
+        else{
+            Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            this.finish()
+        }
+
+
     }
 
 
