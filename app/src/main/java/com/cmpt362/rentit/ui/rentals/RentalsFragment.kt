@@ -41,7 +41,7 @@ class RentalsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         searchBar = requireView().findViewById(R.id.search_bar)
-        database = Firebase.database.getReference(Constants.LISTINGS_PATH)
+        database = Firebase.database.getReference(Constants.LISTINGS_TABLE_NAME)
         gridView = requireView().findViewById(R.id.grid_view)
         list = ArrayList() // get from db eventually
         database.get().addOnSuccessListener {

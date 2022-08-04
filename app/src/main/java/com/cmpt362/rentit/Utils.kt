@@ -24,7 +24,7 @@ object Utils {
     fun getImage(listingId: String, imageView: ImageView){
         val reference = Firebase.storage.reference
         Thread(){
-            reference.child("listings/$listingId/").list(1).addOnSuccessListener {
+            reference.child("${Constants.LISTINGS_PATH}/$listingId/").list(1).addOnSuccessListener {
                 if (it.items.size > 0) {
                     it.items[0].getBytes(ONE_MEGABYTE*50).addOnSuccessListener { pic ->
                         imageView.setImageBitmap(byteArrToBitMap(pic))
@@ -43,7 +43,7 @@ object Utils {
 
     fun getDescriptionSnippet(listingId: String, textView: TextView){
         Thread(){
-            val myRefListings=Firebase.database.getReference(Constants.LISTINGS_PATH).child(listingId.toString())
+            val myRefListings=Firebase.database.getReference(Constants.LISTINGS_TABLE_NAME).child(listingId.toString())
             textView.movementMethod = ScrollingMovementMethod()
 
             myRefListings.get().addOnCompleteListener{ task->

@@ -103,7 +103,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
     }
 
     private fun getListingsNearYou(currentLocation: Location?) {
-        database = Firebase.database.getReference(Constants.LISTINGS_PATH)
+        database = Firebase.database.getReference(Constants.LISTINGS_TABLE_NAME)
         database.get().addOnSuccessListener {
             listings.clear()
             if (it.hasChildren()){
