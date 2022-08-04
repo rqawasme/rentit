@@ -2,6 +2,7 @@ package com.cmpt362.rentit.userListings
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.ListView
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
@@ -37,10 +38,6 @@ class UserListingsListActivity : AppCompatActivity() {
 
         getUserListings()
 
-
-
-//        TODO: save location as
-//            Gson().toJson(location)
     }
 
     private fun initializeElements(){
@@ -75,18 +72,18 @@ class UserListingsListActivity : AppCompatActivity() {
                             val renterUserID = dataSnapShot.child(Constants.RENTER_USER_ID_TAG).value.toString()
                             val available = dataSnapShot.child(Constants.AVAILABLE_TAG).value.toString().toBoolean()
                             val location = dataSnapShot.child(Constants.LOCATION_TAG).value.toString()
-
                             val userListing = Listing(listingId, type, name, price, description,
                                 postUserID, renterUserID, available, location)
                             userListingsList.add(userListing)
                         }
                     }
+
                     userListingsListAdapter.notifyDataSetChanged()
 
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    TODO("Not yet implemented")
+                    Log.d("UserListingsActivity", error.toString())
                 }
 
             })
