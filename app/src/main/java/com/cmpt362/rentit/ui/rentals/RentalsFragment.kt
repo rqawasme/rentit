@@ -1,7 +1,6 @@
 package com.cmpt362.rentit.ui.rentals
 
 import android.content.Intent
-import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,8 +17,6 @@ import com.cmpt362.rentit.db.Listing
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
 
 class RentalsFragment : Fragment() {
     private lateinit var gridView: GridView
@@ -41,14 +38,14 @@ class RentalsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         searchBar = requireView().findViewById(R.id.search_bar)
-        database = Firebase.database.getReference(Constants.LISTINGS_PATH)
+        database = Firebase.database.getReference(Constants.LISTINGS_TABLE_NAME)
         gridView = requireView().findViewById(R.id.grid_view)
         list = ArrayList() // get from db eventually
         database.get().addOnSuccessListener {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
-                    val id = _listing.child("pushId").getValue(String::class.java)!!
+                    val id = _listing.child("listingID").getValue(String::class.java)!!
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
@@ -88,7 +85,7 @@ class RentalsFragment : Fragment() {
                     for( item in list){
                         if (item.listing.name?.contains(query) == true) {
                             newList += GridViewModel(
-                                item.listing.pushId!!,
+                                item.listing.listingID!!,
                                 item.listing
                             )
                         }

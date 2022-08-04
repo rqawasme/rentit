@@ -103,12 +103,12 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
     }
 
     private fun getListingsNearYou(currentLocation: Location?) {
-        database = Firebase.database.getReference(Constants.LISTINGS_PATH)
+        database = Firebase.database.getReference(Constants.LISTINGS_TABLE_NAME)
         database.get().addOnSuccessListener {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
-                    val id = _listing.child("pushId").getValue(String::class.java)!!
+                    val id = _listing.child("listingID").getValue(String::class.java)!!
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
@@ -118,14 +118,14 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
                     val locationString = _listing.child("location").getValue(String::class.java)
                     val locationType = object : TypeToken<Location>() {}.type
-                    val location: Location = Gson().fromJson(locationString, locationType)
+//                    val location: Location = Gson().fromJson(locationString, locationType)
                     val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available, locationString)
                     listings.add(listing)
                     if (available){
                         if(currentLocation != null && locationString != "") {
 //                            TODO: Get actual location from db and see how close it is
-                            val lat = location.latitude
-                            val lng = location.longitude
+                            val lat = currentLocation.latitude
+                            val lng = currentLocation.longitude
                             val latLng = LatLng(lat, lng)
                             markerOptions.title(name)
                             markerOptions.snippet(id)
