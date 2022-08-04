@@ -29,6 +29,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
     private lateinit var mMap: GoogleMap
@@ -114,13 +116,16 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
                     val postUserID = _listing.child("postUserID").getValue(String::class.java)?: "-1"
                     val renterUserID = _listing.child("renterUserID").getValue(String::class.java)?: "-1"
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
-                    val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available)
+                    val locationString = _listing.child("location").getValue(String::class.java)
+                    val locationType = object : TypeToken<Location>() {}.type
+                    val location: Location = Gson().fromJson(locationString, locationType)
+                    val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available, locationString)
                     listings.add(listing)
                     if (available){
-                        if(currentLocation != null) {
+                        if(currentLocation != null && locationString != "") {
 //                            TODO: Get actual location from db and see how close it is
-                            val lat = currentLocation.latitude
-                            val lng = currentLocation.longitude
+                            val lat = location.latitude
+                            val lng = location.longitude
                             val latLng = LatLng(lat, lng)
                             markerOptions.title(name)
                             markerOptions.snippet(id)
