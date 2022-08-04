@@ -108,7 +108,7 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
-                    val id = _listing.child("pushId").getValue(String::class.java)!!
+                    val id = _listing.child("listingID").getValue(String::class.java)!!
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
                     val price = _listing.child("price").getValue(Double::class.java)
