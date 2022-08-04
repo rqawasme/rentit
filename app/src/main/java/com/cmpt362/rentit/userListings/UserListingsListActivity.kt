@@ -6,6 +6,7 @@ import android.widget.ListView
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.databinding.ActivityMainBinding
 import com.cmpt362.rentit.db.Listing
+import com.google.gson.Gson
 
 class UserListingsListActivity : AppCompatActivity() {
 
@@ -23,5 +24,8 @@ class UserListingsListActivity : AppCompatActivity() {
 //        userListingsList.add(Listing(1,"type","Mercedes C63",2337.00,"test listing","1","1",true))
         listViewListings.adapter = UserListingsListAdapter(this, userListingsList)
 
+
+//        TODO: save location as
+//            Gson().toJson(location)
     }
 }
