@@ -117,19 +117,15 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
                     val renterUserID = _listing.child("renterUserID").getValue(String::class.java)?: "-1"
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
                     val locationString = _listing.child("location").getValue(String::class.java)
-                    val locationType = object : TypeToken<Location>() {}.type
-//                    val location: Location = Gson().fromJson(locationString, locationType)
+                    val locationType = object : TypeToken<LatLng>() {}.type
+                    val location: LatLng = Gson().fromJson(locationString, locationType)
                     val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available, locationString)
                     listings.add(listing)
                     if (available){
                         if(currentLocation != null && locationString != "") {
-//                            TODO: Get actual location from db and see how close it is
-                            val lat = currentLocation.latitude
-                            val lng = currentLocation.longitude
-                            val latLng = LatLng(lat, lng)
                             markerOptions.title(name)
                             markerOptions.snippet(id)
-                            markerOptions.position(latLng)
+                            markerOptions.position(location)
                             markerOptions.icon(
                                 BitmapDescriptorFactory.defaultMarker(
                                     BitmapDescriptorFactory.HUE_GREEN))
