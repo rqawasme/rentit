@@ -156,7 +156,7 @@ class CreateListingActivity : AppCompatActivity() {
 
 
             val newListing = Listing(listingId,listingTypeString, listingTitle,
-                listingPrice.toDouble(), listingDescription, userId, null, true)
+                listingPrice.toDouble(), listingDescription, userId, null, true, null)
 
             myRefListings.child(listingId).setValue(newListing)
             finish()
