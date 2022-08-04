@@ -18,6 +18,11 @@
             android:title="@string/menu_slideshow" />
 
         <item
+            android:id="@+id/nav_create_listing"
+            android:icon="@drawable/ic_baseline_add_24"
+            android:title="@string/menu_create_listing" />
+
+        <item
             android:id="@+id/nav_your_listings"
             android:icon="@drawable/ic_baseline_sell_24"
             android:title="@string/menu_your_listings" />

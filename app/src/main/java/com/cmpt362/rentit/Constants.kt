@@ -24,4 +24,5 @@ object Constants {
     const val FAILED_TO_RETRIEVE_PROFILE_PICTURE_ERROR = "Failed to retrieve profile picture"
     const val LISTINGS_PATH = "Listings"
     const val BOOKINGS_PATH = "Bookings"
+    const val PHOTOS_PER_ROW = 4
 }
