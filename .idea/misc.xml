@@ -16,7 +16,9 @@
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/side_nav_bar.xml" value="0.1545" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/drawable/text_view_border.xml" value="0.303" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_change_password.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_create_listing.xml" value="0.3625" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_details.xml" value="0.32916666666666666" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_listing_creation.xml" value="0.3625" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_login.xml" value="0.2942708333333333" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_main.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_posted_listings_list.xml" value="0.36666666666666664" />
@@ -26,6 +28,7 @@
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/activity_user_profile.xml" value="0.33" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/app_bar_main.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/content_main.xml" value="0.3482789855072464" />
+        <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/custom_single_image.xml" value="0.3614583333333333" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/fragment_gallery.xml" value="0.3482789855072464" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/fragment_home.xml" value="0.2598958333333333" />
         <entry key="..\:/Users/Kenne/Documents/Summer2022/CMPT362/Project/Rent-it/app/src/main/res/layout/fragment_slideshow.xml" value="0.36666666666666664" />
