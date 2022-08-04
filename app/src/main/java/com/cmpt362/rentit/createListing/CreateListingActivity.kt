@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -134,6 +135,9 @@ class CreateListingActivity : AppCompatActivity() {
         else if (TextUtils.isEmpty(listingPrice)){
             textInputEditTextPrice.error = Constants.NO_LISTING_PRICE_ERROR
             textInputEditTextPrice.requestFocus()
+        }
+        else if (uriArrayList.isEmpty()){
+            Toast.makeText(this, "Please select at least 1 photo", Toast.LENGTH_SHORT).show()
         }
         else{
 
