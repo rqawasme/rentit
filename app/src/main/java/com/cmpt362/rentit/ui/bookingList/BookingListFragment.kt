@@ -1,5 +1,6 @@
 package com.cmpt362.rentit.ui.bookingList
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +11,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
+import com.cmpt362.rentit.SettingsActivity
 import com.cmpt362.rentit.db.Booking
 import com.cmpt362.rentit.db.Listing
 import com.cmpt362.rentit.details.booking.ConfirmationFragment
@@ -45,6 +48,11 @@ class BookingListFragment : Fragment() {
     }
 
     fun getBookings(userID:String){
+        val firebaseUser = FirebaseAuth.getInstance().currentUser
+        if (firebaseUser== null){
+            Toast.makeText(context, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+        }
+
         val myRefBookings= Firebase.database.getReference("Bookings").orderByChild("bookerID").equalTo(userID)
         var bookingList= ArrayList<Pair<Booking,String>>()
 
