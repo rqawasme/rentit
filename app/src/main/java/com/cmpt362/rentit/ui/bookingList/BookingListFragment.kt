@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.cmpt362.rentit.R
-import com.cmpt362.rentit.databinding.FragmentSlideshowBinding
 import com.cmpt362.rentit.db.Booking
 import com.cmpt362.rentit.db.Listing
 import com.cmpt362.rentit.details.booking.ConfirmationFragment

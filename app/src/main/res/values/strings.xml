@@ -12,7 +12,6 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_rentals">Rentals</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="menu_your_listings">Your listings</string>
     <string name="menu_create_listing">Create new listing</string>
     <string name="item_image">Item Image</string>
