@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,13 +60,17 @@
 
         </LinearLayout>
 
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/createListingActivity_recyclerView_photos"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:scrollbarStyle="outsideInset"
             android:scrollbars="vertical"
-            android:layout_marginTop="5dp"/>
+            android:background="@drawable/light_grey_border"
+            android:layout_marginHorizontal="10dp"
+            android:padding="5dp"/>
 
         <Button
             android:id="@+id/createListingActivity_button_add_photos"
