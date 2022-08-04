@@ -30,4 +30,5 @@ object Constants {
     const val LISTING_TYPE_RENTAL = 0
     const val LISTING_TYPE_GIGS = 1
     const val LISTINGS_TABLE_NAME = "Listings"
+    const val FIREBASE_STORAGE_LISTINGS_PHOTOS_FOLDER = "listings"
 }

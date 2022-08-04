@@ -25,6 +25,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import java.io.File
 
 class CreateListingActivity : AppCompatActivity() {
@@ -43,6 +45,7 @@ class CreateListingActivity : AppCompatActivity() {
 
     private lateinit var db: FirebaseDatabase
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var storageReference: StorageReference
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,7 +53,11 @@ class CreateListingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_listing)
         Utils.checkPermissions(this)
         initializeElements()
+        displayUsername()
+        setupAddPhotoButtonOnClick()
+    }
 
+    private fun setupAddPhotoButtonOnClick(){
         buttonAddPhotos.setOnClickListener {
             val intent = Intent(Intent.ACTION_GET_CONTENT, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             intent.type = "image/*"
@@ -99,9 +106,6 @@ class CreateListingActivity : AppCompatActivity() {
                 }
             }
         }
-
-        displayUsername()
-
     }
 
     private fun displayUsername(){
@@ -133,12 +137,22 @@ class CreateListingActivity : AppCompatActivity() {
             textInputEditTextPrice.requestFocus()
         }
         else{
+
             val userId = firebaseAuth.currentUser!!.uid
             val myRefListings = db.getReference(Constants.LISTINGS_TABLE_NAME)
             val listingId = myRefListings.push().key.toString()
 
             val listingTypeArray = resources.getStringArray(R.array.createListingActivity_array_types)
             var listingTypeString:String = listingTypeArray[listingType]
+
+            if (!uriArrayList.isEmpty()){
+
+                for (i in 0 .. uriArrayList.size - 1){
+                    storageReference = FirebaseStorage.getInstance().getReference("${Constants.FIREBASE_STORAGE_LISTINGS_PHOTOS_FOLDER}/${listingId}/${i}")
+                    storageReference.putFile(uriArrayList[i])
+                }
+
+            }
 
 
             val newListing = Listing(listingId,listingTypeString, listingTitle,
