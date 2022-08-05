@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ListView
+import android.widget.Toast
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.databinding.ActivityMainBinding
@@ -88,6 +89,9 @@ class UserListingsListActivity : AppCompatActivity() {
 
             })
 
+        }
+        else{
+            Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
         }
 
     }

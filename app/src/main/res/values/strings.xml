@@ -12,7 +12,6 @@
 
     <string name="menu_home">Home</string>
     <string name="menu_rentals">Rentals</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="menu_your_listings">Your listings</string>
     <string name="menu_create_listing">Create new listing</string>
     <string name="item_image">Item Image</string>
@@ -121,5 +120,6 @@
     </string-array>
     <string name="text_publish">Publish</string>
     <string name="text_required_with_asterisk">Required*</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum libero enim, eget viverra turpis fermentum ac. Phasellus faucibus scelerisque enim id sollicitudin. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin et posuere sapien. Sed efficitur justo eget est pretium, sed laoreet sapien sodales. Maecenas convallis elit non aliquam consectetur. Vivamus suscipit commodo interdum. Mauris ac elit ut enim fringilla consectetur.</string>
 
 </resources>

@@ -20,6 +20,9 @@ import com.cmpt362.rentit.details.DetailActivity
 import com.cmpt362.rentit.details.DialogContact
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class BookingListAdapter(private val context: Activity, private val bookingArrayList: ArrayList<Pair<Booking,String>>): BaseAdapter() {
     private var layoutInflater: LayoutInflater? = null
@@ -51,7 +54,6 @@ class BookingListAdapter(private val context: Activity, private val bookingArray
         }
 
         //Get ListingID, then get listing name
-
         var timePeriod= convertView!!.findViewById<TextView>(R.id.user_booking_time)
         timePeriod.setText(bookingArrayList[position].first.startTime + " to " + bookingArrayList[position].first.endTime)
 
@@ -66,7 +68,22 @@ class BookingListAdapter(private val context: Activity, private val bookingArray
             context.startActivity(intent)
         }
 
+        var activeIndicator=convertView!!.findViewById<TextView>(R.id.booking_active)
 
+        //Check if active
+        var bookingStartMilli= SimpleDateFormat("HH:mm MMMM dd yyyy").parse(bookingArrayList[position].first.startTime ).time
+        var bookingEndMilli= SimpleDateFormat("HH:mm MMMM dd yyyy").parse(bookingArrayList[position].first.endTime).time
+
+        var currentMilli= Date().time
+
+        if((currentMilli<=bookingEndMilli) && (currentMilli>=bookingStartMilli)){
+            activeIndicator.setText("Active")
+            activeIndicator.setBackgroundResource(R.drawable.green_rounded_background)
+        }
+        else{
+            activeIndicator.setText("Inactive")
+            activeIndicator.setBackgroundResource(R.drawable.red_rounded_background)
+        }
 
         return convertView
     }
