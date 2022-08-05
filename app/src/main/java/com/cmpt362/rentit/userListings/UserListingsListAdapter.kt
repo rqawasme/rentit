@@ -85,14 +85,14 @@ class UserListingsListAdapter(private val context: Activity, private val listing
         return convertView
     }
 
-    fun markAvailable(view: View){
+    private fun markAvailable(view: View){
         textViewAvailability.text = Constants.AVAILABLE_TEXT
         buttonAvailability.text = Constants.MARK_UNAVAILABLE_TEXT
         val drawableLeft = view.resources.getDrawable(R.drawable.ic_baseline_not_interested_24)
         buttonAvailability.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null)
     }
 
-    fun markUnavailable(view: View){
+    private fun markUnavailable(view: View){
         textViewAvailability.text = Constants.UNAVAILABLE_TEXT
         buttonAvailability.text = Constants.MARK_AVAILABLE_TEXT
         val drawableLeft = view.resources.getDrawable(R.drawable.ic_baseline_event_available_24)
