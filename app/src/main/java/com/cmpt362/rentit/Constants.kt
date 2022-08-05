@@ -43,4 +43,5 @@ object Constants {
     const val AVAILABLE_TEXT = "Available"
     const val MARK_AVAILABLE_TEXT = "Mark available"
     const val MARK_UNAVAILABLE_TEXT = "Mark unavailable"
+    const val EDIT_LISTING_EXTRA_STRING = "edit listing"
 }

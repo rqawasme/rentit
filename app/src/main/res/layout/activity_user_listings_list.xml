@@ -20,7 +20,8 @@
             android:textAllCaps="false"
             android:layout_margin="20dp"
             android:backgroundTint="@color/customAccent"
-            android:drawableLeft="@drawable/ic_baseline_edit_note_24"/>
+            android:drawableLeft="@drawable/ic_baseline_edit_note_24"
+            android:onClick="createNewListing"/>
 
         <ListView
             android:id="@+id/userListingsActivity_listView_listings"

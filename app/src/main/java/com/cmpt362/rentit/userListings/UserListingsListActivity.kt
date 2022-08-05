@@ -1,12 +1,16 @@
 package com.cmpt362.rentit.userListings
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.ListView
 import android.widget.Toast
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
+import com.cmpt362.rentit.createListing.CreateListingActivity
 import com.cmpt362.rentit.databinding.ActivityMainBinding
 import com.cmpt362.rentit.db.Listing
 import com.google.firebase.auth.FirebaseAuth
@@ -36,7 +40,6 @@ class UserListingsListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_listings_list)
 
         initializeElements()
-
         getUserListings()
 
     }
@@ -94,6 +97,11 @@ class UserListingsListActivity : AppCompatActivity() {
             Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
         }
 
+    }
+
+    fun createNewListing(view: View){
+        val intent = Intent(this, CreateListingActivity::class.java)
+        startActivity(intent)
     }
 
 }
