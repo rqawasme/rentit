@@ -1,6 +1,7 @@
 package com.cmpt362.rentit.ui.rentals
 
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -17,7 +18,9 @@ internal class GridAdapter(
 ) :
     BaseAdapter() {
     private var layoutInflater: LayoutInflater? = null
-    private lateinit var textView: TextView
+    private lateinit var nameTextView: TextView
+    private lateinit var priceTextView: TextView
+    private lateinit var snippetTextView: TextView
     private lateinit var imageView: ImageView
 
     override fun getCount(): Int {
@@ -32,6 +35,7 @@ internal class GridAdapter(
         return position.toLong()// should be using db stuff so we return that here
     }
 
+    @SuppressLint("SetTextI18n", "InflateParams")
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var convertView = convertView
         if (layoutInflater == null) {
@@ -42,9 +46,14 @@ internal class GridAdapter(
             convertView = layoutInflater!!.inflate(R.layout.gridview_item, null)
         }
         imageView = convertView!!.findViewById(R.id.gridViewImageView)
-        textView = convertView.findViewById(R.id.gridViewTextView)
+        nameTextView = convertView.findViewById(R.id.gridViewNameTextView)
+        priceTextView = convertView.findViewById(R.id.gridViewPriceTextView)
+        snippetTextView = convertView.findViewById(R.id.gridViewSnippetTextView)
         getImage(list[position].id, imageView)
-        textView.text = list[position].listing.name
+        nameTextView.text = list[position].listing.name
+        val available = if (list[position].listing.available) "Available" else "Unavailable"
+        priceTextView.text = "$${java.text.DecimalFormat("#,##0.00").format(list[position].listing.price)} • $available"
+        snippetTextView.text = list[position].listing.description
         return convertView
     }
 }
