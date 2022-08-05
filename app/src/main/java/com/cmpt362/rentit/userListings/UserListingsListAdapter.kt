@@ -12,6 +12,8 @@ import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils
 import com.cmpt362.rentit.db.Listing
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
@@ -68,10 +70,12 @@ class UserListingsListAdapter(private val context: Activity, private val listing
         buttonAvailability.setOnClickListener {
             if (listingArrayList[position].available){
                 listingArrayList[position].available = false
+                changeListingAvailability(position, false)
                 this.notifyDataSetChanged()
             }
             else {
                 listingArrayList[position].available = true
+                changeListingAvailability(position, true)
                 this.notifyDataSetChanged()
             }
         }
@@ -93,6 +97,27 @@ class UserListingsListAdapter(private val context: Activity, private val listing
         buttonAvailability.text = Constants.MARK_AVAILABLE_TEXT
         val drawableLeft = view.resources.getDrawable(R.drawable.ic_baseline_event_available_24)
         buttonAvailability.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null)
+    }
+
+    private fun changeListingAvailability(position: Int, availability: Boolean){
+        var db = Firebase.database
+        val listingReference = db.getReference(Constants.LISTINGS_TABLE_NAME)
+        val listing = mapOf<String, Any>(
+            "listingID" to listingArrayList[position].listingID!!,
+            "type" to listingArrayList[position].type!!,
+            "name" to listingArrayList[position].name!!,
+            "price" to listingArrayList[position].price!!,
+            "description" to listingArrayList[position].description!!,
+            "postUserID" to listingArrayList[position].postUserID!!,
+            "renterUserID" to listingArrayList[position].renterUserID!!,
+            "available" to availability,
+            "location" to listingArrayList[position].location!!,
+        )
+        listingReference.child(listingArrayList[position].listingID!!).updateChildren(listing).addOnSuccessListener {
+            println("Availability updated")
+        }.addOnFailureListener{
+            println(it)
+        }
     }
 
 }
