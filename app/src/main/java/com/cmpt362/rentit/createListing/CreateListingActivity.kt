@@ -164,7 +164,7 @@ class CreateListingActivity : AppCompatActivity() {
             val myRefListings = db.getReference(Constants.LISTINGS_TABLE_NAME)
             val listingId = myRefListings.push().key.toString()
 
-            val listingTypeArray = resources.getStringArray(R.array.createListingActivity_array_types)
+            val listingTypeArray = resources.getStringArray(R.array.array_listing_types)
             var listingTypeString:String = listingTypeArray[listingType]
 
             if (!uriArrayList.isEmpty()){
@@ -203,7 +203,6 @@ class CreateListingActivity : AppCompatActivity() {
             myRefListings.child(listingId).setValue(newListing)
             finish()
         }
-
 
     }
 

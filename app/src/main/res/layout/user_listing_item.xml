@@ -42,6 +42,14 @@
                 android:textSize="12sp"
                 android:textColor="@color/light_grey"/>
 
+            <TextView
+                android:id="@+id/userListings_textView_listingAvailability"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sample_listing_availability"
+                android:textSize="12sp"
+                android:textColor="@color/light_grey"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -68,7 +76,7 @@
                 android:layout_weight="1"/>
 
             <Button
-                android:id="@+id/userListings_button_markUnavailable"
+                android:id="@+id/userListings_button_availability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/text_mark_unavailable"
