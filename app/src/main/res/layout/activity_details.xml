@@ -76,21 +76,22 @@
             android:id="@+id/details_book"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button_background"
             android:onClick="book"
+            android:textAllCaps="false"
             android:text="Book"></Button>
 
         <Button
             android:id="@+id/details_contact"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="5dp"
+            android:layout_margin="10dp"
             android:layout_weight="1"
             android:background="@drawable/button_background"
             android:onClick="contact"
-
+            android:textAllCaps="false"
             android:text="Contact"></Button>
 
     </LinearLayout>

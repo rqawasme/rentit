@@ -56,11 +56,9 @@ class RentalsFragment : Fragment() {
                     val locationString = _listing.child("location").getValue(String::class.java)
                     val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available, locationString)
                     listings.add(listing)
-                    list = list + GridViewModel(id, listing)
-//                    uncomment to test more listings
-//                    list = list + GridViewModel(id, listing)
-//                    list = list + GridViewModel(id, listing)
-//                    list = list + GridViewModel(id, listing)
+                    if (listing.available) {
+                        list = list + GridViewModel(id, listing)
+                    }
                 }
 //        gridview stuff
                 gridViewAdapter = GridAdapter(list, requireActivity())
@@ -83,7 +81,7 @@ class RentalsFragment : Fragment() {
                 if (listContains(query)){
                     val newList = ArrayList<GridViewModel>()
                     for( item in list){
-                        if (item.listing.name?.contains(query) == true) {
+                        if (item.listing.name?.contains(query) == true && item.listing.available) {
                             newList += GridViewModel(
                                 item.listing.listingID!!,
                                 item.listing

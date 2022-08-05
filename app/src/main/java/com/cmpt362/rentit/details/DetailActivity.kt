@@ -15,7 +15,9 @@ import androidx.viewpager.widget.ViewPager
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.Constants.ONE_MEGABYTE
 import com.cmpt362.rentit.R
+import com.cmpt362.rentit.SettingsActivity
 import com.cmpt362.rentit.details.booking.BookingActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
@@ -110,29 +112,24 @@ class DetailActivity:AppCompatActivity() {
                 }
 
             }
-
-            //Leave for now as reference on how to query Firebase with value.
-//            val myRefListings=db.getReference("Users").orderByChild("id").equalTo(userID.toDouble()).limitToFirst(1)
-//
-//            //Maybe a more smarter way to do this.
-//            myRefListings.get().addOnCompleteListener{ task->
-//                val snapshot= task.result.children
-//                for (i in snapshot){
-//                    phoneNumber= i.child("phone").getValue(String::class.java)
-//                    email= i.child("email").getValue(String::class.java)
-//                }
-//            }
         }.start()
 
     }
 
     fun book(view: View){
         println("DEBUG: Book activity open")
-        val intent = Intent(this, BookingActivity::class.java)
-        intent.putExtra("listingID",listingID)
-        intent.putExtra("price",price)
-        intent.putExtra("listingName",name)
-        startActivity(intent)
+        val firebaseUser =  FirebaseAuth.getInstance().currentUser
+        if (firebaseUser != null){
+            val intent = Intent(this, BookingActivity::class.java)
+            intent.putExtra("listingID",listingID)
+            intent.putExtra("price",price)
+            intent.putExtra("listingName",name)
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     //Open a dialog with contact info of user posting.

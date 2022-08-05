@@ -1,7 +1,11 @@
 package com.cmpt362.rentit.createListing
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.location.Criteria
+import android.location.LocationManager
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,12 +19,14 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils
 import com.cmpt362.rentit.db.Listing
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -28,6 +34,7 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.gson.Gson
 
 class CreateListingActivity : AppCompatActivity() {
 
@@ -47,6 +54,7 @@ class CreateListingActivity : AppCompatActivity() {
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var storageReference: StorageReference
 
+    private lateinit var locationManager: LocationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,6 +63,7 @@ class CreateListingActivity : AppCompatActivity() {
         initializeElements()
         displayUsername()
         setupAddPhotoButtonOnClick()
+        locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
     }
 
     private fun setupAddPhotoButtonOnClick(){
@@ -109,16 +118,26 @@ class CreateListingActivity : AppCompatActivity() {
     }
 
     private fun displayUsername(){
-        val userId = firebaseAuth.currentUser!!.uid
-        val myRefUsers = db.getReference(Constants.USERS_TABLE_NAME)
+        //Check if logged in
 
-        val userDataSnapshot = myRefUsers.child(userId).get()
+        if (firebaseAuth.currentUser != null) {
+            val userId = firebaseAuth.currentUser!!.uid
+            val myRefUsers = db.getReference(Constants.USERS_TABLE_NAME)
 
-        userDataSnapshot.addOnSuccessListener {
-            if (it.exists()){
-                textViewUsername.text = it.child(Constants.USERNAME_PATH).getValue(String::class.java).toString()
+            val userDataSnapshot = myRefUsers.child(userId).get()
+
+            userDataSnapshot.addOnSuccessListener {
+                if (it.exists()){
+                    textViewUsername.text = it.child(Constants.USERNAME_PATH).getValue(String::class.java).toString()
+                }
             }
         }
+        else{
+            Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            this.finish()
+        }
+
+
     }
 
 
@@ -158,8 +177,28 @@ class CreateListingActivity : AppCompatActivity() {
             }
 
 
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 0)
+            }
+            val criteria = Criteria()
+            criteria.accuracy = Criteria.ACCURACY_FINE
+            val provider = locationManager.getBestProvider(criteria, true)
+            val location = locationManager.getLastKnownLocation(provider!!)
+            var latlng: LatLng? = null
+            if (location != null) {
+                val lat = location.latitude
+                val lng = location.longitude
+                latlng = LatLng(lat, lng)
+            }
+
+
             val newListing = Listing(listingId,listingTypeString, listingTitle,
-                listingPrice.toDouble(), listingDescription, userId, null, true, null)
+                listingPrice.toDouble(), listingDescription, userId, null, true, Gson().toJson(latlng)
+            )
 
             myRefListings.child(listingId).setValue(newListing)
             finish()

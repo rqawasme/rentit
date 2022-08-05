@@ -13,10 +13,6 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_rentals" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
             android:id="@+id/nav_booking_list"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Your Bookings" />
