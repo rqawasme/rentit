@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -15,10 +16,16 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import com.cmpt362.rentit.databinding.ActivityMainBinding
+import com.cmpt362.rentit.db.Booking
+import com.cmpt362.rentit.ui.bookingList.BookingListAdapter
 import com.cmpt362.rentit.users.LoginActivity
 import com.cmpt362.rentit.users.UserProfileActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -51,6 +58,10 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         firebaseAuth = FirebaseAuth.getInstance()
+
+        db= Firebase.database
+
+        bookingEndNotification()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -100,4 +111,41 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    fun bookingEndNotification(){
+        val firebaseUser = firebaseAuth.currentUser
+
+        if (firebaseUser != null){
+            var userID=firebaseUser.uid
+            val myRefBookings=
+                db.getReference(Constants.BOOKINGS_PATH).orderByChild("bookerID").equalTo(userID)
+            var currentDate= Date()
+
+            //Find expiring booking, open dialog reminding user
+            myRefBookings.get().addOnCompleteListener { task ->
+                val snapshot = task.result.children
+                for (i in snapshot) {
+                    var bookingEndDate= SimpleDateFormat("HH:mm MMMM dd yyyy").parse(i.child("endTime").getValue(String::class.java))
+                    if((bookingEndDate.day==currentDate.day)
+                        &&(bookingEndDate.month==currentDate.month)
+                        && (bookingEndDate.year==currentDate.year)
+                        && (bookingEndDate.time>currentDate.time)){
+                        var listingID= i.child("listingID").getValue(String::class.java)
+                        val myRefListings= Firebase.database.getReference(Constants.LISTINGS_TABLE_NAME).child(listingID!!)
+
+                        myRefListings.get().addOnCompleteListener { task ->
+                            val snapshot= task.result
+                            var expiringBooking=snapshot.child("name").getValue(String::class.java)
+
+                            //Open dialog
+                            var alertDialogBuilder= AlertDialog.Builder(this)
+                            alertDialogBuilder.setTitle("Reminder")
+                            alertDialogBuilder.setMessage("Your booking for $expiringBooking will end at $bookingEndDate")
+                            alertDialogBuilder.setPositiveButton("Ok",null)
+                            alertDialogBuilder.create().show()
+                        }
+                    }
+                }
+            }
+        }
+    }
 }
