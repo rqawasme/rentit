@@ -102,18 +102,18 @@
     <string name="text_price">Price</string>
     <string name="text_type">Type</string>
     <string name="text_description">Description</string>
-    <string-array name="createListingActivity_array_types">
+    <string-array name="array_listing_types">
         <item>Rental</item>
         <item>Gigs</item>
     </string-array>
 
-    <string-array name="createListingActivity_array_rental_categories">
+    <string-array name="array_listing_rental_categories">
         <item>Car Rental</item>
         <item>Tool Rental</item>
         <item>Item Rental</item>
     </string-array>
 
-    <string-array name="createListingActivity_array_gigs_categories">
+    <string-array name="array_listing_gigs_categories">
         <item>Photograph</item>
         <item>Haircut</item>
         <item>Repair</item>
@@ -121,5 +121,12 @@
     <string name="text_publish">Publish</string>
     <string name="text_required_with_asterisk">Required*</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum libero enim, eget viverra turpis fermentum ac. Phasellus faucibus scelerisque enim id sollicitudin. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin et posuere sapien. Sed efficitur justo eget est pretium, sed laoreet sapien sodales. Maecenas convallis elit non aliquam consectetur. Vivamus suscipit commodo interdum. Mauris ac elit ut enim fringilla consectetur.</string>
+
+
+    <!-- Strings used for edit listing activity -->
+    <string-array name="array_listing_availabilities">
+        <item>Available</item>
+        <item>Unavailable</item>
+    </string-array>
 
 </resources>

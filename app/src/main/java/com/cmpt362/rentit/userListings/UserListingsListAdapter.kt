@@ -2,22 +2,19 @@ package com.cmpt362.rentit.userListings
 
 import android.app.Activity
 import android.content.Context
-import android.graphics.BitmapFactory
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.recyclerview.widget.RecyclerView
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils
+import com.cmpt362.rentit.createListing.CreateListingActivity
 import com.cmpt362.rentit.db.Listing
-import com.google.firebase.database.FirebaseDatabase
+import com.cmpt362.rentit.editListing.EditListingActivity
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
-import com.google.firebase.storage.ktx.storage
-import java.io.File
 
 class UserListingsListAdapter(private val context: Activity, private val listingArrayList: ArrayList<Listing>): BaseAdapter() {
     private var layoutInflater: LayoutInflater? = null
@@ -78,6 +75,12 @@ class UserListingsListAdapter(private val context: Activity, private val listing
                 changeListingAvailability(position, true)
                 this.notifyDataSetChanged()
             }
+        }
+
+        buttonEditListing.setOnClickListener {
+            val intent = Intent(context, EditListingActivity::class.java)
+            intent.putExtra(Constants.EDIT_LISTING_EXTRA_STRING, listingArrayList[position].listingID)
+            context.startActivity(intent)
         }
 
         Utils.getImage(listingArrayList[position].listingID!!, imageViewListingImage)
