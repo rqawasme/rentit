@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.recyclerview.widget.RecyclerView
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils
@@ -65,11 +66,13 @@ class UserListingsListAdapter(private val context: Activity, private val listing
         }
 
         buttonAvailability.setOnClickListener {
-            if (textViewAvailability.text == Constants.AVAILABLE_TEXT){
-                markUnavailable(convertView)
+            if (listingArrayList[position].available){
+                listingArrayList[position].available = false
+                this.notifyDataSetChanged()
             }
-            else if (textViewAvailability.text == Constants.UNAVAILABLE_TEXT){
-                markUnavailable(convertView)
+            else {
+                listingArrayList[position].available = true
+                this.notifyDataSetChanged()
             }
         }
 
@@ -82,14 +85,14 @@ class UserListingsListAdapter(private val context: Activity, private val listing
         textViewAvailability.text = Constants.AVAILABLE_TEXT
         buttonAvailability.text = Constants.MARK_UNAVAILABLE_TEXT
         val drawableLeft = view.resources.getDrawable(R.drawable.ic_baseline_not_interested_24)
-        buttonAvailability.setCompoundDrawables(drawableLeft, null, null, null)
+        buttonAvailability.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null)
     }
 
     fun markUnavailable(view: View){
         textViewAvailability.text = Constants.UNAVAILABLE_TEXT
         buttonAvailability.text = Constants.MARK_AVAILABLE_TEXT
         val drawableLeft = view.resources.getDrawable(R.drawable.ic_baseline_event_available_24)
-        buttonAvailability.setCompoundDrawables(drawableLeft, null, null, null)
+        buttonAvailability.setCompoundDrawablesWithIntrinsicBounds(drawableLeft, null, null, null)
     }
 
 }
