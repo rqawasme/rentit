@@ -39,4 +39,9 @@ object Constants {
     const val RENTER_USER_ID_TAG = "renterUserID"
     const val AVAILABLE_TAG = "available"
     const val LOCATION_TAG = "location"
+    const val UNAVAILABLE_TEXT = "Unavailable"
+    const val AVAILABLE_TEXT = "Available"
+    const val MARK_AVAILABLE_TEXT = "Mark available"
+    const val MARK_UNAVAILABLE_TEXT = "Mark unavailable"
+    const val EDIT_LISTING_EXTRA_STRING = "edit listing"
 }

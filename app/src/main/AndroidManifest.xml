@@ -21,6 +21,9 @@
         android:theme="@style/Theme.Rentit"
         tools:targetApi="31">
         <activity
+            android:name=".editListing.EditListingActivity"
+            android:exported="false" />
+        <activity
             android:name=".createListing.CreateListingActivity"
             android:exported="false" />
         <activity
