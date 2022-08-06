@@ -8,6 +8,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.provider.MediaStore.Images
+import android.text.TextUtils
+import android.view.View
 import android.widget.Button
 import android.widget.Spinner
 import android.widget.TextView
@@ -53,6 +55,13 @@ class EditListingActivity : AppCompatActivity() {
     private lateinit var listingID: String
     private lateinit var addedPhotosUriList: ArrayList<Uri>
 
+    private var listingType: String = ""
+    private var listingTitle: String = ""
+    private var listingPrice: Double = 0.0
+    private var listingDescription: String = ""
+    private var listingAvailability: Boolean = true
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_listing)
@@ -63,6 +72,7 @@ class EditListingActivity : AppCompatActivity() {
         populateListingInformation()
     }
 
+
     private fun populateListingInformation() {
         val listingReference = db.getReference(Constants.LISTINGS_TABLE_NAME)
 
@@ -70,30 +80,30 @@ class EditListingActivity : AppCompatActivity() {
 
         listingDataSnapshot.addOnSuccessListener {
             if (it.exists()){
-                val type = it.child(Constants.TYPE_TAG).getValue(String::class.java)
-                val title = it.child(Constants.NAME_TAG).getValue(String::class.java)
-                val price = it.child(Constants.PRICE_TAG).getValue(Double::class.java).toString()
-                val description = it.child(Constants.DESCRIPTION_TAG).getValue(String::class.java)
-                val availability = it.child(Constants.AVAILABLE_TAG).getValue(Boolean::class.java)
+                listingType = it.child(Constants.TYPE_TAG).getValue(String::class.java)!!
+                listingTitle = it.child(Constants.NAME_TAG).getValue(String::class.java)!!
+                listingPrice = it.child(Constants.PRICE_TAG).getValue(Double::class.java)!!
+                listingDescription = it.child(Constants.DESCRIPTION_TAG).getValue(String::class.java)!!
+                listingAvailability = it.child(Constants.AVAILABLE_TAG).getValue(Boolean::class.java)!!
 
-                textInputEditTextTitle.setText(title)
-                textInputEditTextPrice.setText(price)
-                textInputEditTextDescription.setText(description)
+                textInputEditTextTitle.setText(listingTitle)
+                textInputEditTextPrice.setText(listingPrice.toString())
+                textInputEditTextDescription.setText(listingDescription)
 
                 val listingTypeList = resources.getStringArray(R.array.array_listing_types)
                 val listingAvailabilityList = resources.getStringArray(R.array.array_listing_availabilities)
 
                 for (i in 0 .. listingTypeList.size - 1){
-                    if (type == listingTypeList[i]){
+                    if (listingType == listingTypeList[i]){
                         spinnerListingTypes.setSelection(i)
                     }
                 }
 
                 for (i in 0 .. listingAvailabilityList.size - 1){
-                    if (availability == true && listingAvailabilityList[i] == Constants.AVAILABLE_TEXT){
+                    if (listingAvailability == true && listingAvailabilityList[i] == Constants.AVAILABLE_TEXT){
                         spinnerListingAvailability.setSelection(i)
                     }
-                    else if (availability == false && listingAvailabilityList[i] == Constants.UNAVAILABLE_TEXT){
+                    else if (listingAvailability == false && listingAvailabilityList[i] == Constants.UNAVAILABLE_TEXT){
                         spinnerListingAvailability.setSelection(i)
                     }
                 }
@@ -207,5 +217,65 @@ class EditListingActivity : AppCompatActivity() {
             intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
             galleryResult.launch(intent)
         }
+    }
+
+    fun saveEditedListing(view: View){
+        val listingTypeList = resources.getStringArray(R.array.array_listing_types)
+        val listingAvailabilityList = resources.getStringArray(R.array.array_listing_availabilities)
+
+        val title = textInputEditTextTitle.text.toString()
+        val price = textInputEditTextPrice.text.toString()
+        val description = textInputEditTextDescription.text.toString()
+        val type = listingTypeList[spinnerListingTypes.selectedItemPosition]
+        val availability = spinnerListingAvailability.selectedItemPosition
+        var isAvailable = true
+
+        for (i in 0 .. listingAvailabilityList.size - 1){
+            if (listingAvailabilityList[availability] == Constants.AVAILABLE_TEXT){
+                isAvailable = true
+            }
+            else if (listingAvailabilityList[availability] == Constants.UNAVAILABLE_TEXT){
+                isAvailable = false
+            }
+        }
+
+        if (TextUtils.isEmpty(title)){
+            textInputEditTextTitle.error = Constants.NO_LISTING_TITLE_ERROR
+            textInputEditTextTitle.requestFocus()
+        }
+        else if (TextUtils.isEmpty(price)){
+            textInputEditTextPrice.error = Constants.NO_LISTING_PRICE_ERROR
+            textInputEditTextPrice.requestFocus()
+        }
+        else{
+            if (!addedPhotosUriList.isEmpty() || title != listingTitle ||
+                price != listingPrice.toString() || description != listingDescription ||
+                type != listingType || isAvailable != listingAvailability){
+
+                val listingReference = db.getReference(Constants.LISTINGS_TABLE_NAME)
+
+                val newListingInfo = mapOf<String, Any>(
+                    "listingID" to listingID,
+                    "type" to type,
+                    "name" to title,
+                    "price" to price.toDouble(),
+                    "description" to description,
+                    "available" to isAvailable,
+                )
+
+                listingReference.child(listingID).updateChildren(newListingInfo).addOnSuccessListener {
+                    Toast.makeText(this, "Listing updated", Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener {
+                    Toast.makeText(this, "Failed to update listing", Toast.LENGTH_SHORT).show()
+                }
+
+            }
+            finish()
+        }
+    }
+
+    fun cancelEditListing(view: View){
+        Toast.makeText(this, "Changes discarded", Toast.LENGTH_SHORT).show()
+        finish()
     }
 }
