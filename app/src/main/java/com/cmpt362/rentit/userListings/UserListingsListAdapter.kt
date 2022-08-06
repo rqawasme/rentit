@@ -3,6 +3,7 @@ package com.cmpt362.rentit.userListings
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,8 @@ import com.cmpt362.rentit.db.Listing
 import com.cmpt362.rentit.editListing.EditListingActivity
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 
 class UserListingsListAdapter(private val context: Activity, private val listingArrayList: ArrayList<Listing>): BaseAdapter() {
     private var layoutInflater: LayoutInflater? = null
@@ -24,6 +27,7 @@ class UserListingsListAdapter(private val context: Activity, private val listing
     private lateinit var textViewAvailability: TextView
     private lateinit var buttonEditListing: Button
     private lateinit var buttonAvailability: Button
+    private lateinit var buttonDelete: Button
 
     override fun getCount(): Int {
         return listingArrayList.size
@@ -53,6 +57,7 @@ class UserListingsListAdapter(private val context: Activity, private val listing
         textViewAvailability = convertView.findViewById(R.id.userListings_textView_listingAvailability)
         buttonEditListing = convertView.findViewById(R.id.userListings_button_editListing)
         buttonAvailability = convertView.findViewById(R.id.userListings_button_availability)
+        buttonDelete = convertView.findViewById(R.id.userListings_button_delete)
 
         textViewListingTitle.text = listingArrayList[position].name
         textViewListingPrice.text = listingArrayList[position].price.toString()
@@ -83,9 +88,49 @@ class UserListingsListAdapter(private val context: Activity, private val listing
             context.startActivity(intent)
         }
 
+        buttonDelete.setOnClickListener {
+
+            deleteListing(position)
+
+        }
+
         Utils.getImage(listingArrayList[position].listingID!!, imageViewListingImage)
 
         return convertView
+    }
+
+    private fun deleteListing(position: Int) {
+        var db = Firebase.database
+        val listingReference = db.getReference(Constants.LISTINGS_TABLE_NAME)
+        val listingToDelete = listingArrayList[position].listingID!!
+        listingReference.child(listingToDelete).removeValue().addOnCompleteListener {
+            if (it.isSuccessful) {
+                Toast.makeText(context, "Listing Deleted", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, "Failed to delete listing", Toast.LENGTH_SHORT).show()
+            }
+        }
+        val storageReference = Firebase.storage.reference
+
+        storageReference.child("${Constants. LISTINGS_PATH}/${listingToDelete}").listAll().addOnSuccessListener {
+            for (images in it.items){
+                images.delete()
+            }
+        }.addOnFailureListener {
+            println(it)
+        }
+
+        var newListingArrayList: ArrayList<Listing> = listingArrayList
+
+        val listIterator = listingArrayList.listIterator()
+
+        while (listIterator.hasNext()){
+            if (listIterator.next().listingID == listingToDelete){
+                listIterator.remove()
+            }
+        }
+
+        this.notifyDataSetChanged()
     }
 
     private fun markAvailable(view: View){
