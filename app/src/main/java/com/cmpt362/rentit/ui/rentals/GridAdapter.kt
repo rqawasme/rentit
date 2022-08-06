@@ -52,7 +52,8 @@ internal class GridAdapter(
         getImage(list[position].id, imageView)
         nameTextView.text = list[position].listing.name
         val available = if (list[position].listing.available) "Available" else "Unavailable"
-        priceTextView.text = "$${java.text.DecimalFormat("#,##0.00").format(list[position].listing.price)} • $available"
+        val howFar = if (list[position].distance > 25000F) ">25000" else  java.text.DecimalFormat("#,##0.00").format(list[position].distance)
+        priceTextView.text = "$${java.text.DecimalFormat("#,##0.00").format(list[position].listing.price)} • $available • $howFar Km"
         snippetTextView.text = list[position].listing.description
         return convertView
     }
