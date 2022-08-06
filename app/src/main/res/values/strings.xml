@@ -91,8 +91,10 @@
     <string name="changePasswordActivity_text_please_authenticate">Please enter your password and verify before continuing</string>
     <string name="text_current_password_with_asterisk">Current Password*</string>
     <string name="text_new_password_with_asterisk">New Password*</string>
+    <string name="text_confirm_password_with_asterisk">Confirm Password*</string>
     <string name="text_change_password">Change Password</string>
     <string name="text_enter_your_new_password">Enter your new password</string>
+    <string name="text_re_enter_your_new_password">Re-enter your new password</string>
 
     <!-- Strings used for create listing activity -->
     <string name="text_listing_on_rentit">Listing on Rentit</string>
