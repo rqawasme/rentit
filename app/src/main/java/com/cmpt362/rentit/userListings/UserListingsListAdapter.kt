@@ -117,7 +117,7 @@ class UserListingsListAdapter(private val context: Activity, private val listing
             "location" to listingArrayList[position].location!!,
         )
         listingReference.child(listingArrayList[position].listingID!!).updateChildren(listing).addOnSuccessListener {
-            println("Availability updated")
+            Toast.makeText(context, "Availability updated", Toast.LENGTH_SHORT).show()
         }.addOnFailureListener{
             println(it)
         }
