@@ -181,7 +181,8 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/customAccent"
-                android:text="@string/text_save"/>
+                android:text="@string/text_save"
+                android:onClick="saveEditedListing"/>
 
             <Button
                 android:id="@+id/editListingActivity_button_cancel"
@@ -190,7 +191,8 @@
                 android:layout_marginHorizontal="10dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/customAccent"
-                android:text="@string/text_cancel"/>
+                android:text="@string/text_cancel"
+                android:onClick="cancelEditListing"/>
 
         </LinearLayout>
 
