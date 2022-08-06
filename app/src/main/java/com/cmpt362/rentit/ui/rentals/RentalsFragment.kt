@@ -1,6 +1,7 @@
 package com.cmpt362.rentit.ui.rentals
 
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,10 +14,14 @@ import androidx.fragment.app.Fragment
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.details.DetailActivity
 import com.cmpt362.rentit.R
+import com.cmpt362.rentit.Utils.getCurrentLocation
 import com.cmpt362.rentit.db.Listing
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class RentalsFragment : Fragment() {
     private lateinit var gridView: GridView
@@ -25,6 +30,8 @@ class RentalsFragment : Fragment() {
     private lateinit var database: DatabaseReference
     private lateinit var searchBar: SearchView
     private var listings = ArrayList<Listing>()
+    private lateinit var currentLocation: Location
+    private val locationType = object : TypeToken<LatLng>() {}.type
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,6 +44,7 @@ class RentalsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        currentLocation = getCurrentLocation(requireActivity(), requireContext())
         searchBar = requireView().findViewById(R.id.search_bar)
         database = Firebase.database.getReference(Constants.LISTINGS_TABLE_NAME)
         gridView = requireView().findViewById(R.id.grid_view)
@@ -45,6 +53,7 @@ class RentalsFragment : Fragment() {
             listings.clear()
             if (it.hasChildren()){
                 it.children.forEach{ _listing ->
+//                    TODO: don't include your listings
                     val id = _listing.child("listingID").getValue(String::class.java)!!
                     val type = _listing.child("type").getValue(String::class.java)
                     val name = _listing.child("name").getValue(String::class.java)
@@ -54,13 +63,22 @@ class RentalsFragment : Fragment() {
                     val renterUserID = _listing.child("renterUserID").getValue(String::class.java)
                     val available = _listing.child("available").getValue(Boolean::class.java)?: false
                     val locationString = _listing.child("location").getValue(String::class.java)
+                    val location: LatLng = Gson().fromJson(locationString, locationType)
+                    val results = FloatArray(1)
+                    Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, location.latitude, location.longitude, results)
+                    val distance = results[0]
+                    println("DEBUG: $distance ")
                     val listing = Listing(id, type, name, price, description, postUserID, renterUserID, available, locationString)
                     listings.add(listing)
                     if (listing.available) {
-                        list = list + GridViewModel(id, listing)
+                        list = list + GridViewModel(id, listing, distance)
                     }
                 }
 //        gridview stuff
+                list = list.sortedWith(compareBy { l ->
+                    println("DEbug: ${l.listing.name}")
+                    l.distance
+                })
                 gridViewAdapter = GridAdapter(list, requireActivity())
                 gridView.adapter = gridViewAdapter
             }
@@ -79,19 +97,26 @@ class RentalsFragment : Fragment() {
         searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (listContains(query)){
-                    val newList = ArrayList<GridViewModel>()
+                    var newList = ArrayList<GridViewModel>()
                     for( item in list){
                         if (item.listing.name?.contains(query) == true && item.listing.available) {
+                            val location: LatLng = Gson().fromJson(item.listing.location, locationType)
+                            val results = FloatArray(1)
+                            Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, location.latitude, location.longitude, results)
+                            val distance = results[0]
                             newList += GridViewModel(
                                 item.listing.listingID!!,
-                                item.listing
+                                item.listing,
+                                distance
                             )
                         }
                     }
+                    newList = newList.sortedWith(compareBy { l ->
+                        l.distance
+                    }) as ArrayList<GridViewModel>
                     gridViewAdapter = GridAdapter(newList, requireActivity())
                     gridView.adapter = gridViewAdapter
                 } else {
-//                    TODO: Should we edit the toast or make something else happen?
                     Toast.makeText(requireContext(), "No rentals found", Toast.LENGTH_LONG)
                         .show()
                 }

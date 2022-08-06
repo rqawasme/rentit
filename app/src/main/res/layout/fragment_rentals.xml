@@ -16,9 +16,11 @@
         android:id="@+id/instructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
         android:text="@string/instructions"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:layout_gravity="center"/>
 
     <SearchView
         android:id="@+id/search_bar"
@@ -35,7 +37,7 @@
         android:horizontalSpacing="6dp"
         android:numColumns="1"
         android:verticalSpacing="6dp"
-        android:layout_margin="10dp"/>
+        android:layout_marginTop="10dp"/>
 
 
 </LinearLayout>

@@ -4,5 +4,6 @@ import com.cmpt362.rentit.db.Listing
 
 data class GridViewModel(
     val id: String,
-    val listing: Listing
+    val listing: Listing,
+    val distance: Float,
 )
