@@ -113,7 +113,7 @@ class EditListingActivity : AppCompatActivity() {
         }
 
         Thread(){
-            storageReference.child("${Constants.LISTINGS_PATH}/" + listingID).listAll().addOnSuccessListener { listResult ->
+            storageReference.child("${Constants.LISTINGS_PATH}/${listingID}").listAll().addOnSuccessListener { listResult ->
 
                 for(image in listResult.items){
                     image.getBytes(Constants.ONE_MEGABYTE * 50).addOnSuccessListener {
