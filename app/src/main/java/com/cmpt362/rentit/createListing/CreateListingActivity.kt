@@ -41,7 +41,7 @@ class CreateListingActivity : AppCompatActivity() {
     private lateinit var recyclerViewPhotos: RecyclerView
     private lateinit var buttonAddPhotos: Button
     private lateinit var uriArrayList: ArrayList<Uri>
-    private lateinit var recyclerAdapter: CreateListingPhotosRecyclerAdapter
+    private lateinit var recyclerAdapter: ListingPhotosRecyclerAdapter
     private lateinit var galleryResult: ActivityResultLauncher<Intent>
 
     private lateinit var textViewUsername: TextView
@@ -79,7 +79,7 @@ class CreateListingActivity : AppCompatActivity() {
         recyclerViewPhotos = findViewById(R.id.createListingActivity_recyclerView_photos)
         buttonAddPhotos = findViewById(R.id.createListingActivity_button_add_photos)
         uriArrayList = ArrayList()
-        recyclerAdapter = CreateListingPhotosRecyclerAdapter(uriArrayList)
+        recyclerAdapter = ListingPhotosRecyclerAdapter(uriArrayList)
         recyclerViewPhotos.layoutManager = GridLayoutManager(this, Constants.PHOTOS_PER_ROW)
         recyclerViewPhotos.adapter = recyclerAdapter
 
@@ -201,6 +201,7 @@ class CreateListingActivity : AppCompatActivity() {
             )
 
             myRefListings.child(listingId).setValue(newListing)
+
             finish()
         }
 
