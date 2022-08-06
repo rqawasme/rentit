@@ -201,6 +201,7 @@ class CreateListingActivity : AppCompatActivity() {
             )
 
             myRefListings.child(listingId).setValue(newListing)
+
             finish()
         }
 
