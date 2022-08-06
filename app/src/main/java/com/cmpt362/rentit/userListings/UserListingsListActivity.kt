@@ -55,6 +55,7 @@ class UserListingsListActivity : AppCompatActivity() {
     }
 
     private fun getUserListings(){
+        userListingsList.clear()
         val user = firebaseAuth.currentUser
 
         if (user != null){
@@ -102,6 +103,11 @@ class UserListingsListActivity : AppCompatActivity() {
     fun createNewListing(view: View){
         val intent = Intent(this, CreateListingActivity::class.java)
         startActivity(intent)
+    }
+
+    override fun onRestart() {
+        super.onRestart()
+        getUserListings()
     }
 
 

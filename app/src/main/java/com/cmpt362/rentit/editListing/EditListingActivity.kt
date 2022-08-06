@@ -28,6 +28,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.ktx.storage
 import java.io.ByteArrayOutputStream
@@ -269,6 +270,13 @@ class EditListingActivity : AppCompatActivity() {
                     Toast.makeText(this, "Failed to update listing", Toast.LENGTH_SHORT).show()
                 }
 
+            }
+
+            if (!addedPhotosUriList.isEmpty()){
+                for (i in 0 .. addedPhotosUriList.size - 1){
+                    storageReference = FirebaseStorage.getInstance().getReference("${Constants. LISTINGS_PATH}/${listingID}/${i+ (bitmapArrayList.size - addedPhotosUriList.size)}")
+                    storageReference.putFile(addedPhotosUriList[i])
+                }
             }
             finish()
         }
