@@ -106,15 +106,7 @@ class UserListingsListAdapter(private val context: Activity, private val listing
         var db = Firebase.database
         val listingReference = db.getReference(Constants.LISTINGS_TABLE_NAME)
         val listing = mapOf<String, Any>(
-            "listingID" to listingArrayList[position].listingID!!,
-            "type" to listingArrayList[position].type!!,
-            "name" to listingArrayList[position].name!!,
-            "price" to listingArrayList[position].price!!,
-            "description" to listingArrayList[position].description!!,
-            "postUserID" to listingArrayList[position].postUserID!!,
-            "renterUserID" to listingArrayList[position].renterUserID!!,
             "available" to availability,
-            "location" to listingArrayList[position].location!!,
         )
         listingReference.child(listingArrayList[position].listingID!!).updateChildren(listing).addOnSuccessListener {
             Toast.makeText(context, "Availability updated", Toast.LENGTH_SHORT).show()
