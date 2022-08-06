@@ -201,6 +201,7 @@ class CreateListingActivity : AppCompatActivity() {
             )
 
             myRefListings.child(listingId).setValue(newListing)
+            Toast.makeText(this, "Listing Published", Toast.LENGTH_SHORT).show()
 
             finish()
         }
