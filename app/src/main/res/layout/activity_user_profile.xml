@@ -59,7 +59,9 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginHorizontal="20dp"
-                app:boxBackgroundColor="@color/customPrimary">
+                app:boxBackgroundColor="@color/customPrimary"
+                app:hintTextColor="@color/light_grey"
+                android:textColorHint="@color/light_grey">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userProfileActivity_textInputEditText_email"
@@ -76,7 +78,9 @@
                 android:hint="@string/text_username"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
-                app:boxBackgroundColor="@color/customPrimary">
+                app:boxBackgroundColor="@color/customPrimary"
+                app:hintTextColor="@color/light_grey"
+                android:textColorHint="@color/light_grey">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userProfileActivity_textInputEditText_username"
@@ -93,7 +97,9 @@
                 android:hint="@string/text_phone"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
-                app:boxBackgroundColor="@color/customPrimary">
+                app:boxBackgroundColor="@color/customPrimary"
+                app:hintTextColor="@color/light_grey"
+                android:textColorHint="@color/light_grey">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userProfileActivity_textInputEditText_phone"
@@ -110,7 +116,9 @@
                 android:hint="@string/text_postal_code"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
-                app:boxBackgroundColor="@color/customPrimary">
+                app:boxBackgroundColor="@color/customPrimary"
+                app:hintTextColor="@color/light_grey"
+                android:textColorHint="@color/light_grey">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/userProfileActivity_textInputEditText_postalCode"
