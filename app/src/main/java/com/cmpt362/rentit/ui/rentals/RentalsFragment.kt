@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.GridView
 import android.widget.SearchView
 import android.widget.Toast
+import androidx.appcompat.widget.SwitchCompat
 import androidx.fragment.app.Fragment
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.details.DetailActivity
@@ -28,6 +29,7 @@ import com.google.gson.reflect.TypeToken
 class RentalsFragment : Fragment() {
     private lateinit var gridView: GridView
     private lateinit var list: List<GridViewModel>
+    private lateinit var newList: List<GridViewModel>
     private lateinit var gridViewAdapter: GridAdapter
     private lateinit var database: DatabaseReference
     private lateinit var searchBar: SearchView
@@ -36,6 +38,8 @@ class RentalsFragment : Fragment() {
     private val locationType = object : TypeToken<LatLng>() {}.type
     private var firebaseUser: FirebaseUser? = null
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var rentalSwitch: SwitchCompat
+    private lateinit var gigsSwitch: SwitchCompat
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,6 +52,8 @@ class RentalsFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+        rentalSwitch = requireView().findViewById(R.id.switchRentals)
+        gigsSwitch = requireView().findViewById(R.id.switchGigs)
         firebaseAuth = FirebaseAuth.getInstance()
         firebaseUser = firebaseAuth.currentUser
         currentLocation = getCurrentLocation(requireActivity(), requireContext())
@@ -102,26 +108,109 @@ class RentalsFragment : Fragment() {
             startActivity(intent)
         }
 
+//        switches listener
+        rentalSwitch.setOnCheckedChangeListener { _, isChecked ->
+            val query = searchBar.query
+            newList = ArrayList()
+            for (item in list) {
+                if (item.listing.name?.contains(query) == true) {
+                    val location: LatLng = Gson().fromJson(item.listing.location, locationType)
+                    val type = item.listing.type
+                    val results = FloatArray(1)
+                    Location.distanceBetween(
+                        currentLocation.latitude,
+                        currentLocation.longitude,
+                        location.latitude,
+                        location.longitude,
+                        results
+                    )
+                    val distance = results[0]
+                    var displayListing = false
+                    if (type == rentalSwitch.text && isChecked) {
+                        displayListing = true
+                    } else if (type == gigsSwitch.text && gigsSwitch.isChecked) {
+                        displayListing = true
+                    }
+                    if (displayListing) {
+                        newList = newList + GridViewModel(
+                            item.listing.listingID!!,
+                            item.listing,
+                            distance
+                        )
+                    }
+                }
+            }
+            newList = newList.sortedWith(compareBy { it.distance })
+            gridViewAdapter = GridAdapter(newList, requireActivity())
+            gridView.adapter = gridViewAdapter
+        }
+
+        gigsSwitch.setOnCheckedChangeListener { _, isChecked ->
+            val query = searchBar.query
+            newList = ArrayList()
+            for (item in list) {
+                if (item.listing.name?.contains(query) == true) {
+                    val location: LatLng = Gson().fromJson(item.listing.location, locationType)
+                    val type = item.listing.type
+                    val results = FloatArray(1)
+                    Location.distanceBetween(
+                        currentLocation.latitude,
+                        currentLocation.longitude,
+                        location.latitude,
+                        location.longitude,
+                        results
+                    )
+                    val distance = results[0]
+                    var displayListing = false
+                    if (type == rentalSwitch.text && rentalSwitch.isChecked) {
+                        displayListing = true
+                    } else if (type == gigsSwitch.text && isChecked) {
+                        displayListing = true
+                    }
+                    if (displayListing) {
+                        newList = newList + GridViewModel(
+                            item.listing.listingID!!,
+                            item.listing,
+                            distance
+                        )
+                    }
+                }
+            }
+            newList = newList.sortedWith(compareBy { it.distance })
+            gridViewAdapter = GridAdapter(newList, requireActivity())
+            gridView.adapter = gridViewAdapter
+        }
+
+//        Search bar filter
         searchBar.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String): Boolean {
                 if (listContains(query)){
-                    var newList = ArrayList<GridViewModel>()
+                    newList = ArrayList()
                     for( item in list){
-                        if (item.listing.name?.contains(query) == true && item.listing.available) {
+                        if (item.listing.name?.contains(query) == true) {
                             val location: LatLng = Gson().fromJson(item.listing.location, locationType)
+                            val type = item.listing.type
                             val results = FloatArray(1)
                             Location.distanceBetween(currentLocation.latitude, currentLocation.longitude, location.latitude, location.longitude, results)
                             val distance = results[0]
-                            newList += GridViewModel(
-                                item.listing.listingID!!,
-                                item.listing,
-                                distance
-                            )
+                            var displayListing = false
+                            if (type == rentalSwitch.text && rentalSwitch.isChecked){
+                                displayListing = true
+                            } else if (type == gigsSwitch.text && gigsSwitch.isChecked) {
+                                displayListing = true
+                            }
+                            if (displayListing) {
+                                newList = newList + GridViewModel(
+                                    item.listing.listingID!!,
+                                    item.listing,
+                                    distance
+                                )
+                            }
                         }
                     }
                     newList = newList.sortedWith(compareBy { l ->
                         l.distance
-                    }) as ArrayList<GridViewModel>
+                    })
                     gridViewAdapter = GridAdapter(newList, requireActivity())
                     gridView.adapter = gridViewAdapter
                 } else {
