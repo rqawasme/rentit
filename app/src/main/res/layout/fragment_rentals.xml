@@ -33,6 +33,15 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Filters:"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:textSize="18sp"
+            android:layout_gravity="center"/>
+
         <androidx.appcompat.widget.SwitchCompat
             android:id="@+id/switchRentals"
             android:layout_width="wrap_content"
