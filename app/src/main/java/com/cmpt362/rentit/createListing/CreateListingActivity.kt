@@ -13,10 +13,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
 import android.view.View
-import android.widget.Button
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
@@ -29,6 +26,7 @@ import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils
 import com.cmpt362.rentit.db.Listing
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -48,6 +46,7 @@ class CreateListingActivity : AppCompatActivity() {
     private lateinit var recyclerAdapter: ListingPhotosRecyclerAdapter
     private lateinit var galleryResult: ActivityResultLauncher<Intent>
 
+    private lateinit var shapeableImageViewProfilePicture: ShapeableImageView
     private lateinit var textViewUsername: TextView
     private lateinit var textInputEditTextTitle: TextInputEditText
     private lateinit var textInputEditTextPrice: TextInputEditText
@@ -65,6 +64,7 @@ class CreateListingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_listing)
         Utils.checkPermissions(this)
         initializeElements()
+        Utils.displayUserProfilePicture(this, shapeableImageViewProfilePicture)
         displayUsername()
         setupAddPhotoButtonOnClick()
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
@@ -86,6 +86,8 @@ class CreateListingActivity : AppCompatActivity() {
         recyclerAdapter = ListingPhotosRecyclerAdapter(uriArrayList)
         recyclerViewPhotos.layoutManager = GridLayoutManager(this, Constants.PHOTOS_PER_ROW)
         recyclerViewPhotos.adapter = recyclerAdapter
+
+        shapeableImageViewProfilePicture = findViewById(R.id.createListingActivity_imageView_UserProfile)
 
         textViewUsername = findViewById(R.id.createListingActivity_textView_username)
         textInputEditTextTitle = findViewById(R.id.createListingActivity_textInputEditText_title)
