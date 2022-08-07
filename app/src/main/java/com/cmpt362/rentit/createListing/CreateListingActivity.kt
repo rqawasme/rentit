@@ -179,10 +179,11 @@ class CreateListingActivity : AppCompatActivity() {
                     var bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(this.contentResolver, uriArrayList[i]))
                     println("DEBUG: ${bitmap.width} ${bitmap.height}")
                     if (bitmap.width >= 1920 || bitmap.height >= 1920) {
+                        val scale = if (bitmap.width > bitmap.height) bitmap.width/1280 else bitmap.height/1280
                         bitmap = Bitmap.createScaledBitmap(
                             bitmap,
-                            bitmap.width / 2,
-                            bitmap.height / 2,
+                            bitmap.width / scale,
+                            bitmap.height / scale,
                             true
                         )
                     }
