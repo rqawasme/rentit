@@ -47,4 +47,5 @@ object Constants {
     const val LISTING_TYPE_RENTAL = "Rental"
     const val LISTING_TYPE_GIGS = "Gigs"
     const val NO_LISTING_FOUND = "No listing found"
+    const val DATE_TIME_FORMAT = "HH:mm MMMM dd yyyy"
 }

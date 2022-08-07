@@ -122,7 +122,7 @@ class MainActivity : AppCompatActivity() {
             myRefBookings.get().addOnCompleteListener { task ->
                 val snapshot = task.result.children
                 for (i in snapshot) {
-                    var bookingEndDate= SimpleDateFormat("HH:mm MMMM dd yyyy").parse(i.child("endTime").getValue(String::class.java))
+                    var bookingEndDate= SimpleDateFormat(Constants.DATE_TIME_FORMAT).parse(i.child("endTime").getValue(String::class.java))
                     if((bookingEndDate.day==currentDate.day)
                         &&(bookingEndDate.month==currentDate.month)
                         && (bookingEndDate.year==currentDate.year)

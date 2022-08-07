@@ -61,11 +61,10 @@ class BookingListAdapter(private val context: Activity, private val bookingArray
 
         //Add onclickListener to buttons
         var seeListingButton= convertView!!.findViewById<Button>(R.id.user_booking_see_listing)
-
         var activeIndicator=convertView!!.findViewById<TextView>(R.id.booking_active)
 
-        var bookingStartMilli= SimpleDateFormat("HH:mm MMMM dd yyyy").parse(bookingArrayList[position].first.startTime ).time
-        var bookingEndMilli= SimpleDateFormat("HH:mm MMMM dd yyyy").parse(bookingArrayList[position].first.endTime).time
+        var bookingStartMilli= SimpleDateFormat(Constants.DATE_TIME_FORMAT).parse(bookingArrayList[position].first.startTime ).time
+        var bookingEndMilli= SimpleDateFormat(Constants.DATE_TIME_FORMAT).parse(bookingArrayList[position].first.endTime).time
 
         var currentMilli= Date().time
 
