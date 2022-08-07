@@ -121,16 +121,7 @@ class UserProfileActivity : AppCompatActivity() {
     }
 
     private fun setUpProfilePhoto(){
-        val user = firebaseAuth.currentUser
-        val storageReference = FirebaseStorage.getInstance().reference.child(Constants.USERS_FOLDER + user!!.uid)
-
-        val localFile = File.createTempFile(Constants.USER_PROFILE_PIC_PREFIX, Constants.USER_PROFILE_PIC_SUFFIX)
-        storageReference.getFile(localFile).addOnSuccessListener{
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            shapeableImageViewProfilePicture.setImageBitmap(bitmap)
-        }.addOnFailureListener{
-            Toast.makeText(this, Constants.FAILED_TO_RETRIEVE_PROFILE_PICTURE_ERROR, Toast.LENGTH_SHORT).show()
-        }
+        Utils.displayUserProfilePicture(this, shapeableImageViewProfilePicture)
         tempProfilePhotoFile = File(getExternalFilesDir(null), Constants.TEMP_PROFILE_PHOTO_FILE_NAME)
 
         tempProfilePhotoUri = FileProvider.getUriForFile(this, Constants.URI_AUTHORITY,
@@ -192,6 +183,7 @@ class UserProfileActivity : AppCompatActivity() {
     }
 
     fun saveUserInfo(view: View){
+        var isProfilePictureUpdated = false
         val user = firebaseAuth.currentUser
         val enteredUsername = textInputEditTextUsername.text.toString()
         val enteredPhone = textInputEditTextPhone.text.toString()
@@ -200,6 +192,7 @@ class UserProfileActivity : AppCompatActivity() {
         if (tempProfilePhotoFile.exists()){
             storageReference = FirebaseStorage.getInstance().getReference("Users/" + user!!.uid)
             storageReference.putFile(tempProfilePhotoUri)
+            isProfilePictureUpdated = true
         }
 
         if (enteredUsername != userUsername || enteredPhone != userPhone || enteredPostalCode != userPostalCode){
@@ -215,11 +208,21 @@ class UserProfileActivity : AppCompatActivity() {
             )
 
             myRefUsers.child(userId).updateChildren(newUserInfo).addOnSuccessListener {
-                Toast.makeText(this, "Profile updated", Toast.LENGTH_SHORT).show()
+                if (isProfilePictureUpdated){
+                    Toast.makeText(this, Constants.PROFILE_PICTURE_AND_INFO_UPDATED_MSG, Toast.LENGTH_SHORT).show()
+                }
+                else {
+                    Toast.makeText(this, Constants.PROFILE_INFO_ONLY_UPDATED_MSG, Toast.LENGTH_SHORT).show()
+                }
             }.addOnFailureListener {
-                Toast.makeText(this, "Failed to update", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, Constants.PROFILE_FAILED_TO_UPDATED_MSG, Toast.LENGTH_SHORT).show()
             }
-
+        }
+        else if (isProfilePictureUpdated){
+            Toast.makeText(this, Constants.PROFILE_PICTURE_ONLY_UPDATED_MSG, Toast.LENGTH_SHORT).show()
+        }
+        else{
+            Toast.makeText(this, Constants.NO_CHANGES_MADE_MSG, Toast.LENGTH_SHORT).show()
         }
 
         exit(view)
