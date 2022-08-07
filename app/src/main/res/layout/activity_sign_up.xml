@@ -1,119 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
-    tools:context=".users.SignUpActivity">
+    tools:context=".users.SignUpActivity"
+    android:fillViewport="true">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_centerVertical="true">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/rentit_logo"
-            android:layout_gravity="center_horizontal"/>
-
-        <EditText
-            android:id="@+id/signUpActivity_editText_email"
+        android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/login_edittext_background"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:hint="@string/text_email"
-            android:textColorHint="@color/white"
-            android:inputType="textEmailAddress"
-            android:drawableStart="@drawable/ic_baseline_email_24"
-            android:drawablePadding="10dp"
-            android:padding="10dp" />
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
 
-        <EditText
-            android:id="@+id/signUpActivity_editText_password"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/login_edittext_background"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:hint="@string/text_password"
-            android:textColorHint="@color/white"
-            android:drawableStart="@drawable/ic_baseline_lock_24"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
-            android:inputType="textPassword"/>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/rentit_logo"
+                android:layout_gravity="center_horizontal"/>
 
-        <EditText
-            android:id="@+id/signUpActivity_editText_username"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/login_edittext_background"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/white"
-            android:hint="Username"
-            android:textColorHint="@color/white"
-            android:drawableStart="@drawable/ic_baseline_person_outline_24"
-            android:drawablePadding="10dp"
-            android:padding="10dp"/>
+            <EditText
+                android:id="@+id/signUpActivity_editText_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_edittext_background"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/text_email"
+                android:textColorHint="@color/white"
+                android:inputType="textEmailAddress"
+                android:drawableStart="@drawable/ic_baseline_email_24"
+                android:drawablePadding="10dp"
+                android:padding="10dp" />
 
-        <EditText
-            android:id="@+id/signUpActivity_editText_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/login_edittext_background"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:hint="@string/text_phone"
-            android:textColorHint="@color/white"
-            android:inputType="phone"
-            android:drawableStart="@drawable/ic_baseline_phone_24"
-            android:drawablePadding="10dp"
-            android:padding="10dp"/>
+            <EditText
+                android:id="@+id/signUpActivity_editText_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_edittext_background"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/text_password"
+                android:textColorHint="@color/white"
+                android:drawableStart="@drawable/ic_baseline_lock_24"
+                android:drawablePadding="10dp"
+                android:padding="10dp"
+                android:inputType="textPassword"/>
 
-        <EditText
-            android:id="@+id/signUpActivity_editText_postal_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/login_edittext_background"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
-            android:hint="@string/text_postal_code"
-            android:textColorHint="@color/white"
-            android:drawableStart="@drawable/ic_baseline_location_on_24"
-            android:drawablePadding="10dp"
-            android:padding="10dp"/>
+            <EditText
+                android:id="@+id/signUpActivity_editText_username"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_edittext_background"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/white"
+                android:hint="Username"
+                android:textColorHint="@color/white"
+                android:drawableStart="@drawable/ic_baseline_person_outline_24"
+                android:drawablePadding="10dp"
+                android:padding="10dp"/>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/button_background"
-            android:text="@string/text_sign_up"
-            android:textAllCaps="false"
-            android:textSize="20sp"
-            android:layout_margin="20dp"
-            android:onClick="registerUser"/>
+            <EditText
+                android:id="@+id/signUpActivity_editText_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_edittext_background"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/text_phone"
+                android:textColorHint="@color/white"
+                android:inputType="phone"
+                android:drawableStart="@drawable/ic_baseline_phone_24"
+                android:drawablePadding="10dp"
+                android:padding="10dp"/>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/signUpActivity_text_already_have_account"
-            android:textSize="15sp"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/white"
-            android:clickable="true"
-            android:onClick="userLogin"/>
+            <EditText
+                android:id="@+id/signUpActivity_editText_postal_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/login_edittext_background"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginTop="20dp"
+                android:hint="@string/text_postal_code"
+                android:textColorHint="@color/white"
+                android:drawableStart="@drawable/ic_baseline_location_on_24"
+                android:drawablePadding="10dp"
+                android:padding="10dp"/>
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_background"
+                android:text="@string/text_sign_up"
+                android:textAllCaps="false"
+                android:textSize="20sp"
+                android:layout_margin="20dp"
+                android:onClick="registerUser"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/signUpActivity_text_already_have_account"
+                android:textSize="15sp"
+                android:layout_gravity="center_horizontal"
+                android:textColor="@color/white"
+                android:clickable="true"
+                android:onClick="userLogin"/>
 
 
-    </LinearLayout>
-
-</RelativeLayout>
+        </LinearLayout>
+    </RelativeLayout>
+</ScrollView>
