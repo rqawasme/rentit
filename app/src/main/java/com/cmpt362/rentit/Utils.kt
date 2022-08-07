@@ -109,8 +109,6 @@ object Utils {
         storageReference.getFile(localFile).addOnSuccessListener{
             val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
             imageViewProfilePicture.setImageBitmap(bitmap)
-        }.addOnFailureListener{
-            Toast.makeText(context, Constants.FAILED_TO_RETRIEVE_PROFILE_PICTURE_ERROR, Toast.LENGTH_SHORT).show()
         }
     }
 
