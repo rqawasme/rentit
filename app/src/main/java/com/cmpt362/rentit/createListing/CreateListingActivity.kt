@@ -4,10 +4,11 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
 import android.location.Criteria
 import android.location.LocationManager
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.TextUtils
@@ -19,6 +20,7 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -35,6 +37,8 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.gson.Gson
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
 
 class CreateListingActivity : AppCompatActivity() {
 
@@ -171,8 +175,26 @@ class CreateListingActivity : AppCompatActivity() {
 
                 for (i in 0 .. uriArrayList.size - 1){
                     storageReference = FirebaseStorage.getInstance().getReference("${Constants. LISTINGS_PATH}/${listingId}/${i}")
-                    storageReference.putFile(uriArrayList[i])
+//                    resizing before uploading
+                    var bitmap = ImageDecoder.decodeBitmap(ImageDecoder.createSource(this.contentResolver, uriArrayList[i]))
+                    println("DEBUG: ${bitmap.width} ${bitmap.height}")
+                    if (bitmap.width >= 1920 || bitmap.height >= 1920) {
+                        val scale = if (bitmap.width > bitmap.height) bitmap.width/1280 else bitmap.height/1280
+                        bitmap = Bitmap.createScaledBitmap(
+                            bitmap,
+                            bitmap.width / scale,
+                            bitmap.height / scale,
+                            true
+                        )
+                    }
+                    println("DEBUG: ${bitmap.width} ${bitmap.height}")
+                    val baos = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 25, baos)
+                    val bitmapData = baos.toByteArray()
+                    val bs = ByteArrayInputStream(bitmapData)
+                    storageReference.putStream(bs)
                 }
+
 
             }
 
