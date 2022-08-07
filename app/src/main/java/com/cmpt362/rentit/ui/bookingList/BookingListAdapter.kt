@@ -1,21 +1,17 @@
 package com.cmpt362.rentit.ui.bookingList
 
-import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.Button
-import android.widget.ImageView
 import android.widget.TextView
+import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
-import com.cmpt362.rentit.Utils
 import com.cmpt362.rentit.db.Booking
-import com.cmpt362.rentit.db.Listing
 import com.cmpt362.rentit.details.DetailActivity
 import com.cmpt362.rentit.details.DialogContact
 import com.google.firebase.database.ktx.database
@@ -54,18 +50,37 @@ class BookingListAdapter(private val context: Activity, private val bookingArray
         }
 
         //Get ListingID, then get listing name
-        var timePeriod= convertView!!.findViewById<TextView>(R.id.user_booking_time)
-        timePeriod.setText(bookingArrayList[position].first.startTime + " to " + bookingArrayList[position].first.endTime)
+        var textViewBookingStartTime = convertView!!.findViewById<TextView>(R.id.user_booking_time_from)
+        textViewBookingStartTime.setText(bookingArrayList[position].first.startTime)
+
+        var textViewBookingEndTime = convertView!!.findViewById<TextView>(R.id.user_booking_time_to)
+        textViewBookingEndTime.setText(bookingArrayList[position].first.endTime)
+
+
 
         titleView= convertView!!.findViewById<TextView>(R.id.user_booking_title)
         titleView.setText(bookingArrayList[position].second)
 
         //Add onclickListener to buttons
         var seeListingButton= convertView!!.findViewById<Button>(R.id.user_booking_see_listing)
-        seeListingButton.setOnClickListener{
-            val intent = Intent(convertView.context, DetailActivity::class.java)
-            intent.putExtra("id",bookingArrayList[position].first.listingID)
-            context.startActivity(intent)
+        var isListingExist = false
+
+        val myRefListings= Firebase.database.getReference(Constants.LISTINGS_PATH)
+        val listingID = bookingArrayList[position].first.listingID
+        val listingDataSnapshot = myRefListings.child(listingID!!).get()
+        listingDataSnapshot.addOnSuccessListener {
+            if (it.exists()){
+                isListingExist = true
+                seeListingButton.setOnClickListener{
+                    val intent = Intent(convertView.context, DetailActivity::class.java)
+                    intent.putExtra("id",bookingArrayList[position].first.listingID)
+                    context.startActivity(intent)
+                }
+            }
+            else{
+                isListingExist = false
+                seeListingButton.isEnabled = false
+            }
         }
 
         var activeIndicator=convertView!!.findViewById<TextView>(R.id.booking_active)
@@ -81,8 +96,15 @@ class BookingListAdapter(private val context: Activity, private val bookingArray
             activeIndicator.setBackgroundResource(R.drawable.green_rounded_background)
         }
         else{
-            activeIndicator.setText("Inactive")
-            activeIndicator.setBackgroundResource(R.drawable.red_rounded_background)
+            if (isListingExist){
+                activeIndicator.setText("Inactive")
+                activeIndicator.setBackgroundResource(R.drawable.red_rounded_background)
+            }
+            else{
+                activeIndicator.setText("Listing deleted/unavailable")
+                activeIndicator.setBackgroundResource(R.drawable.dark_grey_rounded_background)
+            }
+
         }
 
         return convertView
