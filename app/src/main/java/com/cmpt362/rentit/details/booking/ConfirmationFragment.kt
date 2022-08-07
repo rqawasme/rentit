@@ -40,7 +40,7 @@ class ConfirmationFragment(val name:String?, val price:Float?, val startDate:Str
             val myRefBookings = Firebase.database.getReference(Constants.BOOKINGS_PATH)
             var newKey=myRefBookings.push().key
 
-            val booking= Booking(newKey,startString,endString,listingID,userUID)
+            val booking= Booking(newKey,startString,endString,listingID, name, userUID)
 
             if (newKey != null) {
                 myRefBookings.child(newKey).setValue(booking)
