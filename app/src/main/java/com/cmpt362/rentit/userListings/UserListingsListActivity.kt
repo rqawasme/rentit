@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.Button
 import android.widget.ListView
@@ -13,6 +14,7 @@ import com.cmpt362.rentit.R
 import com.cmpt362.rentit.createListing.CreateListingActivity
 import com.cmpt362.rentit.databinding.ActivityMainBinding
 import com.cmpt362.rentit.db.Listing
+import com.cmpt362.rentit.users.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -101,8 +103,16 @@ class UserListingsListActivity : AppCompatActivity() {
     }
 
     fun createNewListing(view: View){
-        val intent = Intent(this, CreateListingActivity::class.java)
-        startActivity(intent)
+        val user = firebaseAuth.currentUser
+        if (user != null){
+            val intent = Intent(this, CreateListingActivity::class.java)
+            startActivity(intent)
+        }
+        else{
+            Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onRestart() {

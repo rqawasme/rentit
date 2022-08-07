@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils
+import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -42,6 +43,7 @@ class EditListingActivity : AppCompatActivity() {
     private lateinit var recyclerAdapter: ListingPhotosBitmapRecyclerAdapter
     private lateinit var galleryResult: ActivityResultLauncher<Intent>
 
+    private lateinit var shapeableImageViewProfilePicture: ShapeableImageView
     private lateinit var textViewUsername: TextView
     private lateinit var textInputEditTextTitle: TextInputEditText
     private lateinit var textInputEditTextPrice: TextInputEditText
@@ -68,6 +70,7 @@ class EditListingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_edit_listing)
 
         initializeElements()
+        Utils.displayUserProfilePicture(this, shapeableImageViewProfilePicture)
         displayUsername()
         setupAddPhotoButtonOnClick()
         populateListingInformation()
@@ -145,6 +148,8 @@ class EditListingActivity : AppCompatActivity() {
         recyclerAdapter = ListingPhotosBitmapRecyclerAdapter(bitmapArrayList)
         recyclerViewPhotos.layoutManager = GridLayoutManager(this, Constants.PHOTOS_PER_ROW)
         recyclerViewPhotos.adapter = recyclerAdapter
+
+        shapeableImageViewProfilePicture = findViewById(R.id.editListingActivity_imageView_UserProfile)
 
         textViewUsername = findViewById(R.id.editListingActivity_textView_username)
         textInputEditTextTitle = findViewById(R.id.editListingActivity_textInputEditText_title)

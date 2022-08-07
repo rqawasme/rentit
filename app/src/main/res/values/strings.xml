@@ -13,9 +13,10 @@
     <string name="menu_home">Home</string>
     <string name="menu_rentals">Rentals</string>
     <string name="menu_your_listings">Your Listings</string>
+    <string name="menu_your_bookings">Your Bookings</string>
     <string name="menu_create_listing">Create New Listing</string>
     <string name="item_image">Item Image</string>
-    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_login">Login</string>
 
     <!-- Strings used for login activity -->
     <string name="text_login">Login</string>
@@ -47,6 +48,7 @@
     <string name="sample_listing_price">$20 per hour</string>
     <string name="sample_listing_availability">Available</string>
     <string name="text_edit_listing">Edit Listing</string>
+    <string name="text_editing_your_list">Editing your listing</string>
     <string name="text_relist_item">Relist item</string>
     <string name="text_mark_unavailable">Mark Unavailable</string>
     <string name="text_delete">Delete</string>
@@ -61,7 +63,18 @@
     <string name="cancel_button">CANCEL</string>
     <string name="go_back">BACK</string>
     <string name="view_more">VIEW</string>
-    <string name="title_activity_settings">SettingsActivity</string>
+
+    <!-- Activity and Fragment Titles -->
+
+    <string name="title_activity_settings">Settings</string>
+    <string name="title_activity_user_listings">Your listings</string>
+    <string name="title_activity_user_profile">Your profile</string>
+    <string name="title_activity_booking">Book listing</string>
+    <string name="title_activity_create_listing">Create new listing</string>
+    <string name="title_activity_update_email">Update Email</string>
+    <string name="title_activity_change_password">Change Password</string>
+    <string name="title_activity_edit_listing">Edit your listing</string>
+    <string name="title_fragment_your_bookings">Your bookings</string>
 
     <!-- Strings used for PreferenceScreen -->
     <string name="settingsActivity_preferenceCategory_title_account_preference">Account Preferences</string>
@@ -130,5 +143,14 @@
         <item>Available</item>
         <item>Unavailable</item>
     </string-array>
+
+    <!-- Strings used for user booking list fragment -->
+    <string name="text_from">From:</string>
+    <string name="text_to">To:</string>
+    <string name="text_booking_status">Booking Status:</string>
+
+    <!-- Strings used for details activity -->
+    <string name="text_no_description">No description available...</string>
+
 
 </resources>
