@@ -9,7 +9,7 @@
         android:id="@+id/userListing_imageView_listingImage"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/car"
+        android:src="@drawable/spinner"
         android:layout_marginVertical="10dp"
         android:layout_marginHorizontal="5dp"/>
 
