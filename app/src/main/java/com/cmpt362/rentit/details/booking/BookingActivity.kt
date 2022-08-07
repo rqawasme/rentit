@@ -114,8 +114,8 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
         endString= "$endTime $endDate"
 
         //First convert into milliseconds representation for comparisons
-        var startMilli=SimpleDateFormat("HH:mm MMMM dd yyyy").parse(startString).time
-        var endMilli=SimpleDateFormat("HH:mm MMMM dd yyyy").parse(endString).time
+        var startMilli=SimpleDateFormat(Constants.DATE_TIME_FORMAT).parse(startString).time
+        var endMilli=SimpleDateFormat(Constants.DATE_TIME_FORMAT).parse(endString).time
 
         checkTimePeriod(startMilli,endMilli,listingID)
     }
@@ -174,8 +174,8 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
                 bookingStart= i.child("startTime").getValue(String::class.java)
                 bookingEnd= i.child("endTime").getValue(String::class.java)
 
-                var bookingStartMilli=SimpleDateFormat("HH:mm MMMM dd yyyy").parse(bookingStart).time
-                var bookingEndMilli=SimpleDateFormat("HH:mm MMMM dd yyyy").parse(bookingEnd).time
+                var bookingStartMilli=SimpleDateFormat(Constants.DATE_TIME_FORMAT).parse(bookingStart).time
+                var bookingEndMilli=SimpleDateFormat(Constants.DATE_TIME_FORMAT).parse(bookingEnd).time
 
                 if((startMilli<= bookingEndMilli) &&(endMilli>=bookingStartMilli)){
                     overlap=true

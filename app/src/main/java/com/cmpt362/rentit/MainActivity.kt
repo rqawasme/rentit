@@ -92,6 +92,8 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
             }
 
         }
@@ -105,7 +107,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "User ${firebaseUser.email} is logged out", Toast.LENGTH_SHORT).show()
         }
         else{
-            Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, Constants.YOU_ARE_NOT_LOGGED_IN_MSG, Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -122,7 +124,7 @@ class MainActivity : AppCompatActivity() {
             myRefBookings.get().addOnCompleteListener { task ->
                 val snapshot = task.result.children
                 for (i in snapshot) {
-                    var bookingEndDate= SimpleDateFormat("HH:mm MMMM dd yyyy").parse(i.child("endTime").getValue(String::class.java))
+                    var bookingEndDate= SimpleDateFormat(Constants.DATE_TIME_FORMAT).parse(i.child("endTime").getValue(String::class.java))
                     if((bookingEndDate.day==currentDate.day)
                         &&(bookingEndDate.month==currentDate.month)
                         && (bookingEndDate.year==currentDate.year)

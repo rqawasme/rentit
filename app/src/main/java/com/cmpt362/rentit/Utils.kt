@@ -16,14 +16,19 @@ import android.text.method.ScrollingMovementMethod
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.cmpt362.rentit.Constants.ONE_MEGABYTE
 import com.cmpt362.rentit.db.Listing
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.imageview.ShapeableImageView
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import java.io.File
 
 object Utils {
     fun getImage(listingId: String, imageView: ImageView){
@@ -93,6 +98,20 @@ object Utils {
         criteria.accuracy = Criteria.ACCURACY_FINE
         val provider = locationManager.getBestProvider(criteria, true)
         return locationManager.getLastKnownLocation(provider!!)!!
+    }
+
+    fun displayUserProfilePicture(context: Context, imageViewProfilePicture: ShapeableImageView) {
+        val firebaseAuth = FirebaseAuth.getInstance()
+        val user = firebaseAuth.currentUser
+        val storageReference = FirebaseStorage.getInstance().reference.child(Constants.USERS_FOLDER + user!!.uid)
+
+        val localFile = File.createTempFile(Constants.USER_PROFILE_PIC_PREFIX, Constants.USER_PROFILE_PIC_SUFFIX)
+        storageReference.getFile(localFile).addOnSuccessListener{
+            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+            imageViewProfilePicture.setImageBitmap(bitmap)
+        }.addOnFailureListener{
+            Toast.makeText(context, Constants.FAILED_TO_RETRIEVE_PROFILE_PICTURE_ERROR, Toast.LENGTH_SHORT).show()
+        }
     }
 
 }
