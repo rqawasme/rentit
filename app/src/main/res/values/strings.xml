@@ -131,4 +131,9 @@
         <item>Unavailable</item>
     </string-array>
 
+    <!-- Strings used for user booking list fragment -->
+    <string name="text_from">From:</string>
+    <string name="text_to">To:</string>
+    <string name="text_booking_status">Booking Status:</string>
+
 </resources>

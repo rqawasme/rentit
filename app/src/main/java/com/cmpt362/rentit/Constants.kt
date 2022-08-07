@@ -46,4 +46,5 @@ object Constants {
     const val EDIT_LISTING_EXTRA_STRING = "edit listing"
     const val LISTING_TYPE_RENTAL = "Rental"
     const val LISTING_TYPE_GIGS = "Gigs"
+    const val NO_LISTING_FOUND = "No listing found"
 }
