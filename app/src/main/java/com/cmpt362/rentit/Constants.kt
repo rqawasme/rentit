@@ -48,4 +48,11 @@ object Constants {
     const val LISTING_TYPE_GIGS = "Gigs"
     const val NO_LISTING_FOUND = "No listing found"
     const val DATE_TIME_FORMAT = "HH:mm MMMM dd yyyy"
+    const val YOU_ARE_NOT_LOGGED_IN_MSG = "You are not logged in"
+    const val PROFILE_PICTURE_AND_INFO_UPDATED_MSG = "Profile picture and user information updated"
+    const val PROFILE_PICTURE_ONLY_UPDATED_MSG = "Profile picture updated"
+    const val PROFILE_INFO_ONLY_UPDATED_MSG = "User information updated"
+    const val PROFILE_FAILED_TO_UPDATED_MSG = "Profile failed to update"
+    const val PROFILE_UPDATED_MSG = "Profile updated"
+    const val NO_CHANGES_MADE_MSG = "No changes made"
 }

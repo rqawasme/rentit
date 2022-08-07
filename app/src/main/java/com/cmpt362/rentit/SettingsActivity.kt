@@ -3,6 +3,7 @@ package com.cmpt362.rentit
 import android.os.Bundle
 import android.preference.PreferenceActivity
 import android.preference.PreferenceFragment
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
@@ -29,4 +30,5 @@ class SettingsActivity : AppCompatActivity() {
 
         }
     }
+
 }
