@@ -63,21 +63,15 @@ class BookingListFragment : Fragment() {
                 var bookingStart= i.child("startTime").getValue(String::class.java)
                 var bookingEnd= i.child("endTime").getValue(String::class.java)
                 var listingID= i.child("listingID").getValue(String::class.java)
+                var listingTitle = i.child("listingTitle").getValue(String::class.java)
 
 
-                var booking= Booking(bookingID,bookingStart,bookingEnd,listingID)
+                var booking= Booking(bookingID,bookingStart,bookingEnd,listingID, listingTitle, bookingID)
 
-                val myRefListings= Firebase.database.getReference("Listings").child(listingID!!)
+                bookingList.add(Pair(booking,listingTitle) as Pair<Booking, String>)
+                var bookingsAdapter= BookingListAdapter(requireActivity(), bookingList)
+                bookingsListView.adapter=bookingsAdapter
 
-                myRefListings.get().addOnCompleteListener { task ->
-                    if(task.isSuccessful){
-                        val snapshot= task.result
-                        var title=snapshot.child("name").getValue(String::class.java)
-                        bookingList.add(Pair(booking,title) as Pair<Booking, String>)
-                    }
-                    var bookingsAdapter= BookingListAdapter(requireActivity(), bookingList)
-                    bookingsListView.adapter=bookingsAdapter
-                }
             }
         }
     }
