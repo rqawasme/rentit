@@ -136,4 +136,8 @@
     <string name="text_to">To:</string>
     <string name="text_booking_status">Booking Status:</string>
 
+    <!-- Strings used for details activity -->
+    <string name="text_no_description">No description available...</string>
+
+
 </resources>
