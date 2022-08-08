@@ -103,13 +103,17 @@ object Utils {
     fun displayUserProfilePicture(context: Context, imageViewProfilePicture: ShapeableImageView) {
         val firebaseAuth = FirebaseAuth.getInstance()
         val user = firebaseAuth.currentUser
-        val storageReference = FirebaseStorage.getInstance().reference.child(Constants.USERS_FOLDER + user!!.uid)
 
-        val localFile = File.createTempFile(Constants.USER_PROFILE_PIC_PREFIX, Constants.USER_PROFILE_PIC_SUFFIX)
-        storageReference.getFile(localFile).addOnSuccessListener{
-            val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
-            imageViewProfilePicture.setImageBitmap(bitmap)
+        if (user != null){
+            val storageReference = FirebaseStorage.getInstance().reference.child(Constants.USERS_FOLDER + user!!.uid)
+
+            val localFile = File.createTempFile(Constants.USER_PROFILE_PIC_PREFIX, Constants.USER_PROFILE_PIC_SUFFIX)
+            storageReference.getFile(localFile).addOnSuccessListener{
+                val bitmap = BitmapFactory.decodeFile(localFile.absolutePath)
+                imageViewProfilePicture.setImageBitmap(bitmap)
+            }
         }
+
     }
 
 }
