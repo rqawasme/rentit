@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.BaseAdapter
 import android.widget.ImageView
 import android.widget.TextView
+import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils.getImage
 
@@ -20,6 +21,8 @@ internal class GridAdapter(
     private var layoutInflater: LayoutInflater? = null
     private lateinit var nameTextView: TextView
     private lateinit var priceTextView: TextView
+    private lateinit var availabilityTextView: TextView
+    private lateinit var distanceTextView: TextView
     private lateinit var snippetTextView: TextView
     private lateinit var imageView: ImageView
 
@@ -48,12 +51,16 @@ internal class GridAdapter(
         imageView = convertView!!.findViewById(R.id.gridViewImageView)
         nameTextView = convertView.findViewById(R.id.gridViewNameTextView)
         priceTextView = convertView.findViewById(R.id.gridViewPriceTextView)
+        availabilityTextView = convertView.findViewById(R.id.gridViewAvailabilityTextView)
+        distanceTextView = convertView.findViewById(R.id.gridViewDistanceTextView)
         snippetTextView = convertView.findViewById(R.id.gridViewSnippetTextView)
         getImage(list[position].id, imageView)
         nameTextView.text = list[position].listing.name
-        val available = if (list[position].listing.available) "Available" else "Unavailable"
+        val availability = if (list[position].listing.available) "Available" else "Unavailable"
         val howFar = if (list[position].distance > 25000F) ">25000" else  java.text.DecimalFormat("#,##0.00").format(list[position].distance)
-        priceTextView.text = "$${java.text.DecimalFormat("#,##0.00").format(list[position].listing.price)} • $available • $howFar Km"
+        priceTextView.text = "${Constants.DOLLAR_SIGN}${java.text.DecimalFormat("#,##0.00").format(list[position].listing.price)}"
+        availabilityTextView.text = availability
+        distanceTextView.text = howFar
         snippetTextView.text = list[position].listing.description
         return convertView
     }
