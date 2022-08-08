@@ -2,6 +2,8 @@ package com.cmpt362.rentit
 
 import android.content.Intent
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
@@ -65,6 +67,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.main, menu)
+
+        for (i in 0 .. menu.size() - 1){
+            val menuItem = menu.getItem(i)
+            val spannable = SpannableString(menuItem.title)
+            spannable.setSpan(ForegroundColorSpan(resources.getColor(R.color.customAccent)), 0, spannable.length, 0)
+            menuItem.title = spannable
+        }
+
         return true
     }
 

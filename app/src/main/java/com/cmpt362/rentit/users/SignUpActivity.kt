@@ -1,6 +1,7 @@
 package com.cmpt362.rentit.users
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Patterns
@@ -14,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 
 
 class SignUpActivity : AppCompatActivity() {
@@ -86,17 +88,17 @@ class SignUpActivity : AppCompatActivity() {
     }
 
     private fun firebaseRegister() {
-        firebaseAuth.createUserWithEmailAndPassword(email, password)
-            .addOnSuccessListener {
-                val firebaseUser = firebaseAuth.currentUser
-                val email = firebaseUser!!.email
-                databaseUserRegister(firebaseUser.uid, firebaseUser.email!!)
-                Toast.makeText(this, "Account created with email ${email}", Toast.LENGTH_SHORT).show()
-                finish()
-            }
-            .addOnFailureListener{
-                Toast.makeText(this, "Failed to register due to ${it.message}", Toast.LENGTH_SHORT).show()
-            }
+        firebaseAuth.createUserWithEmailAndPassword(email, password).addOnSuccessListener {
+            val firebaseUser = firebaseAuth.currentUser
+            val email = firebaseUser!!.email
+            databaseUserRegister(firebaseUser.uid, firebaseUser.email!!)
+            Toast.makeText(this, "Account created with email ${email}", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+        .addOnFailureListener{
+            Toast.makeText(this, "Failed to register due to ${it.message}", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
 
