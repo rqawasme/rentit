@@ -8,7 +8,7 @@
     android:orientation="vertical"
     android:id="@+id/galleryFragment"
     android:padding="10dp"
-    android:background="@drawable/login_background">
+    android:background="@color/customDark">
 
     <TextView
         android:id="@+id/instructions"
@@ -18,13 +18,14 @@
         android:text="@string/instructions"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:layout_gravity="center"/>
+        android:layout_gravity="center" />
 
     <SearchView
         android:id="@+id/search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:backgroundTint="@color/dark_grey"
+        android:background="@drawable/light_grey_border"
         app:cardCornerRadius="25dp"
         android:layout_marginTop="5dp" />
 
