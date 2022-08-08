@@ -64,8 +64,8 @@ class CreateListingActivity : AppCompatActivity() {
         setContentView(R.layout.activity_create_listing)
         Utils.checkPermissions(this)
         initializeElements()
-        Utils.displayUserProfilePicture(this, shapeableImageViewProfilePicture)
         displayUsername()
+
         setupAddPhotoButtonOnClick()
         locationManager = getSystemService(LOCATION_SERVICE) as LocationManager
     }
@@ -137,6 +137,7 @@ class CreateListingActivity : AppCompatActivity() {
                     textViewUsername.text = it.child(Constants.USERNAME_PATH).getValue(String::class.java).toString()
                 }
             }
+            Utils.displayUserProfilePicture(this, shapeableImageViewProfilePicture)
         }
         else{
             Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
