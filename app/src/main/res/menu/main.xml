@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_user_login"
         android:title="@string/action_login"
-        app:showAsAction="never"/>
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_settings"
@@ -15,6 +15,5 @@
     <item
         android:id="@+id/action_user_logout"
         android:title="@string/action_logout"
-        app:showAsAction="never"
-        />
+        app:showAsAction="never" />
 </menu>
