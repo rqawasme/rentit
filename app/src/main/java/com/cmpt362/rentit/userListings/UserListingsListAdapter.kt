@@ -60,7 +60,7 @@ class UserListingsListAdapter(private val context: Activity, private val listing
         buttonDelete = convertView.findViewById(R.id.userListings_button_delete)
 
         textViewListingTitle.text = listingArrayList[position].name
-        textViewListingPrice.text = listingArrayList[position].price.toString()
+        textViewListingPrice.text = Constants.DOLLAR_SIGN + listingArrayList[position].price.toString()
 
         if (!listingArrayList[position].available){
            markUnavailable(convertView)

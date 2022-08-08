@@ -55,4 +55,5 @@ object Constants {
     const val PROFILE_FAILED_TO_UPDATED_MSG = "Profile failed to update"
     const val PROFILE_UPDATED_MSG = "Profile updated"
     const val NO_CHANGES_MADE_MSG = "No changes made"
+    const val DOLLAR_SIGN = "$"
 }

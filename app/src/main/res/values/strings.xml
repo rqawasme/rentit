@@ -45,7 +45,8 @@
     <!-- Strings used for user listings activity -->
     <string name="text_create_new_listing">Create New Listing</string>
     <string name="sample_listing_title">Ford Mustang GT</string>
-    <string name="sample_listing_price">$20 per hour</string>
+    <string name="sample_listing_price">$20</string>
+    <string name="text_per_day">per day</string>
     <string name="sample_listing_availability">Available</string>
     <string name="text_edit_listing">Edit Listing</string>
     <string name="text_editing_your_list">Editing your listing</string>
@@ -115,6 +116,7 @@
     <string name="text_choose_your_photos">Choose your listing\'s main photo first.</string>
     <string name="text_title">Title</string>
     <string name="text_price">Price</string>
+    <string name="text_price_per_day">Price - Per day</string>
     <string name="text_type">Type</string>
     <string name="text_description">Description</string>
     <string-array name="array_listing_types">
@@ -135,6 +137,7 @@
     </string-array>
     <string name="text_publish">Publish</string>
     <string name="text_required_with_asterisk">Required*</string>
+    <string name="dollar_sign">$</string>
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum fermentum libero enim, eget viverra turpis fermentum ac. Phasellus faucibus scelerisque enim id sollicitudin. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin et posuere sapien. Sed efficitur justo eget est pretium, sed laoreet sapien sodales. Maecenas convallis elit non aliquam consectetur. Vivamus suscipit commodo interdum. Mauris ac elit ut enim fringilla consectetur.</string>
 
 
