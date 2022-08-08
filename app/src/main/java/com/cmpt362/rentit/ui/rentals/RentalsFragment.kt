@@ -104,7 +104,12 @@ class RentalsFragment : Fragment() {
         // click listener for our grid view.
         gridView.onItemClickListener = AdapterView.OnItemClickListener { _, _, position, _ ->
             val intent = Intent(requireActivity(), DetailActivity::class.java)
-            intent.putExtra("id",list[position].id)
+            val selection = if (searchBar.query.isEmpty() && rentalSwitch.isChecked && gigsSwitch.isChecked) {
+                list[position]
+            } else {
+                newList[position]
+            }
+            intent.putExtra("id", selection.id)
             startActivity(intent)
         }
 
