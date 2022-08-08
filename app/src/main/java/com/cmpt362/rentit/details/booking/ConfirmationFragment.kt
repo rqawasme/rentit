@@ -3,9 +3,11 @@ package com.cmpt362.rentit.details.booking
 import android.app.AlertDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.os.Bundle
 import android.text.InputType
 import android.widget.EditText
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.db.Booking

@@ -2,6 +2,7 @@ package com.cmpt362.rentit.details.booking
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -23,10 +24,15 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
     var currentdate:String? = ""
     var currentTime: String? =""
 
-    lateinit var startDateTextView: TextView
-    lateinit var endDateTextView: TextView
-    lateinit var startTimeTextView: TextView
-    lateinit var endTimeTextView: TextView
+
+    lateinit var buttonPickStartDate: Button
+    lateinit var buttonPickStartTime: Button
+    lateinit var buttonPickEndDate: Button
+    lateinit var buttonPickEndTime: Button
+    lateinit var textViewBookingStartDate: TextView
+    lateinit var textViewBookingEndDate: TextView
+    lateinit var textViewBookingStartTime: TextView
+    lateinit var textViewBookingEndTime: TextView
 
     var startDate:String? = ""
     var endDate:String? = ""
@@ -56,7 +62,7 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
         price = intent.getFloatExtra("price",-1F)
 
         var listingNameTextView=findViewById<TextView>(R.id.booking_name)
-        var priceTextView=findViewById<TextView>(R.id.booking_price)
+        var priceTextView=findViewById<TextView>(R.id.bookingActivity_textView_listingPrice)
         listingNameTextView.text = name
         priceTextView.text = "$" + String.format("%.2f",price)
 
@@ -71,28 +77,30 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
         startTime=currentTime
         endTime=currentTime
 
-        startDateTextView=findViewById(R.id.booking_start_date)
-        startTimeTextView=findViewById(R.id.booking_start_time)
+        textViewBookingStartDate = findViewById(R.id.bookingActivity_textView_booking_start_date)
+        textViewBookingEndDate = findViewById(R.id.bookingActivity_textView_booking_end_date)
+        textViewBookingStartTime = findViewById(R.id.bookingActivity_textView_booking_start_time)
+        textViewBookingEndTime = findViewById(R.id.bookingActivity_textView_booking_end_time)
+        buttonPickStartDate = findViewById(R.id.bookingActivity_button_pick_booking_startDate)
+        buttonPickStartTime = findViewById(R.id.bookingActivity_button_pick_booking_startTime)
+        buttonPickEndDate = findViewById(R.id.bookingActivity_button_pick_booking_endDate)
+        buttonPickEndTime = findViewById(R.id.bookingActivity_button_pick_booking_endTime)
 
-        startDateTextView.text = currentDate
-        startTimeTextView.text = currentTime
-
-        endDateTextView=findViewById(R.id.booking_end_date)
-        endTimeTextView=findViewById(R.id.booking_end_time)
-
-        endDateTextView.text = currentDate
-        endTimeTextView.text = currentTime
+        textViewBookingStartDate.text = currentDate
+        textViewBookingEndDate.text = currentDate
+        textViewBookingStartTime.text = currentTime
+        textViewBookingEndTime.text = currentTime
 
         super.onCreate(savedInstanceState)
     }
 
     //Open DateDialogFragment
     fun setDate(view:View){
-        var id= view.id
-        if(id==R.id.booking_start_date){
+        var id = view.id
+        if(id == R.id.bookingActivity_button_pick_booking_startDate){
             DateDialogFragment("start").show(supportFragmentManager,DateDialogFragment.TAG)
         }
-        else if(id== R.id.booking_end_date) {
+        else if(id == R.id.bookingActivity_button_pick_booking_endDate) {
             DateDialogFragment("end").show(supportFragmentManager,DateDialogFragment.TAG)
         }
     }
@@ -100,10 +108,10 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
     //Open TimeDialog Fragment
     fun setTime(view:View){
         var id= view.id
-        if(id==R.id.booking_start_time){
+        if(id==R.id.bookingActivity_button_pick_booking_startTime){
             TimeDialogFragment("start").show(supportFragmentManager,TimeDialogFragment.TAG)
         }
-        else if(id== R.id.booking_end_time) {
+        else if(id== R.id.bookingActivity_button_pick_booking_endTime) {
             TimeDialogFragment("end").show(supportFragmentManager,TimeDialogFragment.TAG)
         }
     }
@@ -133,11 +141,11 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
         val date = sdf.format(newDate)
 
         if(type=="start"){
-            startDateTextView.text = date
+            textViewBookingStartDate.text = date
             startDate=date
         }
         else if(type=="end"){
-            endDateTextView.text = date
+            textViewBookingEndDate.text = date
             endDate=date
         }
     }
@@ -150,11 +158,11 @@ class BookingActivity: AppCompatActivity(), DialogInterface {
         val time = sdf.format(newTime)
 
         if(type=="start"){
-            startTimeTextView.text = time
+            textViewBookingStartTime.text = time
             startTime=time
         }
         else if(type=="end"){
-            endTimeTextView.text = time
+            textViewBookingEndTime.text = time
             endTime=time
         }
     }

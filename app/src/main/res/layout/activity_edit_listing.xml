@@ -98,7 +98,8 @@
             android:layout_marginVertical="10dp"
             android:theme="@style/TextInputLayoutStyle"
             app:helperText="@string/text_required_with_asterisk"
-            app:helperTextTextColor="@color/red">
+            app:helperTextTextColor="@color/red"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editListingActivity_textInputEditText_title"
@@ -117,7 +118,10 @@
             android:layout_marginVertical="10dp"
             android:theme="@style/TextInputLayoutStyle"
             app:helperText="@string/text_required_with_asterisk"
-            app:helperTextTextColor="@color/red">
+            app:helperTextTextColor="@color/red"
+            app:prefixText="@string/dollar_sign"
+            app:prefixTextColor="@color/white"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editListingActivity_textInputEditText_price"
@@ -156,14 +160,14 @@
             android:layout_height="wrap_content"
             android:hint="@string/text_description"
             android:layout_marginVertical="10dp"
-            android:theme="@style/TextInputLayoutStyle">
+            android:theme="@style/TextInputLayoutStyle"
+            app:endIconMode="clear_text">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editListingActivity_textInputEditText_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
-
                 android:padding="15dp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
