@@ -29,13 +29,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:layout_margin="10dp">
+            android:layout_margin="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="0.6"
                 android:orientation="vertical">
+
 
                 <TextView
                     android:id="@+id/gridViewNameTextView"
@@ -46,13 +47,70 @@
                     android:textStyle="bold"
                     android:textSize="18sp"/>
 
-                <TextView
-                    android:id="@+id/gridViewPriceTextView"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/sample_listing_price"
-                    android:textSize="12sp"
-                    android:textColor="@color/light_grey"/>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/gridViewPriceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_listing_price"
+                        android:textSize="12sp"
+                        android:textColor="@color/light_grey"
+                        android:maxLines="1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_per_day"
+                        android:textColor="@color/light_grey"
+                        android:layout_marginHorizontal="5dp"
+                        android:maxLines="1"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/gridViewAvailabilityTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_listing_availability"
+                        android:textSize="12sp"
+                        android:textColor="@color/light_grey"
+                        android:maxLines="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_dot"
+                        android:textSize="12sp"
+                        android:textColor="@color/light_grey"
+                        android:maxLines="1"
+                        android:layout_marginHorizontal="5dp"/>
+
+                    <TextView
+                        android:id="@+id/gridViewDistanceTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_listing_distance"
+                        android:textSize="12sp"
+                        android:textColor="@color/light_grey"
+                        android:maxLines="1"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/text_km_away"
+                        android:textSize="12sp"
+                        android:textColor="@color/light_grey"
+                        android:maxLines="1"
+                        android:layout_marginHorizontal="3dp"/>
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/gridViewSnippetTextView"
@@ -61,7 +119,6 @@
                     android:text="@string/lorem_ipsum"
                     android:textSize="16sp"
                     android:textColor="@color/light_grey"
-                    android:paddingTop="5dp"
                     android:maxLines="2"
                     android:ellipsize="end"/>
 

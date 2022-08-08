@@ -46,7 +46,11 @@
     <string name="text_create_new_listing">Create New Listing</string>
     <string name="sample_listing_title">Ford Mustang GT</string>
     <string name="sample_listing_price">$20</string>
+    <string name="sample_listing_distance">100</string>
     <string name="text_per_day">per day</string>
+    <string name="text_km_away">km away</string>
+    <string name="text_away">away</string>
+    <string name="text_dot">•</string>
     <string name="sample_listing_availability">Available</string>
     <string name="text_edit_listing">Edit Listing</string>
     <string name="text_editing_your_list">Editing your listing</string>

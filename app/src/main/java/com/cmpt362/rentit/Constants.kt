@@ -56,4 +56,6 @@ object Constants {
     const val PROFILE_UPDATED_MSG = "Profile updated"
     const val NO_CHANGES_MADE_MSG = "No changes made"
     const val DOLLAR_SIGN = "$"
+    const val TEXT_PER_DAY = "per day"
+    const val TEXT_AWAY = "per day"
 }
