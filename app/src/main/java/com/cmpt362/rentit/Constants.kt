@@ -58,4 +58,5 @@ object Constants {
     const val DOLLAR_SIGN = "$"
     const val TEXT_PER_DAY = "per day"
     const val TEXT_AWAY = "per day"
+    const val BOOKING_CONFIRMED_MSG = "Booking confirmed"
 }
