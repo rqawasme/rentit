@@ -80,14 +80,17 @@ class BookingListAdapter(private val context: Activity, private val bookingArray
                 }
 
                 if((currentMilli <= bookingEndMilli) && (currentMilli >= bookingStartMilli)){
+                    seeListingButton.isEnabled = true
                     activeIndicator.setText("In progress")
                     activeIndicator.setBackgroundResource(R.drawable.rentit_accent_rounded_background)
                 }
                 else if (currentMilli > bookingEndMilli){
+                    seeListingButton.isEnabled = true
                     activeIndicator.setText("Finished")
                     activeIndicator.setBackgroundResource(R.drawable.green_rounded_background)
                 }
                 else if (currentMilli < bookingStartMilli){
+                    seeListingButton.isEnabled = true
                     activeIndicator.setText("Awaiting")
                     activeIndicator.setBackgroundResource(R.drawable.blue_rounded_background)
                 }
