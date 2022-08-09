@@ -73,13 +73,13 @@ Danyaal Patel
 
 &emsp; [Presentation video](https://youtu.be/4z5gA4ksUIs)
 ### Downloads
-<a href="Rentit.apk">&emsp; Download app apk</a>
+&emsp; <a href="Rentit.apk">Download app apk</a>
 <br>
 <br>
-<a href="Rent-it.zip">&emsp; Final project code</a>
+&emsp; <a href="Rent-it.zip">Final project code</a>
 <br>
 <br>
-<a href="README.txt.txt">&emsp; README</a>
+&emsp; <a href="README.txt.txt">README</a>
 
 ### Presentation Slides
-[Google Slides for the Presentation(Contains Thread Design Diagram)](https://docs.google.com/presentation/d/1FyLT6M-YFi7-Ah8WX57Eu5Mss1mOFEHc3xnOYGeZJ98/edit?usp=sharing)
+&emsp; [Google Slides for the Presentation(Contains Thread Design Diagram)](https://docs.google.com/presentation/d/1FyLT6M-YFi7-Ah8WX57Eu5Mss1mOFEHc3xnOYGeZJ98/edit?usp=sharing)
