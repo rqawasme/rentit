@@ -25,6 +25,7 @@ import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils
 import com.cmpt362.rentit.db.Listing
+import com.cmpt362.rentit.users.LoginActivity
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
@@ -141,6 +142,8 @@ class CreateListingActivity : AppCompatActivity() {
         }
         else{
             Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
             this.finish()
         }
 

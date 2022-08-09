@@ -14,6 +14,7 @@ import com.cmpt362.rentit.Utils
 import com.cmpt362.rentit.createListing.CreateListingActivity
 import com.cmpt362.rentit.db.Listing
 import com.cmpt362.rentit.editListing.EditListingActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -90,7 +91,21 @@ class UserListingsListAdapter(private val context: Activity, private val listing
 
         buttonDelete.setOnClickListener {
 
-            deleteListing(position)
+            val dialogBuilder = MaterialAlertDialogBuilder(context)
+            dialogBuilder.setTitle(Constants.DELETE_LISTING_DIALOG_TITLE)
+            dialogBuilder.setMessage("${Constants.DELETE_LISTING_DIALOG_MSG} ${listingArrayList[position].name}?")
+            dialogBuilder.setPositiveButton(Constants.DIALOG_OK_BUTTON_TEXT){
+                dialog, which->
+
+                deleteListing(position)
+            }
+
+            dialogBuilder.setNegativeButton(Constants.DIALOG_CANCEL_BUTTON_TEXT){
+                dialog, which->
+                dialog.dismiss()
+            }
+
+            dialogBuilder.show()
 
         }
 
