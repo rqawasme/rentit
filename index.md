@@ -72,9 +72,12 @@ Danyaal Patel
 [Rentit Show and Tell 2](https://youtu.be/ohoBv5kA1M8)
 
 [Presentation video](https://youtu.be/4z5gA4ksUIs)
-### Download
-<a href="Rentit.apk">Download App apk</a>
-Work in progress, coming soon! 
+### Downloads
+<a href="Rentit.apk">Download app apk</a>
+<br>
+<a href="Rent-it.zip">Final project code</a>
+<br>
+<a href="README.txt.txt">README</a>
 
 ### Presentation Slides
 [Google Slides for the Presentation(Contains Thread Design Diagram)](https://docs.google.com/presentation/d/1FyLT6M-YFi7-Ah8WX57Eu5Mss1mOFEHc3xnOYGeZJ98/edit?usp=sharing)
