@@ -59,4 +59,12 @@ object Constants {
     const val TEXT_PER_DAY = "per day"
     const val TEXT_AWAY = "per day"
     const val BOOKING_CONFIRMED_MSG = "Booking confirmed"
+    const val DELETE_LISTING_DIALOG_TITLE = "Confirm delete listing"
+    const val DISCARD_CHANGES_DIALOG_TITLE = "Confirm discarding changes"
+    const val DIALOG_OK_BUTTON_TEXT = "OK"
+    const val DIALOG_YES_BUTTON_TEXT = "YES"
+    const val DIALOG_NO_BUTTON_TEXT = "NO"
+    const val DIALOG_CANCEL_BUTTON_TEXT = "CANCEL"
+    const val DELETE_LISTING_DIALOG_MSG = "Are you sure you want to delete the listing"
+    const val DISCARD_CHANGES_DIALOG_MSG = "Are you sure you want to discard your changes you made?"
 }

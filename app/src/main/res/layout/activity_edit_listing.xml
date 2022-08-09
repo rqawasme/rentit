@@ -31,7 +31,7 @@
                 android:layout_marginBottom="10dp"
                 android:adjustViewBounds="true"
                 android:padding="2dp"
-                android:scaleType="centerInside"
+                android:scaleType="centerCrop"
                 android:src="@drawable/temp_profile"
                 app:shapeAppearance="@style/circular_imageView"
                 app:strokeColor="@color/white"

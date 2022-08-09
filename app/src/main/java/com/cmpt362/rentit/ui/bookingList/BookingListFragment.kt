@@ -17,6 +17,7 @@ import com.cmpt362.rentit.SettingsActivity
 import com.cmpt362.rentit.db.Booking
 import com.cmpt362.rentit.db.Listing
 import com.cmpt362.rentit.details.booking.ConfirmationFragment
+import com.cmpt362.rentit.users.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -51,6 +52,8 @@ class BookingListFragment : Fragment() {
         val firebaseUser = FirebaseAuth.getInstance().currentUser
         if (firebaseUser== null){
             Toast.makeText(context, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            val intent = Intent(context, LoginActivity::class.java)
+            startActivity(intent)
         }
 
         val myRefBookings= Firebase.database.getReference("Bookings").orderByChild("bookerID").equalTo(userID)
