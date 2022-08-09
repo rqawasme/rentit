@@ -31,7 +31,7 @@
                 android:layout_marginBottom="10dp"
                 android:adjustViewBounds="true"
                 android:padding="2dp"
-                android:scaleType="centerInside"
+                android:scaleType="centerCrop"
                 android:src="@drawable/temp_profile"
                 app:shapeAppearance="@style/circular_imageView"
                 app:strokeColor="@color/white"
@@ -168,8 +168,18 @@
             android:layout_height="wrap_content"
             android:text="@string/text_publish"
             android:textAllCaps="false"
-            android:layout_margin="20dp"
+            android:layout_marginHorizontal="20dp"
             android:onClick="publishListing"
+            android:layout_marginVertical="10dp"
+            android:backgroundTint="@color/customAccent"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/text_cancel"
+            android:textAllCaps="false"
+            android:layout_marginHorizontal="20dp"
+            android:onClick="cancelCreateListing"
             android:backgroundTint="@color/customAccent"/>
 
     </LinearLayout>

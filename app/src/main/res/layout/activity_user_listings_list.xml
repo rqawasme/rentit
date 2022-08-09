@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".userListings.UserListingsListActivity"
     android:fillViewport="true"
-    android:background="@color/customPrimary">
+    android:background="@color/customDark">
 
     <LinearLayout
         android:layout_width="match_parent"

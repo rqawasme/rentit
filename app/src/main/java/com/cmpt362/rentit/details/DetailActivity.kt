@@ -17,6 +17,7 @@ import com.cmpt362.rentit.Constants.ONE_MEGABYTE
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.SettingsActivity
 import com.cmpt362.rentit.details.booking.BookingActivity
+import com.cmpt362.rentit.users.LoginActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
@@ -128,6 +129,8 @@ class DetailActivity:AppCompatActivity() {
         }
         else{
             Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
         }
 
     }

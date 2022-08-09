@@ -43,7 +43,6 @@ class UserListingsListActivity : AppCompatActivity() {
 
         initializeElements()
         getUserListings()
-
     }
 
     private fun initializeElements(){
@@ -98,6 +97,9 @@ class UserListingsListActivity : AppCompatActivity() {
         }
         else{
             Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }
@@ -112,6 +114,7 @@ class UserListingsListActivity : AppCompatActivity() {
             Toast.makeText(this, Constants.PLEASE_LOGIN_MSG, Toast.LENGTH_SHORT).show()
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 

@@ -23,6 +23,7 @@ import com.cmpt362.rentit.Constants
 import com.cmpt362.rentit.R
 import com.cmpt362.rentit.Utils
 import com.cmpt362.rentit.details.DetailViewPagerAdapter
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -225,7 +226,8 @@ class UserProfileActivity : AppCompatActivity() {
             Toast.makeText(this, Constants.NO_CHANGES_MADE_MSG, Toast.LENGTH_SHORT).show()
         }
 
-        exit(view)
+        deleteTempUserProfilePhoto()
+        finish()
     }
 
 
@@ -236,7 +238,19 @@ class UserProfileActivity : AppCompatActivity() {
     }
 
     fun exit(view: View){
-        deleteTempUserProfilePhoto()
-        finish()
+        val dialogBuilder = MaterialAlertDialogBuilder(this)
+        dialogBuilder.setTitle(Constants.DISCARD_CHANGES_DIALOG_TITLE)
+        dialogBuilder.setMessage(Constants.DISCARD_CHANGES_DIALOG_MSG)
+        dialogBuilder.setPositiveButton(Constants.DIALOG_YES_BUTTON_TEXT){
+                dialog, which->
+            deleteTempUserProfilePhoto()
+            finish()
+        }
+
+        dialogBuilder.setNegativeButton(Constants.DIALOG_NO_BUTTON_TEXT){
+                dialog, which->
+            dialog.dismiss()
+        }
+        dialogBuilder.show()
     }
 }
