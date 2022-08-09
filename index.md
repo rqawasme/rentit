@@ -65,19 +65,21 @@ Danyaal Patel
 ### Video Links
 
 <!---(Replace the link here with the Youtube link)-->
-[Original Pitch](https://youtu.be/DCBdJQeRkQI)
+&emsp; [Original Pitch](https://youtu.be/DCBdJQeRkQI)
 
-[Rentit Show and Tell 1](https://youtu.be/qP5KhkwnlbM)
+&emsp; [Rentit Show and Tell 1](https://youtu.be/qP5KhkwnlbM)
 
-[Rentit Show and Tell 2](https://youtu.be/ohoBv5kA1M8)
+&emsp; [Rentit Show and Tell 2](https://youtu.be/ohoBv5kA1M8)
 
-[Presentation video](https://youtu.be/4z5gA4ksUIs)
+&emsp; [Presentation video](https://youtu.be/4z5gA4ksUIs)
 ### Downloads
-<a href="Rentit.apk">Download app apk</a>
+<a href="Rentit.apk">&emsp; Download app apk</a>
 <br>
-<a href="Rent-it.zip">Final project code</a>
 <br>
-<a href="README.txt.txt">README</a>
+<a href="Rent-it.zip">&emsp; Final project code</a>
+<br>
+<br>
+<a href="README.txt.txt">&emsp; README</a>
 
 ### Presentation Slides
 [Google Slides for the Presentation(Contains Thread Design Diagram)](https://docs.google.com/presentation/d/1FyLT6M-YFi7-Ah8WX57Eu5Mss1mOFEHc3xnOYGeZJ98/edit?usp=sharing)
