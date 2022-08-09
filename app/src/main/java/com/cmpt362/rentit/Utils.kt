@@ -97,7 +97,14 @@ object Utils {
         val criteria = Criteria()
         criteria.accuracy = Criteria.ACCURACY_FINE
         val provider = locationManager.getBestProvider(criteria, true)
-        return locationManager.getLastKnownLocation(provider!!)!!
+        var lastknownlocation = locationManager.getLastKnownLocation(provider!!)
+        if (lastknownlocation == null){
+            val sfu = Location(provider)
+            sfu.latitude = 49.276765
+            sfu.longitude = -122.917957
+            lastknownlocation = sfu
+        }
+        return lastknownlocation
     }
 
     fun displayUserProfilePicture(context: Context, imageViewProfilePicture: ShapeableImageView) {

@@ -95,6 +95,13 @@ class HomeFragment : Fragment(), OnMapReadyCallback, OnMarkerClickListener {
                 val cameraUpdate: CameraUpdate = CameraUpdateFactory.newLatLngZoom(latlng, 12f)
                 mMap.animateCamera(cameraUpdate)
                 return location
+            } else {
+                val sfu = Location(provider)
+                sfu.latitude = 49.276765
+                sfu.longitude = -122.917957
+                val cameraUpdate: CameraUpdate = CameraUpdateFactory.newLatLngZoom(LatLng(sfu.latitude, sfu.longitude), 12f)
+                mMap.animateCamera(cameraUpdate)
+                return sfu
             }
         } catch (_e: SecurityException) {
             println("DEBUG: encountered an error $_e")
