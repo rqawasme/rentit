@@ -27,6 +27,7 @@ import com.cmpt362.rentit.Utils
 import com.cmpt362.rentit.db.Listing
 import com.cmpt362.rentit.users.LoginActivity
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
@@ -234,6 +235,23 @@ class CreateListingActivity : AppCompatActivity() {
             finish()
         }
 
+    }
+
+
+    fun cancelCreateListing(view: View){
+        val dialogBuilder = MaterialAlertDialogBuilder(this)
+        dialogBuilder.setTitle(Constants.DISCARD_CHANGES_DIALOG_TITLE)
+        dialogBuilder.setMessage(Constants.DISCARD_CHANGES_DIALOG_MSG)
+        dialogBuilder.setPositiveButton(Constants.DIALOG_YES_BUTTON_TEXT){
+                dialog, which->
+            finish()
+        }
+
+        dialogBuilder.setNegativeButton(Constants.DIALOG_NO_BUTTON_TEXT){
+                dialog, which->
+            dialog.dismiss()
+        }
+        dialogBuilder.show()
     }
 
 }

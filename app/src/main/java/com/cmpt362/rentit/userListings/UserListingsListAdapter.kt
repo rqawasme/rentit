@@ -96,7 +96,6 @@ class UserListingsListAdapter(private val context: Activity, private val listing
             dialogBuilder.setMessage("${Constants.DELETE_LISTING_DIALOG_MSG} ${listingArrayList[position].name}?")
             dialogBuilder.setPositiveButton(Constants.DIALOG_OK_BUTTON_TEXT){
                 dialog, which->
-
                 deleteListing(position)
             }
 
