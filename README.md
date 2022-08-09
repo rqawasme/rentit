@@ -4,7 +4,7 @@ Rentit is an Android application that allows users to rent their belongings and 
 
 ## Pages 
 
-Rentit features a google maps home page which shows nearby listings in your area on the map, right when you open the app.
+Rentit features a Google maps home page which shows nearby listings in your area on the map, right when you open the app. You can move around in the app just like regular Google Maps, and click on listings that popup. 
 
 Rentit also has a page for listings, as well as gigs, where you can search via a searchbar for the various categories of listings. This page will give you a gridview of various listings with important details on the listing card. By clicking on the cards, Rentit will show you the listing page, with details like whether its still available, the price, and description of the listing.
 
