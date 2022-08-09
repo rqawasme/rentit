@@ -17,5 +17,5 @@ Danyaal Patel, Kei Nakano, Kenneth Liang, Rashid Qawasme
 
 [Presentation video](https://youtu.be/4z5gA4ksUIs)
 ### Download
-
+<a href="Rentit.apk">Download App apk</a>
 Work in progress, coming soon! 
