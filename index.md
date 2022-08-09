@@ -76,7 +76,7 @@ Danyaal Patel
 &emsp; <a href="Rentit.apk">Download app apk</a>
 <br>
 <br>
-&emsp; <a href="Rent-it.zip">Final project code</a>
+&emsp; <a href="Rentit.zip">Final project code</a>
 <br>
 <br>
 &emsp; <a href="README.txt.txt">README</a>
