@@ -67,4 +67,5 @@ object Constants {
     const val DIALOG_CANCEL_BUTTON_TEXT = "CANCEL"
     const val DELETE_LISTING_DIALOG_MSG = "Are you sure you want to delete the listing"
     const val DISCARD_CHANGES_DIALOG_MSG = "Are you sure you want to discard your changes you made?"
+    const val LISTING_TITLE_TAG = "listingTitle"
 }
