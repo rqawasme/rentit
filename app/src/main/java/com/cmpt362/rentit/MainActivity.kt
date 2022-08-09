@@ -139,20 +139,14 @@ class MainActivity : AppCompatActivity() {
                         &&(bookingEndDate.month==currentDate.month)
                         && (bookingEndDate.year==currentDate.year)
                         && (bookingEndDate.time>currentDate.time)){
-                        var listingID= i.child("listingID").getValue(String::class.java)
-                        val myRefListings= Firebase.database.getReference(Constants.LISTINGS_TABLE_NAME).child(listingID!!)
 
-                        myRefListings.get().addOnCompleteListener { task ->
-                            val snapshot= task.result
-                            var expiringBooking=snapshot.child("name").getValue(String::class.java)
+                        val listingTitle = i.child(Constants.LISTING_TITLE_TAG).getValue(String::class.java)
+                        var alertDialogBuilder= AlertDialog.Builder(this)
+                        alertDialogBuilder.setTitle("Reminder")
+                        alertDialogBuilder.setMessage("Your booking for ${listingTitle} will end at $bookingEndDate")
+                        alertDialogBuilder.setPositiveButton("Ok",null)
+                        alertDialogBuilder.create().show()
 
-                            //Open dialog
-                            var alertDialogBuilder= AlertDialog.Builder(this)
-                            alertDialogBuilder.setTitle("Reminder")
-                            alertDialogBuilder.setMessage("Your booking for $expiringBooking will end at $bookingEndDate")
-                            alertDialogBuilder.setPositiveButton("Ok",null)
-                            alertDialogBuilder.create().show()
-                        }
                     }
                 }
             }
