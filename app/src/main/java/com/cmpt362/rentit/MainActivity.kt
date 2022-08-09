@@ -61,7 +61,6 @@ class MainActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         db= Firebase.database
-
         bookingEndNotification()
     }
 
