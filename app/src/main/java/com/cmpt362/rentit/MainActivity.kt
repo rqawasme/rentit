@@ -57,10 +57,10 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        Utils.checkPermissions(this)
         firebaseAuth = FirebaseAuth.getInstance()
 
         db= Firebase.database
-
         bookingEndNotification()
     }
 

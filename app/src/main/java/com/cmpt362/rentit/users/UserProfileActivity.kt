@@ -110,7 +110,6 @@ class UserProfileActivity : AppCompatActivity() {
         shapeableImageViewProfilePicture = findViewById(R.id.userProfileActivity_imageView_UserProfile)
         setupImageViewOnclick()
         setUpProfilePhoto()
-
     }
 
     private fun getRealPathFromURI(contentURI: Uri?, context: Activity): String? {
